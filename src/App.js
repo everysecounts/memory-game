@@ -4,8 +4,10 @@ import { Main } from '@/components/Main';
 class App {
   constructor(container) {
     this.container = container;
-    this.header = new Header();
     this.main = new Main();
+    this.header = new Header(() => {
+      this.main.game.start();
+    });
   }
 
   start() {

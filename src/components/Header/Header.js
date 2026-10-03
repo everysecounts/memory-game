@@ -2,7 +2,8 @@ import { createElement } from '@/utils/createElement';
 import styles from './Header.module.css';
 
 class Header {
-  constructor() {
+  constructor(onNewGame) {
+    this.onNewGame = onNewGame;
     this.element = this.createElement();
   }
 
@@ -18,6 +19,8 @@ class Header {
         type: 'button',
       },
     });
+
+    newGameButton.addEventListener('click', this.onNewGame);
 
     const leadersButton = createElement('button', {
       className: styles.button,

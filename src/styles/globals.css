@@ -16,4 +16,8 @@ body {
   font-family: var(--font-family);
   color: var(--color-text);
   background: var(--color-background);
+
+  .modal-open {
+    overflow: hidden;
+  }
 }

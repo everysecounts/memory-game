@@ -6,9 +6,11 @@ import { GameState, TOTAL_PAIRS } from './GameState';
 import styles from './Game.module.css';
 
 class Game {
-  constructor(score) {
+  constructor(score, onFinish) {
     this.score = score;
+    this.onFinish = onFinish;
     this.state = new GameState();
+    this.mismatchTimer = null;
     this.element = this.createElement();
     this.start();
   }
@@ -30,6 +32,7 @@ class Game {
   }
 
   start() {
+    this.clearMismatchTimer();
     this.state.reset();
     this.score.reset();
     const shuffledCards = shuffle(CARDS);
@@ -78,17 +81,28 @@ class Game {
       this.state.isLocked = false;
       return;
     }
-    setTimeout(() => {
+
+    this.mismatchTimer = setTimeout(() => {
       firstCard.close();
       secondCard.close();
       this.state.selectedCards = [];
       this.state.isLocked = false;
+      this.mismatchTimer = null;
     }, 1000);
   }
 
   finish() {
     this.state.isFinished = true;
     this.state.isLocked = true;
+    this.onFinish(this.state.moves);
+  }
+
+  clearMismatchTimer() {
+    if (this.mismatchTimer === null) {
+      return;
+    }
+    clearTimeout(this.mismatchTimer);
+    this.mismatchTimer = null;
   }
 }
 
