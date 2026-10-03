@@ -3,38 +3,71 @@
   flex-direction: column;
   gap: 24px;
 
+  .title {
+    margin: 0;
+    color: var(--color-gold-light);
+    font-size: 28px;
+    text-align: center;
+  }
+
   .list {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin: 0;
     list-style: none;
     counter-reset: leaderboard;
   }
 
   .item {
     display: grid;
-    grid-template-columns: 24px 1fr auto;
-    gap: 8px;
+    grid-template-columns: 32px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid rgb(201 164 92 / 20%);
+    border-radius: var(--radius-sm);
+    background: rgb(255 255 255 / 3%);
     counter-increment: leaderboard;
+    transition:
+      background var(--transition-fast),
+      border-color var(--transition-fast);
 
     &::before {
-      content: counter(leaderboard) '.';
+      content: counter(leaderboard);
+      color: var(--color-gold);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    &:hover {
+      border-color: var(--color-border);
+      background: rgb(201 164 92 / 7%);
     }
   }
 
   .button {
     align-self: center;
-    padding: 10px 20px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--color-primary);
+    padding: 10px 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: rgb(255 255 255 / 3%);
     color: var(--color-text);
     cursor: pointer;
+    transition:
+      background var(--transition-fast),
+      border-color var(--transition-fast),
+      color var(--transition-fast);
 
-    @media (hover: hover) {
-      &:hover {
-        opacity: 0.85;
-      }
+    &:hover {
+      border-color: var(--color-gold);
+      background: rgb(201 164 92 / 10%);
+      color: var(--color-gold-light);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-gold-light);
+      outline-offset: 3px;
     }
   }
 }
