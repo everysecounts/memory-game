@@ -39,7 +39,6 @@ class Game {
     this.cards = shuffledCards.map(
       (cardData) => new Card(cardData, this.handleCardSelect.bind(this)),
     );
-
     this.renderCards();
   }
 
@@ -92,6 +91,9 @@ class Game {
   }
 
   finish() {
+    if (this.state.isFinished) {
+      return;
+    }
     this.state.isFinished = true;
     this.state.isLocked = true;
     this.onFinish(this.state.moves);
@@ -103,6 +105,10 @@ class Game {
     }
     clearTimeout(this.mismatchTimer);
     this.mismatchTimer = null;
+  }
+
+  restart() {
+    this.start();
   }
 }
 

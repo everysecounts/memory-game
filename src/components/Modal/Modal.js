@@ -43,6 +43,7 @@ class Modal {
     if (!this.element.isConnected) {
       document.body.append(this.element);
     }
+    document.removeEventListener('keydown', this.handleKeyDown);
     document.addEventListener('keydown', this.handleKeyDown);
     document.body.classList.add('modal-open');
   }

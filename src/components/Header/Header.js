@@ -2,8 +2,9 @@ import { createElement } from '@/utils/createElement';
 import styles from './Header.module.css';
 
 class Header {
-  constructor(onNewGame) {
+  constructor(onNewGame, onLeaderboard) {
     this.onNewGame = onNewGame;
+    this.onLeaderboard = onLeaderboard;
     this.element = this.createElement();
   }
 
@@ -29,6 +30,8 @@ class Header {
         type: 'button',
       },
     });
+
+    leadersButton.addEventListener('click', this.onLeaderboard);
 
     header.append(newGameButton, leadersButton);
     return header;

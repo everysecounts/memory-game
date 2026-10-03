@@ -5,9 +5,14 @@ class App {
   constructor(container) {
     this.container = container;
     this.main = new Main();
-    this.header = new Header(() => {
-      this.main.game.start();
-    });
+    this.header = new Header(
+      () => {
+        this.main.handleNewGame();
+      },
+      () => {
+        this.main.openLeaderboard();
+      },
+    );
   }
 
   start() {

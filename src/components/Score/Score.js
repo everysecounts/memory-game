@@ -1,11 +1,9 @@
 import { createElement } from '@/utils/createElement';
+import { TOTAL_PAIRS } from '@/components/Game/GameState';
 import styles from './Score.module.css';
 
 class Score {
   constructor() {
-    this.moves = 0;
-    this.pairs = 0;
-
     this.element = this.createElement();
   }
 
@@ -54,7 +52,7 @@ class Score {
 
   reset() {
     this.updateMoves(0);
-    this.updatePairs(0, 8);
+    this.updatePairs(0, TOTAL_PAIRS);
   }
 }
 
