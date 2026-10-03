@@ -6,7 +6,7 @@ import styles from './Main.module.css';
 class Main {
   constructor() {
     this.score = new Score();
-    this.game = new Game();
+    this.game = new Game(this.score);
     this.element = this.createElement();
   }
 

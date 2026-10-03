@@ -43,6 +43,19 @@ class Score {
     score.append(moves, pairs);
     return score;
   }
+
+  updateMoves(moves) {
+    this.movesElement.textContent = String(moves);
+  }
+
+  updatePairs(pairs, totalPairs) {
+    this.pairsElement.textContent = `${pairs} / ${totalPairs}`;
+  }
+
+  reset() {
+    this.updateMoves(0);
+    this.updatePairs(0, 8);
+  }
 }
 
 export { Score };

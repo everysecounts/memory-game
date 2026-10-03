@@ -2,11 +2,12 @@ import { createElement } from '@/utils/createElement';
 import { shuffle } from '@/utils/shuffle';
 import { CARDS } from '@/data/cards';
 import { Card } from '@/components/Card';
-import { GameState } from './GameState';
+import { GameState, TOTAL_PAIRS } from './GameState';
 import styles from './Game.module.css';
 
 class Game {
-  constructor() {
+  constructor(score) {
+    this.score = score;
     this.state = new GameState();
     this.element = this.createElement();
     this.start();
@@ -30,6 +31,7 @@ class Game {
 
   start() {
     this.state.reset();
+    this.score.reset();
     const shuffledCards = shuffle(CARDS);
     this.cards = shuffledCards.map(
       (cardData) => new Card(cardData, this.handleCardSelect.bind(this)),
@@ -54,6 +56,8 @@ class Game {
     }
     this.state.selectedCards.push(card);
     if (this.state.selectedCards.length === 2) {
+      this.state.moves += 1;
+      this.score.updateMoves(this.state.moves);
       this.checkMatch();
     }
   }
@@ -65,7 +69,12 @@ class Game {
       firstCard.match();
       secondCard.match();
       this.state.foundPairs += 1;
+      this.score.updatePairs(this.state.foundPairs, TOTAL_PAIRS);
       this.state.selectedCards = [];
+      if (this.state.foundPairs === TOTAL_PAIRS) {
+        this.finish();
+        return;
+      }
       this.state.isLocked = false;
       return;
     }
@@ -75,6 +84,11 @@ class Game {
       this.state.selectedCards = [];
       this.state.isLocked = false;
     }, 1000);
+  }
+
+  finish() {
+    this.state.isFinished = true;
+    this.state.isLocked = true;
   }
 }
 
