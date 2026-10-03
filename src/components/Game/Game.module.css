@@ -1,10 +1,10 @@
 .game {
-  width: min(100%, 450px);
+  width: min(100%, 500px);
   margin: 0 auto;
 
   .board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    gap: 15px 20px;
   }
 }

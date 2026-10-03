@@ -2,10 +2,11 @@ import { createElement } from '@/utils/createElement';
 import styles from './Card.module.css';
 
 class Card {
-  constructor(cardData) {
+  constructor(cardData, onSelect) {
     this.id = cardData.id;
     this.pairId = cardData.pairId;
     this.image = cardData.image;
+    this.onSelect = onSelect;
     this.isOpen = false;
     this.isMatched = false;
     this.element = this.createElement();
@@ -18,6 +19,10 @@ class Card {
         type: 'button',
         'aria-label': 'Open card',
       },
+    });
+
+    card.addEventListener('click', () => {
+      this.onSelect(this);
     });
 
     const inner = createElement('span', {
@@ -55,6 +60,30 @@ class Card {
     inner.append(front, back);
     card.append(inner);
     return card;
+  }
+
+  open() {
+    if (this.isOpen || this.isMatched) {
+      return false;
+    }
+    this.isOpen = true;
+    this.element.classList.add(styles.open);
+    this.element.setAttribute('aria-label', 'Opened card');
+    return true;
+  }
+
+  close() {
+    if (!this.isOpen || this.isMatched) {
+      return false;
+    }
+    this.isOpen = false;
+    this.element.classList.remove(styles.open);
+    this.element.setAttribute('aria-label', 'Open card');
+    return true;
+  }
+
+  match() {
+    this.isMatched = true;
   }
 }
 
