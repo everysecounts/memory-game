@@ -1,12 +1,13 @@
 import { createElement } from '@/utils/createElement';
+import { shuffle } from '@/utils/shuffle';
 import { CARDS } from '@/data/cards';
 import { Card } from '@/components/Card';
 import styles from './Game.module.css';
 
 class Game {
   constructor() {
-    this.cards = CARDS.map((cardData) => new Card(cardData));
     this.element = this.createElement();
+    this.start();
   }
 
   createElement() {
@@ -21,12 +22,21 @@ class Game {
       className: styles.board,
     });
 
+    game.append(this.board);
+    return game;
+  }
+
+  start() {
+    const shuffledCards = shuffle(CARDS);
+    this.cards = shuffledCards.map((cardData) => new Card(cardData));
+    this.renderCards();
+  }
+
+  renderCards() {
+    this.board.replaceChildren();
     this.cards.forEach((card) => {
       this.board.append(card.element);
     });
-
-    game.append(this.board);
-    return game;
   }
 }
 
