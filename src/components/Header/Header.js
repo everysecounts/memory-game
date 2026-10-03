@@ -13,7 +13,7 @@ class Header {
 
     const newGameButton = createElement('button', {
       className: styles.button,
-      textContent: 'Новая игра',
+      textContent: 'New Game',
       attributes: {
         type: 'button',
       },
@@ -21,7 +21,7 @@ class Header {
 
     const leadersButton = createElement('button', {
       className: styles.button,
-      textContent: 'Таблица лидеров',
+      textContent: 'Leaderboard',
       attributes: {
         type: 'button',
       },
