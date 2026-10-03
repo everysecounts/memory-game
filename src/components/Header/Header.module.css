@@ -29,11 +29,13 @@
       padding: 8px 16px;
     }
 
-    &:hover {
-      border-color: var(--color-gold);
-      background: rgb(201 164 92 / 10%);
-      color: var(--color-gold-light);
-      transform: translateY(-1px);
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--color-gold);
+        background: rgb(201 164 92 / 10%);
+        color: var(--color-gold-light);
+        transform: translateY(-1px);
+      }
     }
 
     &:focus-visible {

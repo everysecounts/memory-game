@@ -40,9 +40,11 @@
       text-align: center;
     }
 
-    &:hover {
-      border-color: var(--color-border);
-      background: rgb(201 164 92 / 7%);
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--color-border);
+        background: rgb(201 164 92 / 7%);
+      }
     }
   }
 

@@ -6,7 +6,6 @@
   background: transparent;
   cursor: pointer;
   perspective: 1000px;
-  transition: transform var(--transition-normal);
 
   &:focus-visible {
     outline: 2px solid var(--color-gold-light);
@@ -20,10 +19,7 @@
     height: 100%;
     border-radius: var(--radius-md);
     transform-style: preserve-3d;
-    transition:
-      transform 0.6s ease,
-      filter var(--transition-normal),
-      box-shadow var(--transition-normal);
+    transition: transform 0.6s ease;
 
     .front,
     .back {
@@ -61,7 +57,22 @@
     }
   }
 
+  &.matched {
+    .inner {
+      box-shadow:
+        0 0 0 1px var(--color-gold),
+        0 0 24px rgb(201 164 92 / 35%);
+    }
+  }
+
   &:not(.open):hover {
-    transform: translateY(-4px);
+    .inner {
+      filter: brightness(1.08);
+    }
+
+    .back {
+      border-color: var(--color-gold);
+      box-shadow: var(--shadow-card-hover);
+    }
   }
 }

@@ -83,7 +83,13 @@ class Card {
   }
 
   match() {
+    if (this.isMatched) {
+      return;
+    }
+
     this.isMatched = true;
+    this.element.classList.add(styles.matched);
+    this.element.setAttribute('aria-label', 'Matched card');
   }
 }
 

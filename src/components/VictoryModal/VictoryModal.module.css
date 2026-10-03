@@ -5,23 +5,44 @@
   gap: 24px;
   text-align: center;
 
+  .title {
+    color: var(--color-gold-light);
+    font-size: 28px;
+  }
+
+  .moves {
+    color: var(--color-text-muted);
+    font-size: 18px;
+  }
+
   .actions {
     display: flex;
     gap: 12px;
   }
 
   .button {
-    padding: 10px 20px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--color-primary);
+    padding: 10px 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: rgb(255 255 255 / 3%);
     color: var(--color-text);
     cursor: pointer;
+    transition:
+      background var(--transition-fast),
+      border-color var(--transition-fast),
+      color var(--transition-fast);
 
     @media (hover: hover) {
       &:hover {
-        opacity: 0.85;
+        border-color: var(--color-gold);
+        background: rgb(201 164 92 / 10%);
+        color: var(--color-gold-light);
       }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-gold-light);
+      outline-offset: 3px;
     }
   }
 }
