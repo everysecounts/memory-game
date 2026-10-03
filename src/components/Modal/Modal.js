@@ -3,9 +3,9 @@ import styles from './Modal.module.css';
 
 class Modal {
   constructor() {
-    this.element = this.createElement();
     this.handleOverlayClick = this.handleOverlayClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.element = this.createElement();
   }
 
   createElement() {

@@ -25,7 +25,7 @@ class Card {
       this.onSelect(this);
     });
 
-    const inner = createElement('span', {
+    this.inner = createElement('span', {
       className: styles.inner,
     });
 
@@ -57,8 +57,8 @@ class Card {
 
     front.append(frontImage);
     back.append(backImage);
-    inner.append(front, back);
-    card.append(inner);
+    this.inner.append(front, back);
+    card.append(this.inner);
     return card;
   }
 
@@ -90,6 +90,17 @@ class Card {
     this.isMatched = true;
     this.element.classList.add(styles.matched);
     this.element.setAttribute('aria-label', 'Matched card');
+  }
+
+  waitForFlip(callback) {
+    const handleTransitionEnd = (event) => {
+      if (event.propertyName !== 'transform') {
+        return;
+      }
+      this.inner.removeEventListener('transitionend', handleTransitionEnd);
+      callback();
+    };
+    this.inner.addEventListener('transitionend', handleTransitionEnd);
   }
 }
 

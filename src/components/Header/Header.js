@@ -13,6 +13,24 @@ class Header {
       className: styles.header,
     });
 
+    const brand = createElement('div', {
+      className: styles.brand,
+    });
+
+    const title = createElement('span', {
+      className: styles.title,
+      textContent: 'Memory of Olympus',
+    });
+
+    const subtitle = createElement('span', {
+      className: styles.subtitle,
+      textContent: 'Ancient Greece',
+    });
+
+    const actions = createElement('div', {
+      className: styles.actions,
+    });
+
     const newGameButton = createElement('button', {
       className: styles.button,
       textContent: 'New Game',
@@ -20,8 +38,6 @@ class Header {
         type: 'button',
       },
     });
-
-    newGameButton.addEventListener('click', this.onNewGame);
 
     const leadersButton = createElement('button', {
       className: styles.button,
@@ -31,9 +47,13 @@ class Header {
       },
     });
 
+    newGameButton.addEventListener('click', this.onNewGame);
     leadersButton.addEventListener('click', this.onLeaderboard);
 
-    header.append(newGameButton, leadersButton);
+    brand.append(title, subtitle);
+    actions.append(newGameButton, leadersButton);
+    header.append(brand, actions);
+
     return header;
   }
 }

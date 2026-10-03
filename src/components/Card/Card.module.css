@@ -39,6 +39,9 @@
 
     .back {
       transform: rotateY(0);
+      transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
     }
 
     .image {
@@ -51,6 +54,13 @@
     }
   }
 
+  &:not(.open):hover {
+    .back {
+      border-color: var(--color-gold);
+      box-shadow: var(--shadow-card-hover);
+    }
+  }
+
   &.open {
     .inner {
       transform: rotateY(180deg);
@@ -58,21 +68,12 @@
   }
 
   &.matched {
-    .inner {
-      box-shadow:
-        0 0 0 1px var(--color-gold),
-        0 0 24px rgb(201 164 92 / 35%);
-    }
-  }
-
-  &:not(.open):hover {
-    .inner {
-      filter: brightness(1.08);
-    }
-
-    .back {
+    .front {
       border-color: var(--color-gold);
-      box-shadow: var(--shadow-card-hover);
+      box-shadow:
+        inset 0 0 0 1px rgb(224 198 129 / 35%),
+        0 0 20px rgb(201 164 92 / 25%),
+        var(--shadow-card);
     }
   }
 }

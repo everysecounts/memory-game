@@ -1,28 +1,51 @@
 .score {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
 
   .item {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-width: 140px;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 150px;
     padding: 12px 18px;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     background: rgb(255 255 255 / 3%);
     box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
 
-    span:last-child {
-      color: var(--color-gold-light);
+    span:first-child {
+      color: var(--color-text-muted);
+      font-size: 11px;
       font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
-    &:first-child span:first-child,
-    &:last-child span:first-child {
-      color: var(--color-text-muted);
+    span:last-child {
+      color: var(--color-gold-light);
+      font-size: 22px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      line-height: 1;
+    }
+  }
+
+  @media (width <= 560px) {
+    gap: 8px;
+
+    .item {
+      min-width: 0;
+      flex: 1;
+      padding: 10px 12px;
+
+      span:first-child {
+        font-size: 9px;
+      }
+
+      span:last-child {
+        font-size: 18px;
+      }
     }
   }
 }

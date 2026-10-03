@@ -68,16 +68,18 @@ class Game {
     const [firstCard, secondCard] = this.state.selectedCards;
     this.state.isLocked = true;
     if (firstCard.pairId === secondCard.pairId) {
-      firstCard.match();
-      secondCard.match();
-      this.state.foundPairs += 1;
-      this.score.updatePairs(this.state.foundPairs, TOTAL_PAIRS);
-      this.state.selectedCards = [];
-      if (this.state.foundPairs === TOTAL_PAIRS) {
-        this.finish();
-        return;
-      }
-      this.state.isLocked = false;
+      secondCard.waitForFlip(() => {
+        firstCard.match();
+        secondCard.match();
+        this.state.foundPairs += 1;
+        this.score.updatePairs(this.state.foundPairs, TOTAL_PAIRS);
+        this.state.selectedCards = [];
+        if (this.state.foundPairs === TOTAL_PAIRS) {
+          this.finish();
+          return;
+        }
+        this.state.isLocked = false;
+      });
       return;
     }
 
