@@ -1,4 +1,5 @@
 import { createElement } from '@/utils/createElement';
+import { BASE_URL } from '@/data/cards';
 import styles from './Card.module.css';
 
 class Card {
@@ -49,7 +50,7 @@ class Card {
     const backImage = createElement('img', {
       className: styles.image,
       attributes: {
-        src: '/assets/back.avif',
+        src: `${BASE_URL}assets/back.avif`,
         alt: '',
         draggable: 'false',
       },
