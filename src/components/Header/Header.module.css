@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: clamp(10px, calc(16px - (1024px - 100vw) * (6 / 256)), 16px);
   width: min(100% - 32px, 1200px);
   margin: 0 auto;
   padding: 15px 35px;
@@ -10,8 +10,41 @@
 
   .brand {
     display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .logoMark {
+    flex: 0 0 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    fill: none;
+    stroke: var(--color-gold-light);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition:
+      width var(--transition-normal),
+      height var(--transition-normal),
+      opacity var(--transition-normal),
+      flex-basis var(--transition-normal);
+  }
+
+  .brandText {
+    display: flex;
     flex-direction: column;
     gap: 2px;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 1;
+    transition:
+      max-width var(--transition-normal),
+      opacity var(--transition-normal);
   }
 
   .title {
@@ -31,11 +64,18 @@
 
   .actions {
     display: flex;
-    gap: 10px;
+    flex-shrink: 0;
+    gap: clamp(6px, calc(10px - (1024px - 100vw) * (4 / 256)), 10px);
+    text-wrap: nowrap;
   }
 
   .button {
-    padding: 10px 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, calc(10px - (1024px - 100vw) * (2 / 256)), 10px);
+    padding: clamp(8px, calc(10px - (1024px - 100vw) * (2 / 256)), 10px)
+      clamp(9px, calc(18px - (1024px - 100vw) * (9 / 256)), 18px);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: rgb(255 255 255 / 3%);
@@ -66,29 +106,47 @@
     }
   }
 
-  @media (height <= 700px) {
-    padding: 10px 0;
+  .icon {
+    flex: 0 0 clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
+    width: clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
+    height: clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
-  @media (width <= 560px) {
-    align-items: flex-start;
+  .buttonLabel {
+    white-space: nowrap;
+    font-size: clamp(11px, calc(12px - (1024px - 100vw) * (1 / 256)), 12px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
 
-    .actions {
-      flex-direction: column;
-      gap: 6px;
+  @media (height <= 700px) {
+    padding: 10px 35px;
+  }
+
+  @media (width <= 768px) {
+    padding-right: clamp(0px, calc(35px - (768px - 100vw) * (35 / 288)), 35px);
+    padding-left: clamp(0px, calc(35px - (768px - 100vw) * (35 / 288)), 35px);
+
+    .brand {
+      flex: 0 0 44px;
     }
 
-    .title {
-      font-size: 16px;
+    .brandText {
+      max-width: 0;
+      opacity: 0;
     }
 
-    .subtitle {
-      font-size: 9px;
-    }
-
-    .button {
-      padding: 7px 12px;
-      font-size: 12px;
+    .logoMark {
+      flex-basis: 44px;
+      width: 44px;
+      height: 44px;
+      opacity: 1;
     }
   }
 }
