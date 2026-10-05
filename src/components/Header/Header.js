@@ -1,4 +1,5 @@
-import { createElement, soundManager, createSvg } from '@/utils';
+import { createElement, createSvg } from '@/utils';
+import { SoundControl } from '@/components/SoundControl';
 import styles from './Header.module.css';
 
 function createTempleIcon() {
@@ -60,6 +61,7 @@ class Header {
   constructor(onNewGame, onLeaderboard) {
     this.onNewGame = onNewGame;
     this.onLeaderboard = onLeaderboard;
+    this.soundControl = new SoundControl();
     this.element = this.createElement();
   }
 
@@ -121,19 +123,12 @@ class Header {
     newGameButton.append(createTempleIcon(), newGameLabel);
     leadersButton.append(createLeaderboardIcon(), leadersLabel);
 
-    newGameButton.addEventListener('click', () => {
-      soundManager.play('buttonClick');
-      this.onNewGame();
-    });
-
-    leadersButton.addEventListener('click', () => {
-      soundManager.play('buttonClick');
-      this.onLeaderboard();
-    });
+    newGameButton.addEventListener('click', this.onNewGame);
+    leadersButton.addEventListener('click', this.onLeaderboard);
 
     brandText.append(title, subtitle);
     brand.append(logoMark, brandText);
-    actions.append(newGameButton, leadersButton);
+    actions.append(newGameButton, leadersButton, this.soundControl.element);
     header.append(brand, actions);
 
     return header;
