@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7d5a25"/>
+      <stop offset=".28" stop-color="#f3dc9a"/>
+      <stop offset=".55" stop-color="#c9a45c"/>
+      <stop offset=".8" stop-color="#f3dc9a"/>
+      <stop offset="1" stop-color="#76531f"/>
+    </linearGradient>
+    <linearGradient id="marble" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#252a2d"/>
+      <stop offset=".5" stop-color="#101315"/>
+      <stop offset="1" stop-color="#1b2022"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity=".55"/>
+    </filter>
+  </defs>
+
+  <!-- favicon background -->
+  <rect width="512" height="512" rx="76" fill="#0b0d0f"/>
+  <rect x="28" y="28" width="456" height="456" rx="60"
+        fill="url(#marble)" stroke="url(#gold)" stroke-width="10"
+        filter="url(#shadow)"/>
+
+  <!-- subtle marble -->
+  <g fill="none" stroke="#c9a45c" stroke-opacity=".16">
+    <path d="M15 125C100 82 125 155 205 118S365 50 505 92" stroke-width="3"/>
+    <path d="M5 390C95 350 130 425 210 382S365 320 510 360" stroke-width="2"/>
+    <path d="M95 15C120 100 75 165 118 235" stroke-width="2"/>
+    <path d="M420 5C380 95 438 155 398 225" stroke-width="2"/>
+  </g>
+
+  <!-- capital top -->
+  <g fill="url(#gold)" stroke="#f3dc9a" stroke-width="2" stroke-linejoin="round">
+    <path d="M145 122 H367 V145 H145 Z"/>
+    <path d="M128 145 H384
+             C400 145 412 157 412 173
+             C412 190 400 202 384 202
+             H128
+             C112 202 100 190 100 173
+             C100 157 112 145 128 145 Z"/>
+
+    <!-- left volute -->
+    <path d="M150 157
+             C121 157 112 174 119 191
+             C125 207 146 213 161 202
+             C176 192 174 170 158 164
+             C145 159 135 168 138 178
+             C140 186 151 188 155 181
+             C159 174 151 168 146 172"
+          fill="none" stroke-width="11" stroke-linecap="round"/>
+
+    <!-- right volute -->
+    <path d="M362 157
+             C391 157 400 174 393 191
+             C387 207 366 213 351 202
+             C336 192 338 170 354 164
+             C367 159 377 168 374 178
+             C372 186 361 188 357 181
+             C353 174 361 168 366 172"
+          fill="none" stroke-width="11" stroke-linecap="round"/>
+
+    <!-- neck -->
+    <path d="M171 198 H341 V219 H171 Z"/>
+    <path d="M183 215 H329 V230 H183 Z"/>
+  </g>
+
+  <!-- shaft -->
+  <path d="M184 225 H328 L317 391 H195 Z"
+        fill="url(#gold)" stroke="#f3dc9a" stroke-width="2"/>
+
+  <!-- fluting -->
+  <g fill="#76531f" opacity=".8">
+    <path d="M198 240 C198 232 210 232 210 240 V369 C210 377 198 377 198 369 Z"/>
+    <path d="M224 237 C224 229 236 229 236 237 V373 C236 381 224 381 224 373 Z"/>
+    <path d="M250 236 C250 228 262 228 262 236 V374 C262 382 250 382 250 374 Z"/>
+    <path d="M276 237 C276 229 288 229 288 237 V373 C288 381 276 381 276 373 Z"/>
+    <path d="M302 240 C302 232 314 232 314 240 V369 C314 377 302 377 302 369 Z"/>
+  </g>
+
+  <!-- shaft highlights -->
+  <g fill="none" stroke="#fff4dc" stroke-opacity=".45" stroke-width="2">
+    <path d="M184 225 L195 391"/>
+    <path d="M328 225 L317 391"/>
+    <path d="M215 237 V372"/>
+    <path d="M267 236 V373"/>
+  </g>
+
+  <!-- base -->
+  <g fill="url(#gold)" stroke="#f3dc9a" stroke-width="2">
+    <path d="M171 386 H341 V401 H171 Z"/>
+    <path d="M155 400 H357 V420 H155 Z"/>
+    <path d="M139 419 H373 V438 H139 Z"/>
+    <path d="M118 437 H394 V456 H118 Z"/>
+  </g>
+
+  <!-- inner frame -->
+  <rect x="43" y="43" width="426" height="426" rx="50"
+        fill="none" stroke="#e0c681" stroke-opacity=".28" stroke-width="2"/>
+</svg>
