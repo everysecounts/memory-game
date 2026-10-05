@@ -76,6 +76,9 @@ class SoundControl {
     this.pointerInsideButton = false;
     this.pointerInsidePanel = false;
 
+    this.handleResize = this.handleResize.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+
     this.element = this.createElement();
 
     this.unsubscribe = soundManager.subscribe(() => {
@@ -83,6 +86,9 @@ class SoundControl {
     });
 
     this.update();
+
+    window.addEventListener('resize', this.handleResize);
+    window.addEventListener('scroll', this.handleScroll, true);
   }
 
   createElement() {
@@ -462,12 +468,13 @@ class SoundControl {
       document.body.append(this.panel);
     }
 
-    this.positionPanel();
-
     this.isOpen = true;
+
     this.panel.classList.add(styles.open);
     this.panel.setAttribute('aria-hidden', 'false');
     this.button.setAttribute('aria-expanded', 'true');
+
+    this.positionPanel();
   }
 
   close() {
@@ -478,6 +485,7 @@ class SoundControl {
     }
 
     this.isOpen = false;
+
     this.panel.classList.remove(styles.open);
     this.panel.setAttribute('aria-hidden', 'true');
     this.button.setAttribute('aria-expanded', 'false');
@@ -506,11 +514,46 @@ class SoundControl {
     return this.pointerInsideButton || this.pointerInsidePanel;
   }
 
+  handleResize() {
+    if (!this.isOpen) {
+      return;
+    }
+
+    this.positionPanel();
+  }
+
+  handleScroll() {
+    if (!this.isOpen) {
+      return;
+    }
+
+    this.positionPanel();
+  }
+
   positionPanel() {
     const rect = this.button.getBoundingClientRect();
+    const panelWidth = this.panel.offsetWidth;
+    const panelHeight = this.panel.offsetHeight;
+    const gap = 8;
+    const viewportPadding = 12;
 
-    this.panel.style.top = `${rect.bottom}px`;
-    this.panel.style.right = `${Math.max(12, window.innerWidth - rect.right)}px`;
+    let left = rect.right - panelWidth;
+    let top = rect.bottom + gap;
+
+    const maxLeft = window.innerWidth - panelWidth - viewportPadding;
+    const maxTop = window.innerHeight - panelHeight - viewportPadding;
+
+    left = Math.max(viewportPadding, Math.min(left, maxLeft));
+
+    if (top > maxTop) {
+      top = rect.top - panelHeight - gap;
+    }
+
+    top = Math.max(viewportPadding, top);
+
+    this.panel.style.left = `${left}px`;
+    this.panel.style.right = 'auto';
+    this.panel.style.top = `${top}px`;
   }
 
   update() {

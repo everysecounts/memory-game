@@ -1,4 +1,5 @@
 import { createElement, createSvg } from '@/utils';
+import { RulesControl } from '@/components/RulesControl';
 import { SoundControl } from '@/components/SoundControl';
 import styles from './Header.module.css';
 
@@ -61,6 +62,7 @@ class Header {
   constructor(onNewGame, onLeaderboard) {
     this.onNewGame = onNewGame;
     this.onLeaderboard = onLeaderboard;
+    this.rulesControl = new RulesControl();
     this.soundControl = new SoundControl();
     this.element = this.createElement();
   }
@@ -128,7 +130,12 @@ class Header {
 
     brandText.append(title, subtitle);
     brand.append(logoMark, brandText);
-    actions.append(newGameButton, leadersButton, this.soundControl.element);
+    actions.append(
+      newGameButton,
+      leadersButton,
+      this.rulesControl.element,
+      this.soundControl.element,
+    );
     header.append(brand, actions);
 
     return header;
