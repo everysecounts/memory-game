@@ -6,9 +6,10 @@ import { GameState, TOTAL_PAIRS } from './GameState';
 import styles from './Game.module.css';
 
 class Game {
-  constructor(score, onFinish) {
+  constructor(score, onFinish, onProgress = () => {}) {
     this.score = score;
     this.onFinish = onFinish;
+    this.onProgress = onProgress;
     this.state = new GameState();
     this.mismatchTimer = null;
     this.element = this.createElement();
@@ -35,6 +36,7 @@ class Game {
     this.clearMismatchTimer();
     this.state.reset();
     this.score.reset();
+    this.onProgress(0);
     const shuffledCards = shuffle(CARDS);
     this.cards = shuffledCards.map(
       (cardData) => new Card(cardData, this.handleCardSelect.bind(this)),
@@ -73,6 +75,7 @@ class Game {
         secondCard.match();
         this.state.foundPairs += 1;
         this.score.updatePairs(this.state.foundPairs, TOTAL_PAIRS);
+        this.onProgress(this.state.foundPairs);
         this.state.selectedCards = [];
         if (this.state.foundPairs === TOTAL_PAIRS) {
           this.finish();

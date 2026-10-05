@@ -7,7 +7,7 @@ import { LeaderboardModal } from '@/components/LeaderboardModal';
 import styles from './Main.module.css';
 
 class Main {
-  constructor() {
+  constructor(onProgress) {
     this.score = new Score();
 
     this.leaderboard = new Leaderboard();
@@ -17,9 +17,13 @@ class Main {
       this.handleNewGame();
     });
 
-    this.game = new Game(this.score, (moves) => {
-      this.handleGameFinish(moves);
-    });
+    this.game = new Game(
+      this.score,
+      (moves) => {
+        this.handleGameFinish(moves);
+      },
+      onProgress,
+    );
 
     this.element = this.createElement();
   }

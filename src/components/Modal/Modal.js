@@ -2,7 +2,8 @@ import { createElement } from '@/utils/createElement';
 import styles from './Modal.module.css';
 
 class Modal {
-  constructor() {
+  constructor({ variant } = {}) {
+    this.variant = variant;
     this.handleOverlayClick = this.handleOverlayClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.element = this.createElement();
@@ -10,7 +11,7 @@ class Modal {
 
   createElement() {
     const overlay = createElement('div', {
-      className: styles.overlay,
+      className: this.variant === 'scene' ? `${styles.overlay} ${styles.scene}` : styles.overlay,
       attributes: {
         role: 'dialog',
         'aria-modal': 'true',
@@ -23,6 +24,7 @@ class Modal {
 
     overlay.append(this.content);
     overlay.addEventListener('click', this.handleOverlayClick);
+
     return overlay;
   }
 
@@ -40,9 +42,11 @@ class Modal {
 
   open(content) {
     this.content.replaceChildren(content);
+
     if (!this.element.isConnected) {
       document.body.append(this.element);
     }
+
     document.removeEventListener('keydown', this.handleKeyDown);
     document.addEventListener('keydown', this.handleKeyDown);
     document.body.classList.add('modal-open');

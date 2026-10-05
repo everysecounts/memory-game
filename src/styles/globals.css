@@ -10,25 +10,12 @@
 }
 
 body {
-  position: relative;
   min-width: 360px;
   min-height: 100vh;
   overflow-x: hidden;
   font-family: var(--font-family);
   color: var(--color-text);
-  background:
-    radial-gradient(circle at 50% 10%, rgb(201 164 92 / 10%), transparent 35%),
-    linear-gradient(180deg, #161a1c 0%, var(--color-background) 100%);
-}
-
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  content: '';
-  background:
-    radial-gradient(circle at 15% 30%, rgb(201 164 92 / 5%), transparent 25%),
-    radial-gradient(circle at 85% 70%, rgb(126 94 45 / 7%), transparent 30%);
+  background: var(--color-background);
 }
 
 button,

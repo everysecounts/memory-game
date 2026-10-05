@@ -1,0 +1,66 @@
+.world {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--color-background);
+
+  .background {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .hidden {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  }
+
+  .reveal {
+    clip-path: polygon(-10% 0, 100% 0, 100% 100%, -10% 100%);
+    transition: clip-path 1400ms cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .light {
+    position: absolute;
+    z-index: 2;
+    top: -20%;
+    left: -40%;
+    width: 45%;
+    height: 140%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 220 140 / 0%),
+      rgb(255 220 140 / 30%),
+      rgb(255 235 180 / 45%),
+      rgb(255 220 140 / 30%),
+      rgb(255 220 140 / 0%),
+      transparent
+    );
+    opacity: 0;
+    transform: rotate(8deg);
+    filter: blur(20px);
+    transition:
+      left 1400ms cubic-bezier(0.76, 0, 0.24, 1),
+      opacity 300ms ease;
+  }
+
+  .active {
+    left: 100%;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      clip-path: none;
+      transition: none;
+    }
+
+    .light {
+      display: none;
+    }
+  }
+}

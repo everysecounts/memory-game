@@ -1,17 +1,28 @@
 .game {
-  width: min(100%, 450px);
+  width: min(100%, 480px);
   margin: 0 auto;
+  padding: 18px 16px 20px;
+  border: 1px solid rgb(224 198 129 / 48%);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(201 164 92 / 10%), transparent 60%),
+    linear-gradient(180deg, rgb(48 40 28 / 58%), rgb(12 10 8 / 68%));
+  box-shadow:
+    inset 0 1px 0 rgb(255 240 200 / 08%),
+    0 12px 36px rgb(0 0 0 / 32%);
+  backdrop-filter: blur(6px);
 
   .board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
+    gap: 12px;
   }
 }
 
 @media (height <= 700px) {
   .game {
-    width: min(100%, 300px);
+    width: min(100%, 320px);
+    padding: 12px 10px 14px;
 
     .board {
       gap: 8px;
@@ -21,7 +32,8 @@
 
 @media (height <= 600px) {
   .game {
-    width: min(100%, 260px);
+    width: min(100%, 280px);
+    padding: 10px 8px 12px;
 
     .board {
       gap: 6px;

@@ -1,10 +1,17 @@
 import { Header } from '@/components/Header';
 import { Main } from '@/components/Main';
+import { World } from '@/components/World';
 
 class App {
   constructor(container) {
     this.container = container;
-    this.main = new Main();
+
+    this.world = new World();
+
+    this.main = new Main((foundPairs) => {
+      this.world.setProgress(foundPairs);
+    });
+
     this.header = new Header(
       () => {
         this.main.handleNewGame();
@@ -16,7 +23,7 @@ class App {
   }
 
   start() {
-    this.container.replaceChildren(this.header.element, this.main.element);
+    this.container.replaceChildren(this.world.element, this.header.element, this.main.element);
   }
 }
 

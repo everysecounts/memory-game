@@ -1,4 +1,4 @@
-export function createElement(tagName, options = {}, children = []) {
+function createElement(tagName, options = {}, children = []) {
   const element = document.createElement(tagName);
   const { className, textContent, attributes = {} } = options;
   if (className) {
@@ -15,3 +15,5 @@ export function createElement(tagName, options = {}, children = []) {
   });
   return element;
 }
+
+export { createElement };

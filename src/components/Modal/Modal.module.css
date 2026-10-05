@@ -10,11 +10,26 @@
 
   .content {
     width: min(100%, 500px);
+    min-width: 320px;
     padding: 32px;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     background:
       radial-gradient(circle at 50% 0%, rgb(201 164 92 / 8%), transparent 50%), var(--color-surface);
     box-shadow: var(--shadow-modal);
+  }
+
+  &.scene {
+    background: radial-gradient(ellipse at 50% 50%, rgb(0 0 0 / 35%), rgb(0 0 0 / 62%));
+    backdrop-filter: blur(2px);
+
+    .content {
+      width: min(100%, 640px);
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+    }
   }
 }
