@@ -1,4 +1,4 @@
-import { createElement } from '@/utils/createElement';
+import { createElement, soundManager } from '@/utils';
 import { Game } from '@/components/Game';
 import { Score } from '@/components/Score';
 import { VictoryModal } from '@/components/VictoryModal';
@@ -38,6 +38,7 @@ class Main {
   }
 
   handleGameFinish(moves) {
+    soundManager.play('victory');
     this.leaderboard.saveResult(moves);
     this.victoryModal.open(moves);
   }

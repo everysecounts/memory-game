@@ -1,6 +1,5 @@
-import { createElement } from '@/utils/createElement';
-import { shuffle } from '@/utils/shuffle';
-import { CARDS } from '@/data/cards';
+import { createElement, shuffle, soundManager } from '@/utils';
+import { CARDS } from '@/data';
 import { Card } from '@/components/Card';
 import { GameState, TOTAL_PAIRS } from './GameState';
 import styles from './Game.module.css';
@@ -71,6 +70,7 @@ class Game {
     this.state.isLocked = true;
     if (firstCard.pairId === secondCard.pairId) {
       secondCard.waitForFlip(() => {
+        soundManager.play('cardMatch');
         firstCard.match();
         secondCard.match();
         this.state.foundPairs += 1;
@@ -87,6 +87,7 @@ class Game {
     }
 
     this.mismatchTimer = setTimeout(() => {
+      soundManager.play('cardMismatch');
       firstCard.close();
       secondCard.close();
       this.state.selectedCards = [];

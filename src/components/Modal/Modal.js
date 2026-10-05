@@ -1,4 +1,4 @@
-import { createElement } from '@/utils/createElement';
+import { createElement } from '@/utils';
 import styles from './Modal.module.css';
 
 class Modal {

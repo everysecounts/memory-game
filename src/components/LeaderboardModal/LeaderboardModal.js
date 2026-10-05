@@ -1,4 +1,4 @@
-import { createElement } from '@/utils/createElement';
+import { createElement } from '@/utils';
 import { Modal } from '@/components/Modal';
 import { createDivider, createHourglass } from './ornaments';
 import styles from './LeaderboardModal.module.css';

@@ -1,6 +1,6 @@
 import { createElement } from '@/utils';
 import styles from './World.module.css';
-import { BASE_URL } from '@/data/cards';
+import { BASE_URL } from '@/data';
 
 const WORLD_STATES = {
   NIGHT: 'night',

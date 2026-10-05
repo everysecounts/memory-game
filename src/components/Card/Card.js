@@ -1,5 +1,5 @@
-import { createElement } from '@/utils/createElement';
-import { BASE_URL } from '@/data/cards';
+import { createElement, soundManager } from '@/utils';
+import { BASE_URL } from '@/data';
 import styles from './Card.module.css';
 
 class Card {
@@ -14,10 +14,11 @@ class Card {
   }
 
   createElement() {
-    const card = createElement('button', {
+    const card = createElement('article', {
       className: styles.card,
       attributes: {
-        type: 'button',
+        role: 'button',
+        tabindex: '0',
         'aria-label': 'Open card',
       },
     });
@@ -70,6 +71,7 @@ class Card {
     this.isOpen = true;
     this.element.classList.add(styles.open);
     this.element.setAttribute('aria-label', 'Opened card');
+    soundManager.play('cardFlip');
     return true;
   }
 

@@ -1,5 +1,4 @@
-import { createElement } from '@/utils/createElement';
-import { createSvg } from '@/utils/createSvg';
+import { createElement, createSvg } from '@/utils';
 import { Modal } from '@/components/Modal';
 import { createDivider } from '@/components/LeaderboardModal/ornaments';
 import styles from './VictoryModal.module.css';

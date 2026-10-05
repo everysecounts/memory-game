@@ -1,4 +1,4 @@
-export function shuffle(array) {
+function shuffle(array) {
   const shuffled = [...array];
 
   for (let index = shuffled.length - 1; index > 0; index -= 1) {
@@ -8,3 +8,5 @@ export function shuffle(array) {
 
   return shuffled;
 }
+
+export { shuffle };

@@ -1,4 +1,4 @@
-import { createElement } from '@/utils/createElement';
+import { createElement } from '@/utils';
 import { TOTAL_PAIRS } from '@/components/Game/GameState';
 import styles from './Score.module.css';
 
