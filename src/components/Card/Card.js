@@ -91,6 +91,14 @@ class Card {
     this.isMatched = true;
     this.element.classList.add(styles.matched);
     this.element.setAttribute('aria-label', 'Matched card');
+    this.pulse();
+  }
+
+  pulse() {
+    this.element.classList.remove(styles.pulse);
+    requestAnimationFrame(() => {
+      this.element.classList.add(styles.pulse);
+    });
   }
 
   waitForFlip(callback) {
