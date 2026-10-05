@@ -17,7 +17,6 @@ class Card {
     const card = createElement('article', {
       className: styles.card,
       attributes: {
-        role: 'button',
         tabindex: '0',
         'aria-label': 'Open card',
       },

@@ -103,6 +103,7 @@ class SoundControl {
         'aria-label': 'Audio settings',
         'aria-expanded': 'false',
         'aria-haspopup': 'dialog',
+        'data-no-sound': 'true',
       },
     });
 
@@ -194,9 +195,9 @@ class SoundControl {
       }
     });
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
       if (this.isHoverDevice()) {
-        this.open();
+        event.preventDefault();
         return;
       }
 

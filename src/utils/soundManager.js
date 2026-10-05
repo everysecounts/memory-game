@@ -132,9 +132,14 @@ class SoundManager {
 
   enableButtonSounds() {
     document.addEventListener('click', (event) => {
-      if (event.target.closest('button')) {
-        this.play('buttonClick');
+      const button = event.target.closest('button');
+      if (!button) {
+        return;
       }
+      if (button.dataset.noSound === 'true') {
+        return;
+      }
+      this.play('buttonClick');
     });
   }
 

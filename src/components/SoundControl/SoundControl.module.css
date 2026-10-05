@@ -48,10 +48,6 @@
       outline: 2px solid var(--color-gold-light);
       outline-offset: 3px;
     }
-
-    &:active {
-      transform: translateY(0);
-    }
   }
 
   .icon {
@@ -127,7 +123,7 @@
     cursor:
       var(--pointer-url) 3 2,
       pointer;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -290,7 +286,7 @@
   }
 
   .levelLabel {
-    font-size: 10px;
+    font-size: 12px;
     font-variant-numeric: tabular-nums;
     line-height: 1;
   }

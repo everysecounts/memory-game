@@ -48,10 +48,6 @@
       outline: 2px solid var(--color-gold-light);
       outline-offset: 3px;
     }
-
-    &:active {
-      transform: translateY(0);
-    }
   }
 
   .icon {
@@ -141,7 +137,7 @@
     margin: 6px 0 18px;
     color: rgb(224 198 129 / 58%);
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: 12px;
     font-style: italic;
     letter-spacing: 0.08em;
     text-align: center;
@@ -197,7 +193,7 @@
   .tipTitle {
     color: rgb(224 198 129 / 82%);
     font-family: var(--font-family);
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -206,7 +202,7 @@
   .tipText {
     color: rgb(232 220 193 / 72%);
     font-family: var(--font-family);
-    font-size: 11px;
+    font-size: 12px;
     font-style: italic;
     font-weight: 500;
     line-height: 1.35;

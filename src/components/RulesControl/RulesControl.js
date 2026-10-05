@@ -54,6 +54,7 @@ class RulesControl {
         'aria-label': 'How to play',
         'aria-expanded': 'false',
         'aria-haspopup': 'dialog',
+        'data-no-sound': 'true',
       },
     });
 
@@ -159,9 +160,9 @@ class RulesControl {
       }
     });
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
       if (this.isHoverDevice()) {
-        this.open();
+        event.preventDefault();
         return;
       }
 
