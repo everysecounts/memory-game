@@ -16,10 +16,14 @@ class Leaderboard {
 
   saveResult(moves) {
     const results = this.getResults();
-
+    const date = this.getCurrentDate();
+    const isDuplicate = results.some((result) => result.moves === moves && result.date === date);
+    if (isDuplicate) {
+      return results;
+    }
     results.push({
       moves,
-      date: this.getCurrentDate(),
+      date,
     });
 
     results.sort((first, second) => {
