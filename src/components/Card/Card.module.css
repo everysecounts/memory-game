@@ -4,12 +4,21 @@
   border: 0;
   border-radius: var(--radius-md);
   background: transparent;
-  cursor: pointer;
+  cursor:
+    var(--pointer-url) 3 2,
+    pointer;
   perspective: 1000px;
 
   &:focus-visible {
     outline: 2px solid var(--color-gold-light);
     outline-offset: 4px;
+  }
+
+  &.open,
+  &.matched {
+    cursor:
+      var(--cursor-url) 3 2,
+      auto;
   }
 
   .inner {

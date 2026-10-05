@@ -7,6 +7,9 @@
   .item {
     display: flex;
     align-items: baseline;
+    justify-content: center;
+    font-size: clamp(16px, calc(20px - (1024px - 100vw) * (4 / 256)), 20px);
+    font-family: var(--font-family);
     gap: clamp(6px, calc(10px - (1024px - 100vw) * (4 / 256)), 10px);
     min-width: clamp(100px, calc(150px - (1024px - 100vw) * (50 / 256)), 150px);
     padding: clamp(8px, calc(12px - (1024px - 100vw) * (4 / 256)), 12px)

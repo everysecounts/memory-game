@@ -1,6 +1,5 @@
 :root {
-  --font-family: 'Cormorant Garamond', serif;
-  --font-family-display: 'Cinzel', serif;
+  --font-family: 'Cinzel', serif;
   --color-background: #101315;
   --color-surface: #1a1f21;
   --color-text: #f4efe5;
@@ -18,4 +17,6 @@
   --radius-lg: 20px;
   --transition-fast: 0.2s ease;
   --transition-normal: 0.35s ease;
+  --cursor-url: auto;
+  --pointer-url: auto;
 }

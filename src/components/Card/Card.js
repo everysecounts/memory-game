@@ -50,7 +50,7 @@ class Card {
     const backImage = createElement('img', {
       className: styles.image,
       attributes: {
-        src: `${BASE_URL}assets/back.avif`,
+        src: `${BASE_URL}assets/cards/back.avif`,
         alt: '',
         draggable: 'false',
       },

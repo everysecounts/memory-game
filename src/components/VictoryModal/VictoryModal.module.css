@@ -18,7 +18,7 @@
     inset 0 0 70px rgb(201 164 92 / 12%),
     0 0 46px rgb(201 164 92 / 25%),
     var(--shadow-modal);
-  font-family: var(--font-family-display);
+  font-family: var(--font-family);
   text-align: center;
 
   &::before {
@@ -98,8 +98,10 @@
       inset 0 0 0 4px rgb(224 198 129 / 55%),
       0 0 18px rgb(201 164 92 / 25%);
     color: var(--color-gold-bright);
-    cursor: pointer;
-    font-family: var(--font-family-display);
+    cursor:
+      var(--pointer-url) 3 2,
+      pointer;
+    font-family: var(--font-family);
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.03em;
