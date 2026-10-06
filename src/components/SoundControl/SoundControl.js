@@ -462,6 +462,20 @@ class SoundControl {
     this.musicPanel.hidden = isEffects;
   }
 
+  updateControlsState(isMuted) {
+    this.levelButtons.effects.forEach((button) => {
+      button.disabled = isMuted;
+    });
+
+    this.levelButtons.music.forEach((button) => {
+      button.disabled = isMuted;
+    });
+
+    this.progress.disabled = isMuted;
+    this.restartButton.disabled = isMuted;
+    this.playButton.disabled = isMuted;
+  }
+
   open() {
     this.clearCloseTimer();
 
@@ -577,6 +591,7 @@ class SoundControl {
     this.masterLabel.textContent = masterMuted ? 'Sound on' : 'Mute all';
 
     this.updateThemePlayer(themePaused);
+    this.updateControlsState(masterMuted);
 
     this.setActiveTab(this.activeTab);
   }
