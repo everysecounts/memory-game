@@ -237,14 +237,6 @@ class SoundManager {
     return this.settings.themePaused;
   }
 
-  isSoundEnabled() {
-    return this.getEffectsVolume() > 0;
-  }
-
-  isMusicEnabled() {
-    return this.getMusicVolume() > 0;
-  }
-
   getThemeCurrentTime() {
     if (!this.theme || !Number.isFinite(this.theme.currentTime)) {
       return 0;
@@ -384,10 +376,6 @@ class SoundManager {
     this.notify();
   }
 
-  toggleThemePaused() {
-    this.setThemePaused(!this.settings.themePaused);
-  }
-
   toggleThemePlayback() {
     this.setThemePaused(!this.settings.themePaused);
   }
@@ -449,34 +437,6 @@ class SoundManager {
           this.notify();
         })
         .catch(() => {});
-    }
-  }
-
-  nextVolume() {
-    const nextLevel = (this.settings.effectsLevel + 1) % VOLUME_LEVELS.length;
-
-    this.setEffectsLevel(nextLevel);
-  }
-
-  stop(name) {
-    const sound = this.sounds.get(name);
-
-    if (!sound) {
-      return;
-    }
-
-    sound.pause();
-    sound.currentTime = 0;
-  }
-
-  stopAll() {
-    this.sounds.forEach((sound) => {
-      sound.pause();
-      sound.currentTime = 0;
-    });
-
-    if (this.theme) {
-      this.theme.pause();
     }
   }
 }
