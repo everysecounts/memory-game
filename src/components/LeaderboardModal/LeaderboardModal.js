@@ -1,9 +1,10 @@
 import { createElement } from '@/utils';
 import { Modal } from '@/components/Modal';
-import { createDivider, createHourglass } from './ornaments';
+import { createDivider, createHourglass, createLaurelWreath } from '@/components/ornaments';
 import styles from './LeaderboardModal.module.css';
 
 const TOTAL_PAIRS = 8;
+const RANK_VARIANTS = ['gold', 'silver', 'bronze'];
 
 class LeaderboardModal {
   constructor(leaderboard) {
@@ -82,21 +83,26 @@ class LeaderboardModal {
     });
 
     results.forEach((result, index) => {
+      const rank = index + 1;
       const item = createElement('li', {
         className: styles.item,
         attributes: {
-          'data-rank': String(index + 1),
+          'data-rank': String(rank),
         },
       });
 
-      const rank = createElement('span', {
+      const rankElement = createElement('span', {
         className: styles.rank,
       });
 
-      rank.append(
+      if (rank <= RANK_VARIANTS.length) {
+        rankElement.append(createLaurelWreath(styles.wreath, RANK_VARIANTS[index]));
+      }
+
+      rankElement.append(
         createElement('span', {
           className: styles.rankNumber,
-          textContent: String(index + 1),
+          textContent: String(rank),
         }),
       );
 
@@ -110,7 +116,7 @@ class LeaderboardModal {
         textContent: result.date,
       });
 
-      item.append(rank, moves, date);
+      item.append(rankElement, moves, date);
       list.append(item);
     });
 
