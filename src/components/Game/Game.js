@@ -1,7 +1,7 @@
 import { createElement, shuffle, soundManager } from '@/utils';
-import { CARDS } from '@/data';
+import { CARDS, TOTAL_PAIRS } from '@/data';
 import { Card } from '@/components/Card';
-import { GameState, TOTAL_PAIRS } from './GameState';
+import { GameState } from './GameState';
 import styles from './Game.module.css';
 
 class Game {

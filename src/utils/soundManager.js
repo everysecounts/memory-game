@@ -185,19 +185,8 @@ class SoundManager {
 
   notify() {
     this.listeners.forEach((listener) => {
-      listener(this.getState());
+      listener();
     });
-  }
-
-  getState() {
-    return {
-      effectsLevel: this.settings.effectsLevel,
-      musicLevel: this.settings.musicLevel,
-      themePaused: this.settings.themePaused,
-      masterMuted: this.settings.masterMuted,
-      themeCurrentTime: this.getThemeCurrentTime(),
-      themeDuration: this.getThemeDuration(),
-    };
   }
 
   getEffectsLevel() {

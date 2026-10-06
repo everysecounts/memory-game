@@ -1,9 +1,9 @@
 import { createElement } from '@/utils';
 import { Modal } from '@/components/Modal';
 import { createDivider, createHourglass, createLaurelWreath } from '@/components/ornaments';
+import { TOTAL_PAIRS } from '@/data';
 import styles from './LeaderboardModal.module.css';
 
-const TOTAL_PAIRS = 8;
 const RANK_VARIANTS = ['gold', 'silver', 'bronze'];
 
 class LeaderboardModal {

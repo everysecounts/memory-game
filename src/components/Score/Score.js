@@ -1,5 +1,5 @@
 import { createElement } from '@/utils';
-import { TOTAL_PAIRS } from '@/components/Game/GameState';
+import { TOTAL_PAIRS } from '@/data';
 import styles from './Score.module.css';
 
 class Score {
@@ -25,7 +25,7 @@ class Score {
     });
 
     this.pairsElement = createElement('span', {
-      textContent: '0 / 8',
+      textContent: `0 / ${TOTAL_PAIRS}`,
     });
 
     const moves = createElement('div', {

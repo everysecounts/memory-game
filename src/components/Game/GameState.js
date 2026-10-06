@@ -1,5 +1,3 @@
-const TOTAL_PAIRS = 8;
-
 class GameState {
   constructor() {
     this.reset();
@@ -14,4 +12,4 @@ class GameState {
   }
 }
 
-export { GameState, TOTAL_PAIRS };
+export { GameState };
