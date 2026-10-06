@@ -5,7 +5,6 @@ const THEME_URL = `${SOUND_BASE_URL}theme.ogg`;
 const STORAGE_KEY = 'memory-game-sound-settings';
 
 const VOLUME_LEVELS = [0, 0.2, 0.5, 1];
-const VOLUME_PERCENTAGES = [0, 20, 50, 100];
 
 const SOUNDS = {
   cardFlip: 'card-flip.ogg',
@@ -131,16 +130,20 @@ class SoundManager {
   }
 
   enableButtonSounds() {
-    document.addEventListener('click', (event) => {
-      const button = event.target.closest('button');
-      if (!button) {
-        return;
-      }
-      if (button.dataset.noSound === 'true') {
-        return;
-      }
-      this.play('buttonClick');
-    });
+    document.addEventListener(
+      'click',
+      (event) => {
+        const button = event.target.closest('button');
+        if (!button) {
+          return;
+        }
+        if (button.dataset.noSound === 'true' || button.getAttribute('aria-selected') === 'true') {
+          return;
+        }
+        this.play('buttonClick');
+      },
+      true,
+    );
   }
 
   enableAudioUnlock() {
@@ -222,11 +225,15 @@ class SoundManager {
   }
 
   getEffectsPercent() {
-    return VOLUME_PERCENTAGES[this.settings.effectsLevel];
+    return VOLUME_LEVELS[this.settings.effectsLevel] * 100;
   }
 
   getMusicPercent() {
-    return VOLUME_PERCENTAGES[this.settings.musicLevel];
+    return VOLUME_LEVELS[this.settings.musicLevel] * 100;
+  }
+
+  getVolumeLevels() {
+    return VOLUME_LEVELS.map((volume) => volume * 100);
   }
 
   isMasterMuted() {

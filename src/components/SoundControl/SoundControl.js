@@ -2,8 +2,6 @@ import { createElement, createSoundIcon, createSvg, soundManager } from '@/utils
 import { FloatingPanel } from '@/components/FloatingPanel';
 import styles from './SoundControl.module.css';
 
-const VOLUME_LEVELS = [0, 20, 50, 100];
-
 function createPlayIcon() {
   return createSvg(
     'svg',
@@ -354,7 +352,7 @@ class SoundControl {
     this.levelButtons = this.levelButtons || {};
     this.levelButtons[type] = [];
 
-    VOLUME_LEVELS.forEach((volume, index) => {
+    soundManager.getVolumeLevels().forEach((volume, index) => {
       const levelButton = createElement('button', {
         className: styles.level,
         attributes: {
