@@ -1,4 +1,5 @@
 import { createElement, soundManager } from '@/utils';
+import { TOTAL_PAIRS } from '@/data';
 import { Game } from '@/components/Game';
 import { Score } from '@/components/Score';
 import { VictoryModal } from '@/components/VictoryModal';
@@ -40,7 +41,8 @@ class Main {
   handleGameFinish(moves) {
     soundManager.play('victory');
     this.leaderboard.saveResult(moves);
-    this.victoryModal.open(moves);
+    const isPerfect = moves === TOTAL_PAIRS;
+    this.victoryModal.open(moves, isPerfect);
   }
 
   handleNewGame() {

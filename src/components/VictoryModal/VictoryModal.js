@@ -21,7 +21,7 @@ class VictoryModal {
 
     iconWrap.append(createLaurelWreath(styles.icon));
 
-    const title = createElement('h2', {
+    this.title = createElement('h2', {
       className: styles.title,
       textContent: 'Victory!',
     });
@@ -62,12 +62,13 @@ class VictoryModal {
     });
 
     actions.append(newGameButton, closeButton);
-    content.append(iconWrap, title, divider, this.movesElement, actions);
+    content.append(iconWrap, this.title, divider, this.movesElement, actions);
 
     return content;
   }
 
-  open(moves) {
+  open(moves, isPerfect = false) {
+    this.title.textContent = isPerfect ? 'Perfect Memory!' : 'Victory!';
     this.movesElement.textContent = `Moves: ${moves}`;
     this.modal.open(this.element);
   }
