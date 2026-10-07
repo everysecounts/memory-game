@@ -385,6 +385,94 @@ var CARD_SETS = {
 				image: "hoplite.avif"
 			}
 		]
+	},
+	kingdomOfHades: {
+		id: "kingdomOfHades",
+		name: "Kingdom Of Hades",
+		folder: "kingdom-of-hades",
+		back: "back.avif",
+		cards: [
+			{
+				id: 1,
+				pairId: 1,
+				image: "hades.avif"
+			},
+			{
+				id: 2,
+				pairId: 1,
+				image: "hades.avif"
+			},
+			{
+				id: 3,
+				pairId: 2,
+				image: "athena.avif"
+			},
+			{
+				id: 4,
+				pairId: 2,
+				image: "athena.avif"
+			},
+			{
+				id: 5,
+				pairId: 3,
+				image: "apollo.avif"
+			},
+			{
+				id: 6,
+				pairId: 3,
+				image: "apollo.avif"
+			},
+			{
+				id: 7,
+				pairId: 4,
+				image: "hypnos.avif"
+			},
+			{
+				id: 8,
+				pairId: 4,
+				image: "hypnos.avif"
+			},
+			{
+				id: 9,
+				pairId: 5,
+				image: "dionysus.avif"
+			},
+			{
+				id: 10,
+				pairId: 5,
+				image: "dionysus.avif"
+			},
+			{
+				id: 11,
+				pairId: 6,
+				image: "hestia.avif"
+			},
+			{
+				id: 12,
+				pairId: 6,
+				image: "hestia.avif"
+			},
+			{
+				id: 13,
+				pairId: 7,
+				image: "hecate.avif"
+			},
+			{
+				id: 14,
+				pairId: 7,
+				image: "hecate.avif"
+			},
+			{
+				id: 15,
+				pairId: 8,
+				image: "nike.avif"
+			},
+			{
+				id: 16,
+				pairId: 8,
+				image: "nike.avif"
+			}
+		]
 	}
 };
 var DEFAULT_CARD_SET_ID = "ancientGreece";
@@ -2296,4 +2384,4 @@ var root = document.body;
 new App(root).start();
 //#endregion
 
-//# sourceMappingURL=index-b-t7Z9jt.js.map
+//# sourceMappingURL=index-BLmTWA87.js.map
