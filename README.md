@@ -39,7 +39,21 @@ The game includes:
 
 ## Run locally
 
-Clone the repository and install the dependencies:
+Make sure you have **Node.js** and **npm** installed.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/everysecounts/memory-game.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd memory-game
+```
+
+Install the dependencies:
 
 ```bash
 npm install
