@@ -42,8 +42,8 @@ function createSvg(tagName, attributes = {}, ...children) {
 	return element;
 }
 //#endregion
-//#region src/utils/createSoundIcon.js
-function createSoundIcon() {
+//#region src/utils/createSettingsIcon.js
+function createSettingsIcon() {
 	return {
 		svg: createSvg("svg", {
 			viewBox: "0 0 32 32",
@@ -121,88 +121,273 @@ function createElement(tagName, options = {}, children = []) {
 //#endregion
 //#region src/data/cards.js
 var BASE_URL = "/memory-game/";
-var CARDS = [
-	{
-		id: 1,
-		pairId: 1,
-		image: `${BASE_URL}assets/cards/amphora.avif`
+var CARD_SETS = {
+	ancientGreece: {
+		id: "ancientGreece",
+		name: "Ancient Greece",
+		folder: "ancient-greece",
+		back: "back.avif",
+		cards: [
+			{
+				id: 1,
+				pairId: 1,
+				image: "amphora.avif"
+			},
+			{
+				id: 2,
+				pairId: 1,
+				image: "amphora.avif"
+			},
+			{
+				id: 3,
+				pairId: 2,
+				image: "temple-ruins.avif"
+			},
+			{
+				id: 4,
+				pairId: 2,
+				image: "temple-ruins.avif"
+			},
+			{
+				id: 5,
+				pairId: 3,
+				image: "hoplite.avif"
+			},
+			{
+				id: 6,
+				pairId: 3,
+				image: "hoplite.avif"
+			},
+			{
+				id: 7,
+				pairId: 4,
+				image: "olives.avif"
+			},
+			{
+				id: 8,
+				pairId: 4,
+				image: "olives.avif"
+			},
+			{
+				id: 9,
+				pairId: 5,
+				image: "theater.avif"
+			},
+			{
+				id: 10,
+				pairId: 5,
+				image: "theater.avif"
+			},
+			{
+				id: 11,
+				pairId: 6,
+				image: "trireme.avif"
+			},
+			{
+				id: 12,
+				pairId: 6,
+				image: "trireme.avif"
+			},
+			{
+				id: 13,
+				pairId: 7,
+				image: "laurel-mosaic.avif"
+			},
+			{
+				id: 14,
+				pairId: 7,
+				image: "laurel-mosaic.avif"
+			},
+			{
+				id: 15,
+				pairId: 8,
+				image: "discobolus.avif"
+			},
+			{
+				id: 16,
+				pairId: 8,
+				image: "discobolus.avif"
+			}
+		]
 	},
-	{
-		id: 2,
-		pairId: 1,
-		image: `${BASE_URL}assets/cards/amphora.avif`
+	godsOfOlympus: {
+		id: "godsOfOlympus",
+		name: "Gods of Olympus",
+		folder: "gods-of-olympus",
+		back: "back.avif",
+		cards: [
+			{
+				id: 1,
+				pairId: 1,
+				image: "zeus.avif"
+			},
+			{
+				id: 2,
+				pairId: 1,
+				image: "zeus.avif"
+			},
+			{
+				id: 3,
+				pairId: 2,
+				image: "aphrodite.avif"
+			},
+			{
+				id: 4,
+				pairId: 2,
+				image: "aphrodite.avif"
+			},
+			{
+				id: 5,
+				pairId: 3,
+				image: "ares.avif"
+			},
+			{
+				id: 6,
+				pairId: 3,
+				image: "ares.avif"
+			},
+			{
+				id: 7,
+				pairId: 4,
+				image: "artemis.avif"
+			},
+			{
+				id: 8,
+				pairId: 4,
+				image: "artemis.avif"
+			},
+			{
+				id: 9,
+				pairId: 5,
+				image: "demeter.avif"
+			},
+			{
+				id: 10,
+				pairId: 5,
+				image: "demeter.avif"
+			},
+			{
+				id: 11,
+				pairId: 6,
+				image: "hephaestus.avif"
+			},
+			{
+				id: 12,
+				pairId: 6,
+				image: "hephaestus.avif"
+			},
+			{
+				id: 13,
+				pairId: 7,
+				image: "hera.avif"
+			},
+			{
+				id: 14,
+				pairId: 7,
+				image: "hera.avif"
+			},
+			{
+				id: 15,
+				pairId: 8,
+				image: "poseidon.avif"
+			},
+			{
+				id: 16,
+				pairId: 8,
+				image: "poseidon.avif"
+			}
+		]
 	},
-	{
-		id: 3,
-		pairId: 2,
-		image: `${BASE_URL}assets/cards/philosopher.avif`
-	},
-	{
-		id: 4,
-		pairId: 2,
-		image: `${BASE_URL}assets/cards/philosopher.avif`
-	},
-	{
-		id: 5,
-		pairId: 3,
-		image: `${BASE_URL}assets/cards/hoplite.avif`
-	},
-	{
-		id: 6,
-		pairId: 3,
-		image: `${BASE_URL}assets/cards/hoplite.avif`
-	},
-	{
-		id: 7,
-		pairId: 4,
-		image: `${BASE_URL}assets/cards/olives.avif`
-	},
-	{
-		id: 8,
-		pairId: 4,
-		image: `${BASE_URL}assets/cards/olives.avif`
-	},
-	{
-		id: 9,
-		pairId: 5,
-		image: `${BASE_URL}assets/cards/theater.avif`
-	},
-	{
-		id: 10,
-		pairId: 5,
-		image: `${BASE_URL}assets/cards/theater.avif`
-	},
-	{
-		id: 11,
-		pairId: 6,
-		image: `${BASE_URL}assets/cards/trireme.avif`
-	},
-	{
-		id: 12,
-		pairId: 6,
-		image: `${BASE_URL}assets/cards/trireme.avif`
-	},
-	{
-		id: 13,
-		pairId: 7,
-		image: `${BASE_URL}assets/cards/acropolis.avif`
-	},
-	{
-		id: 14,
-		pairId: 7,
-		image: `${BASE_URL}assets/cards/acropolis.avif`
-	},
-	{
-		id: 15,
-		pairId: 8,
-		image: `${BASE_URL}assets/cards/discobolus.avif`
-	},
-	{
-		id: 16,
-		pairId: 8,
-		image: `${BASE_URL}assets/cards/discobolus.avif`
+	greekHeritage: {
+		id: "greekHeritage",
+		name: "Greek Heritage",
+		folder: "greek-heritage",
+		back: "back.avif",
+		cards: [
+			{
+				id: 1,
+				pairId: 1,
+				image: "eagle.avif"
+			},
+			{
+				id: 2,
+				pairId: 1,
+				image: "eagle.avif"
+			},
+			{
+				id: 3,
+				pairId: 2,
+				image: "athena.avif"
+			},
+			{
+				id: 4,
+				pairId: 2,
+				image: "athena.avif"
+			},
+			{
+				id: 5,
+				pairId: 3,
+				image: "ancient-bell.avif"
+			},
+			{
+				id: 6,
+				pairId: 3,
+				image: "ancient-bell.avif"
+			},
+			{
+				id: 7,
+				pairId: 4,
+				image: "helmet.avif"
+			},
+			{
+				id: 8,
+				pairId: 4,
+				image: "helmet.avif"
+			},
+			{
+				id: 9,
+				pairId: 5,
+				image: "armillary-sphere.avif"
+			},
+			{
+				id: 10,
+				pairId: 5,
+				image: "armillary-sphere.avif"
+			},
+			{
+				id: 11,
+				pairId: 6,
+				image: "acropolis.avif"
+			},
+			{
+				id: 12,
+				pairId: 6,
+				image: "acropolis.avif"
+			},
+			{
+				id: 13,
+				pairId: 7,
+				image: "athena-warrior.avif"
+			},
+			{
+				id: 14,
+				pairId: 7,
+				image: "athena-warrior.avif"
+			},
+			{
+				id: 15,
+				pairId: 8,
+				image: "hoplite.avif"
+			},
+			{
+				id: 16,
+				pairId: 8,
+				image: "hoplite.avif"
+			}
+		]
 	}
-];
+};
+var DEFAULT_CARD_SET_ID = "ancientGreece";
 //#endregion
 //#region src/data/cursor.js
 var CURSOR_URL = `${BASE_URL}assets/cursor/olympus-cursor.svg`;
@@ -212,17 +397,11 @@ var POINTER_URL = `${BASE_URL}assets/cursor/olympus-pointer.svg`;
 var SOUND_BASE_URL = `${BASE_URL}assets/sounds/`;
 var THEME_URL = `${SOUND_BASE_URL}theme.ogg`;
 var STORAGE_KEY$1 = "memory-game-sound-settings";
-var VOLUME_LEVELS$1 = [
+var VOLUME_LEVELS = [
 	0,
 	.2,
 	.5,
 	1
-];
-var VOLUME_PERCENTAGES = [
-	0,
-	20,
-	50,
-	100
 ];
 var SOUNDS = {
 	cardFlip: "card-flip.ogg",
@@ -240,7 +419,7 @@ var DEFAULT_SETTINGS = {
 	mutedMusicLevel: 2
 };
 function clampLevel(level) {
-	return Math.min(Math.max(level, 0), VOLUME_LEVELS$1.length - 1);
+	return Math.min(Math.max(level, 0), VOLUME_LEVELS.length - 1);
 }
 var SoundManager = class {
 	constructor() {
@@ -256,7 +435,6 @@ var SoundManager = class {
 		this.preload();
 		this.enableButtonSounds();
 		this.enableAudioUnlock();
-		this.syncThemePlayback();
 	}
 	loadSettings() {
 		const data = localStorage.getItem(STORAGE_KEY$1);
@@ -309,9 +487,9 @@ var SoundManager = class {
 		document.addEventListener("click", (event) => {
 			const button = event.target.closest("button");
 			if (!button) return;
-			if (button.dataset.noSound === "true") return;
+			if (button.dataset.noSound === "true" || button.getAttribute("aria-selected") === "true") return;
 			this.play("buttonClick");
-		});
+		}, true);
 	}
 	enableAudioUnlock() {
 		document.addEventListener("pointerdown", this.unlockHandler, { passive: true });
@@ -326,10 +504,10 @@ var SoundManager = class {
 		document.removeEventListener("keydown", this.unlockHandler);
 	}
 	handleThemeTimeUpdate() {
-		this.notify();
+		this.notify("theme");
 	}
 	handleThemeMetadata() {
-		this.notify();
+		this.notify("theme");
 	}
 	subscribe(listener) {
 		this.listeners.add(listener);
@@ -337,20 +515,10 @@ var SoundManager = class {
 			this.listeners.delete(listener);
 		};
 	}
-	notify() {
+	notify(type = "all") {
 		this.listeners.forEach((listener) => {
-			listener(this.getState());
+			listener(type);
 		});
-	}
-	getState() {
-		return {
-			effectsLevel: this.settings.effectsLevel,
-			musicLevel: this.settings.musicLevel,
-			themePaused: this.settings.themePaused,
-			masterMuted: this.settings.masterMuted,
-			themeCurrentTime: this.getThemeCurrentTime(),
-			themeDuration: this.getThemeDuration()
-		};
 	}
 	getEffectsLevel() {
 		return this.settings.effectsLevel;
@@ -360,29 +528,26 @@ var SoundManager = class {
 	}
 	getEffectsVolume() {
 		if (this.settings.masterMuted) return 0;
-		return VOLUME_LEVELS$1[this.settings.effectsLevel];
+		return VOLUME_LEVELS[this.settings.effectsLevel];
 	}
 	getMusicVolume() {
 		if (this.settings.masterMuted) return 0;
-		return VOLUME_LEVELS$1[this.settings.musicLevel];
+		return VOLUME_LEVELS[this.settings.musicLevel];
 	}
 	getEffectsPercent() {
-		return VOLUME_PERCENTAGES[this.settings.effectsLevel];
+		return VOLUME_LEVELS[this.settings.effectsLevel] * 100;
 	}
 	getMusicPercent() {
-		return VOLUME_PERCENTAGES[this.settings.musicLevel];
+		return VOLUME_LEVELS[this.settings.musicLevel] * 100;
+	}
+	getVolumeLevels() {
+		return VOLUME_LEVELS.map((volume) => volume * 100);
 	}
 	isMasterMuted() {
 		return this.settings.masterMuted;
 	}
 	isThemePaused() {
 		return this.settings.themePaused;
-	}
-	isSoundEnabled() {
-		return this.getEffectsVolume() > 0;
-	}
-	isMusicEnabled() {
-		return this.getMusicVolume() > 0;
 	}
 	getThemeCurrentTime() {
 		if (!this.theme || !Number.isFinite(this.theme.currentTime)) return 0;
@@ -466,10 +631,7 @@ var SoundManager = class {
 		this.settings.themePaused = Boolean(isPaused);
 		this.syncThemePlayback();
 		this.saveSettings();
-		this.notify();
-	}
-	toggleThemePaused() {
-		this.setThemePaused(!this.settings.themePaused);
+		this.notify("theme");
 	}
 	toggleThemePlayback() {
 		this.setThemePaused(!this.settings.themePaused);
@@ -480,14 +642,14 @@ var SoundManager = class {
 		this.settings.themePaused = false;
 		this.syncThemePlayback();
 		this.saveSettings();
-		this.notify();
+		this.notify("theme");
 	}
 	setThemeCurrentTime(time) {
 		if (!this.theme || !Number.isFinite(time)) return;
 		const duration = this.getThemeDuration();
 		if (duration <= 0) return;
 		this.theme.currentTime = Math.min(Math.max(time, 0), duration);
-		this.notify();
+		this.notify("theme");
 	}
 	syncThemePlayback() {
 		if (!this.theme) return;
@@ -502,42 +664,153 @@ var SoundManager = class {
 		if (playPromise !== void 0) playPromise.then(() => {
 			this.audioUnlocked = true;
 			this.disableAudioUnlock();
-			this.notify();
+			this.notify("theme");
 		}).catch(() => {});
-	}
-	nextVolume() {
-		const nextLevel = (this.settings.effectsLevel + 1) % VOLUME_LEVELS$1.length;
-		this.setEffectsLevel(nextLevel);
-	}
-	stop(name) {
-		const sound = this.sounds.get(name);
-		if (!sound) return;
-		sound.pause();
-		sound.currentTime = 0;
-	}
-	stopAll() {
-		this.sounds.forEach((sound) => {
-			sound.pause();
-			sound.currentTime = 0;
-		});
-		if (this.theme) this.theme.pause();
 	}
 };
 var soundManager = new SoundManager();
+//#endregion
+//#region src/components/FloatingPanel/FloatingPanel.js
+var FloatingPanel = class {
+	constructor({ button, panel, openClass, closeDelay = 200, gap = 8, viewportPadding = 12 }) {
+		this.button = button;
+		this.panel = panel;
+		this.openClass = openClass;
+		this.closeDelay = closeDelay;
+		this.gap = gap;
+		this.viewportPadding = viewportPadding;
+		this.isOpen = false;
+		this.closeTimer = null;
+		this.pointerInsideButton = false;
+		this.pointerInsidePanel = false;
+		this.handleResize = this.handleResize.bind(this);
+		this.handleScroll = this.handleScroll.bind(this);
+		this.handleButtonMouseEnter = this.handleButtonMouseEnter.bind(this);
+		this.handleButtonMouseLeave = this.handleButtonMouseLeave.bind(this);
+		this.handlePanelMouseEnter = this.handlePanelMouseEnter.bind(this);
+		this.handlePanelMouseLeave = this.handlePanelMouseLeave.bind(this);
+		this.handleButtonClick = this.handleButtonClick.bind(this);
+		this.addEventListeners();
+	}
+	addEventListeners() {
+		this.button.addEventListener("mouseenter", this.handleButtonMouseEnter);
+		this.button.addEventListener("mouseleave", this.handleButtonMouseLeave);
+		this.panel.addEventListener("mouseenter", this.handlePanelMouseEnter);
+		this.panel.addEventListener("mouseleave", this.handlePanelMouseLeave);
+		this.button.addEventListener("click", this.handleButtonClick);
+		window.addEventListener("resize", this.handleResize);
+		window.addEventListener("scroll", this.handleScroll, true);
+	}
+	handleButtonMouseEnter() {
+		this.pointerInsideButton = true;
+		if (this.isHoverDevice()) {
+			this.clearCloseTimer();
+			this.open();
+		}
+	}
+	handleButtonMouseLeave() {
+		this.pointerInsideButton = false;
+		if (this.isHoverDevice()) this.scheduleClose();
+	}
+	handlePanelMouseEnter() {
+		this.pointerInsidePanel = true;
+		this.clearCloseTimer();
+	}
+	handlePanelMouseLeave() {
+		this.pointerInsidePanel = false;
+		if (this.isHoverDevice()) this.scheduleClose();
+	}
+	handleButtonClick(event) {
+		if (this.isHoverDevice()) {
+			event.preventDefault();
+			return;
+		}
+		if (this.isOpen) this.close();
+		else this.open();
+	}
+	isHoverDevice() {
+		return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+	}
+	open() {
+		this.clearCloseTimer();
+		if (!this.panel.isConnected) document.body.append(this.panel);
+		this.isOpen = true;
+		this.panel.classList.add(this.openClass);
+		this.panel.setAttribute("aria-hidden", "false");
+		this.button.setAttribute("aria-expanded", "true");
+		this.positionPanel();
+	}
+	close() {
+		this.clearCloseTimer();
+		if (this.panel.contains(document.activeElement)) this.button.focus();
+		this.isOpen = false;
+		this.panel.classList.remove(this.openClass);
+		this.panel.setAttribute("aria-hidden", "true");
+		this.button.setAttribute("aria-expanded", "false");
+	}
+	scheduleClose() {
+		this.clearCloseTimer();
+		this.closeTimer = setTimeout(() => {
+			if (!this.isPointerInside()) this.close();
+		}, this.closeDelay);
+	}
+	clearCloseTimer() {
+		if (this.closeTimer === null) return;
+		clearTimeout(this.closeTimer);
+		this.closeTimer = null;
+	}
+	isPointerInside() {
+		return this.pointerInsideButton || this.pointerInsidePanel;
+	}
+	handleResize() {
+		if (!this.isOpen) return;
+		this.positionPanel();
+	}
+	handleScroll() {
+		if (!this.isOpen) return;
+		this.positionPanel();
+	}
+	positionPanel() {
+		const rect = this.button.getBoundingClientRect();
+		const panelWidth = this.panel.offsetWidth;
+		const panelHeight = this.panel.offsetHeight;
+		let left = rect.right - panelWidth;
+		let top = rect.bottom + this.gap;
+		const maxLeft = window.innerWidth - panelWidth - this.viewportPadding;
+		const maxTop = window.innerHeight - panelHeight - this.viewportPadding;
+		left = Math.max(this.viewportPadding, Math.min(left, maxLeft));
+		if (top > maxTop) top = rect.top - panelHeight - this.gap;
+		top = Math.max(this.viewportPadding, top);
+		this.panel.style.left = `${left}px`;
+		this.panel.style.right = "auto";
+		this.panel.style.top = `${top}px`;
+	}
+	destroy() {
+		this.clearCloseTimer();
+		this.button.removeEventListener("mouseenter", this.handleButtonMouseEnter);
+		this.button.removeEventListener("mouseleave", this.handleButtonMouseLeave);
+		this.panel.removeEventListener("mouseenter", this.handlePanelMouseEnter);
+		this.panel.removeEventListener("mouseleave", this.handlePanelMouseLeave);
+		this.button.removeEventListener("click", this.handleButtonClick);
+		window.removeEventListener("resize", this.handleResize);
+		window.removeEventListener("scroll", this.handleScroll, true);
+		if (this.panel.isConnected) this.panel.remove();
+	}
+};
 var RulesControl_module_default = {
-	control: "_control_1neiz_1",
-	button: "_button_1neiz_7",
-	icon: "_icon_1neiz_53",
-	panel: "_panel_1neiz_64",
-	open: "_open_1neiz_109",
-	ornament: "_ornament_1neiz_115",
-	title: "_title_1neiz_124",
-	subtitle: "_subtitle_1neiz_136",
-	rules: "_rules_1neiz_146",
-	rule: "_rule_1neiz_146",
-	tip: "_tip_1neiz_184",
-	tipTitle: "_tipTitle_1neiz_193",
-	tipText: "_tipText_1neiz_202"
+	control: "_control_11ues_1",
+	button: "_button_11ues_7",
+	icon: "_icon_11ues_53",
+	panel: "_panel_11ues_64",
+	open: "_open_11ues_109",
+	ornament: "_ornament_11ues_115",
+	title: "_title_11ues_125",
+	subtitle: "_subtitle_11ues_137",
+	rules: "_rules_11ues_147",
+	rule: "_rule_11ues_147",
+	tip: "_tip_11ues_185",
+	tipTitle: "_tipTitle_11ues_194",
+	tipText: "_tipText_11ues_203"
 };
 //#endregion
 //#region src/components/RulesControl/RulesControl.js
@@ -555,15 +828,7 @@ function createRulesIcon() {
 }
 var RulesControl = class {
 	constructor() {
-		this.isOpen = false;
-		this.closeTimer = null;
-		this.pointerInsideButton = false;
-		this.pointerInsidePanel = false;
-		this.handleResize = this.handleResize.bind(this);
-		this.handleScroll = this.handleScroll.bind(this);
 		this.element = this.createElement();
-		window.addEventListener("resize", this.handleResize);
-		window.addEventListener("scroll", this.handleScroll, true);
 	}
 	createElement() {
 		const wrapper = createElement("div", { className: RulesControl_module_default.control });
@@ -607,10 +872,7 @@ var RulesControl = class {
 			"Match all pairs to win."
 		].forEach((text) => {
 			const rule = createElement("li", { className: RulesControl_module_default.rule });
-			const ruleText = createElement("span", {
-				className: RulesControl_module_default.ruleText,
-				textContent: text
-			});
+			const ruleText = createElement("span", { textContent: text });
 			rule.append(ruleText);
 			rules.append(rule);
 		});
@@ -625,154 +887,74 @@ var RulesControl = class {
 		});
 		tip.append(tipTitle, tipText);
 		panel.append(ornament, title, subtitle, rules, tip);
-		button.addEventListener("mouseenter", () => {
-			this.pointerInsideButton = true;
-			if (this.isHoverDevice()) {
-				this.clearCloseTimer();
-				this.open();
-			}
+		this.floatingPanel = new FloatingPanel({
+			button,
+			panel,
+			openClass: RulesControl_module_default.open
 		});
-		button.addEventListener("mouseleave", () => {
-			this.pointerInsideButton = false;
-			if (this.isHoverDevice()) this.scheduleClose();
-		});
-		panel.addEventListener("mouseenter", () => {
-			this.pointerInsidePanel = true;
-			this.clearCloseTimer();
-		});
-		panel.addEventListener("mouseleave", () => {
-			this.pointerInsidePanel = false;
-			if (this.isHoverDevice()) this.scheduleClose();
-		});
-		button.addEventListener("click", (event) => {
-			if (this.isHoverDevice()) {
-				event.preventDefault();
-				return;
-			}
-			if (this.isOpen) this.close();
-			else this.open();
-		});
-		this.button = button;
-		this.panel = panel;
 		wrapper.append(button);
 		return wrapper;
 	}
-	isHoverDevice() {
-		return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-	}
-	open() {
-		this.clearCloseTimer();
-		if (!this.panel.isConnected) document.body.append(this.panel);
-		this.isOpen = true;
-		this.panel.classList.add(RulesControl_module_default.open);
-		this.panel.setAttribute("aria-hidden", "false");
-		this.button.setAttribute("aria-expanded", "true");
-		this.positionPanel();
-	}
-	close() {
-		this.clearCloseTimer();
-		if (this.panel.contains(document.activeElement)) this.button.focus();
-		this.isOpen = false;
-		this.panel.classList.remove(RulesControl_module_default.open);
-		this.panel.setAttribute("aria-hidden", "true");
-		this.button.setAttribute("aria-expanded", "false");
-	}
-	scheduleClose() {
-		this.clearCloseTimer();
-		this.closeTimer = setTimeout(() => {
-			if (!this.isPointerInside()) this.close();
-		}, 200);
-	}
-	clearCloseTimer() {
-		if (this.closeTimer === null) return;
-		clearTimeout(this.closeTimer);
-		this.closeTimer = null;
-	}
-	isPointerInside() {
-		return this.pointerInsideButton || this.pointerInsidePanel;
-	}
-	handleResize() {
-		if (!this.isOpen) return;
-		this.positionPanel();
-	}
-	handleScroll() {
-		if (!this.isOpen) return;
-		this.positionPanel();
-	}
-	positionPanel() {
-		const rect = this.button.getBoundingClientRect();
-		const panelWidth = this.panel.offsetWidth;
-		const panelHeight = this.panel.offsetHeight;
-		const gap = 8;
-		const viewportPadding = 12;
-		let left = rect.right - panelWidth;
-		let top = rect.bottom + gap;
-		const maxLeft = window.innerWidth - panelWidth - viewportPadding;
-		const maxTop = window.innerHeight - panelHeight - viewportPadding;
-		left = Math.max(viewportPadding, Math.min(left, maxLeft));
-		if (top > maxTop) top = rect.top - panelHeight - gap;
-		top = Math.max(viewportPadding, top);
-		this.panel.style.left = `${left}px`;
-		this.panel.style.right = "auto";
-		this.panel.style.top = `${top}px`;
+	destroy() {
+		this.floatingPanel.destroy();
 	}
 };
-var SoundControl_module_default = {
-	control: "_control_13aec_1",
-	button: "_button_13aec_7",
-	icon: "_icon_13aec_53",
-	panel: "_panel_13aec_64",
-	open: "_open_13aec_90",
-	panelHeader: "_panelHeader_13aec_96",
-	title: "_title_13aec_105",
-	masterButton: "_masterButton_13aec_113",
-	tabs: "_tabs_13aec_153",
-	tab: "_tab_13aec_153",
-	active: "_active_13aec_191",
-	tabPanel: "_tabPanel_13aec_198",
-	row: "_row_13aec_209",
-	description: "_description_13aec_216",
-	value: "_value_13aec_224",
-	levels: "_levels_13aec_230",
-	level: "_level_13aec_230",
-	dot: "_dot_13aec_274",
-	levelLabel: "_levelLabel_13aec_288",
-	player: "_player_13aec_305",
-	progress: "_progress_13aec_313",
-	playerControls: "_playerControls_13aec_373",
-	playerButton: "_playerButton_13aec_379",
-	playButton: "_playButton_13aec_416",
-	playerIcon: "_playerIcon_13aec_431",
-	time: "_time_13aec_441",
-	currentTime: "_currentTime_13aec_452",
-	timeSeparator: "_timeSeparator_13aec_456",
-	duration: "_duration_13aec_460"
+var Settings_module_default = {
+	control: "_control_5qnq4_1",
+	button: "_button_5qnq4_7",
+	icon: "_icon_5qnq4_53",
+	panel: "_panel_5qnq4_64",
+	open: "_open_5qnq4_91",
+	panelHeader: "_panelHeader_5qnq4_97",
+	title: "_title_5qnq4_106",
+	masterButton: "_masterButton_5qnq4_114",
+	tabs: "_tabs_5qnq4_154",
+	tab: "_tab_5qnq4_154",
+	active: "_active_5qnq4_192",
+	tabPanel: "_tabPanel_5qnq4_207",
+	audioSection: "_audioSection_5qnq4_218",
+	cardSets: "_cardSets_5qnq4_229",
+	cardSet: "_cardSet_5qnq4_229",
+	cardSetImage: "_cardSetImage_5qnq4_280",
+	cardSetName: "_cardSetName_5qnq4_309",
+	cardSetNote: "_cardSetNote_5qnq4_321",
+	row: "_row_5qnq4_328",
+	description: "_description_5qnq4_335",
+	value: "_value_5qnq4_343",
+	levels: "_levels_5qnq4_349",
+	level: "_level_5qnq4_349",
+	dot: "_dot_5qnq4_400",
+	levelLabel: "_levelLabel_5qnq4_414",
+	player: "_player_5qnq4_430",
+	progress: "_progress_5qnq4_438",
+	playerControls: "_playerControls_5qnq4_503",
+	playerButton: "_playerButton_5qnq4_509",
+	playButton: "_playButton_5qnq4_551",
+	playerIcon: "_playerIcon_5qnq4_566",
+	time: "_time_5qnq4_576",
+	currentTime: "_currentTime_5qnq4_587",
+	timeSeparator: "_timeSeparator_5qnq4_591",
+	duration: "_duration_5qnq4_595"
 };
 //#endregion
-//#region src/components/SoundControl/SoundControl.js
-var VOLUME_LEVELS = [
-	0,
-	20,
-	50,
-	100
-];
+//#region src/components/Settings/Settings.js
 function createPlayIcon() {
 	return createSvg("svg", {
-		class: SoundControl_module_default.playerIcon,
+		class: Settings_module_default.playerIcon,
 		viewBox: "0 0 24 24",
 		"aria-hidden": "true"
 	}, [createSvg("path", { d: "M8 5.5v13l10-6.5L8 5.5Z" })]);
 }
 function createPauseIcon() {
 	return createSvg("svg", {
-		class: SoundControl_module_default.playerIcon,
+		class: Settings_module_default.playerIcon,
 		viewBox: "0 0 24 24",
 		"aria-hidden": "true"
 	}, [createSvg("path", { d: "M8 6v12M16 6v12" })]);
 }
 function createRestartIcon() {
 	return createSvg("svg", {
-		class: SoundControl_module_default.playerIcon,
+		class: Settings_module_default.playerIcon,
 		viewBox: "0 0 24 24",
 		"aria-hidden": "true"
 	}, [createSvg("path", { d: "M19 8a8 8 0 1 0 1 6" }), createSvg("path", { d: "M19 4v4h-4" })]);
@@ -784,125 +966,97 @@ function formatTime(time) {
 	const seconds = totalSeconds % 60;
 	return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
-var SoundControl = class {
-	constructor() {
-		this.isOpen = false;
-		this.activeTab = "effects";
-		this.closeTimer = null;
-		this.pointerInsideButton = false;
-		this.pointerInsidePanel = false;
-		this.handleResize = this.handleResize.bind(this);
-		this.handleScroll = this.handleScroll.bind(this);
+var Settings = class {
+	constructor(onCardSetChange = () => {}) {
+		this.onCardSetChange = onCardSetChange;
+		this.cardSetId = this.loadCardSetId();
+		this.activeTab = null;
 		this.element = this.createElement();
-		this.unsubscribe = soundManager.subscribe(() => {
+		this.unsubscribe = soundManager.subscribe((type) => {
+			if (type === "theme") {
+				this.updateThemePlayer(soundManager.isThemePaused());
+				return;
+			}
 			this.update();
+			this.updateThemePlayer(soundManager.isThemePaused());
 		});
 		this.update();
-		window.addEventListener("resize", this.handleResize);
-		window.addEventListener("scroll", this.handleScroll, true);
+		this.updateThemePlayer(soundManager.isThemePaused());
+		this.updateCardSetSelection();
+		this.setActiveTab("audio");
 	}
 	createElement() {
-		const wrapper = createElement("div", { className: SoundControl_module_default.control });
+		const wrapper = createElement("div", { className: Settings_module_default.control });
 		const button = createElement("button", {
-			className: SoundControl_module_default.button,
+			className: Settings_module_default.button,
 			attributes: {
 				type: "button",
-				"aria-label": "Audio settings",
+				"aria-label": "Settings",
 				"aria-expanded": "false",
 				"aria-haspopup": "dialog",
 				"data-no-sound": "true"
 			}
 		});
-		const icon = createSoundIcon();
-		icon.svg.classList.add(SoundControl_module_default.icon);
+		const icon = createSettingsIcon();
+		icon.svg.classList.add(Settings_module_default.icon);
 		button.append(icon.svg);
 		const panel = createElement("div", {
-			className: SoundControl_module_default.panel,
+			className: Settings_module_default.panel,
 			attributes: {
 				role: "dialog",
-				"aria-label": "Audio settings",
+				"aria-label": "Settings",
 				"aria-hidden": "true"
 			}
 		});
-		const panelHeader = createElement("div", { className: SoundControl_module_default.panelHeader });
+		const panelHeader = createElement("div", { className: Settings_module_default.panelHeader });
 		const title = createElement("h2", {
-			className: SoundControl_module_default.title,
-			textContent: "Audio Settings"
+			className: Settings_module_default.title,
+			textContent: "Settings"
 		});
 		const masterButton = createElement("button", {
-			className: SoundControl_module_default.masterButton,
+			className: Settings_module_default.masterButton,
 			attributes: {
 				type: "button",
 				"aria-label": "Mute all sounds",
 				"aria-pressed": "false"
 			}
 		});
-		const masterLabel = createElement("span", {
-			className: SoundControl_module_default.masterLabel,
-			textContent: "Mute all"
-		});
+		const masterLabel = createElement("span", { textContent: "Mute all" });
 		masterButton.append(masterLabel);
 		panelHeader.append(title, masterButton);
 		const tabs = createElement("div", {
-			className: SoundControl_module_default.tabs,
+			className: Settings_module_default.tabs,
 			attributes: {
 				role: "tablist",
-				"aria-label": "Audio settings"
+				"aria-label": "Settings"
 			}
 		});
-		const effectsTab = this.createTab("effects", "Effects");
-		const musicTab = this.createTab("music", "Music");
-		tabs.append(effectsTab, musicTab);
-		const effectsPanel = this.createEffectsPanel();
-		const musicPanel = this.createMusicPanel();
-		panel.append(panelHeader, tabs, effectsPanel, musicPanel);
-		button.addEventListener("mouseenter", () => {
-			this.pointerInsideButton = true;
-			if (this.isHoverDevice()) {
-				this.clearCloseTimer();
-				this.open();
-			}
-		});
-		button.addEventListener("mouseleave", () => {
-			this.pointerInsideButton = false;
-			if (this.isHoverDevice()) this.scheduleClose();
-		});
-		panel.addEventListener("mouseenter", () => {
-			this.pointerInsidePanel = true;
-			this.clearCloseTimer();
-		});
-		panel.addEventListener("mouseleave", () => {
-			this.pointerInsidePanel = false;
-			if (this.isHoverDevice()) this.scheduleClose();
-		});
-		button.addEventListener("click", (event) => {
-			if (this.isHoverDevice()) {
-				event.preventDefault();
-				return;
-			}
-			if (this.isOpen) this.close();
-			else this.open();
-		});
+		const audioTab = this.createTab("audio", "Audio");
+		const cardsTab = this.createTab("cards", "Cards");
+		tabs.append(audioTab, cardsTab);
+		const audioPanel = this.createAudioPanel();
+		const cardsPanel = this.createCardsPanel();
+		panel.append(panelHeader, tabs, audioPanel, cardsPanel);
 		masterButton.addEventListener("click", () => {
 			soundManager.toggleMasterMute();
 		});
-		this.button = button;
-		this.panel = panel;
 		this.masterButton = masterButton;
 		this.masterLabel = masterLabel;
-		this.effectsTab = effectsTab;
-		this.musicTab = musicTab;
-		this.effectsPanel = effectsPanel;
-		this.musicPanel = musicPanel;
+		this.audioTab = audioTab;
+		this.cardsTab = cardsTab;
+		this.audioPanel = audioPanel;
+		this.cardsPanel = cardsPanel;
+		this.floatingPanel = new FloatingPanel({
+			button,
+			panel,
+			openClass: Settings_module_default.open
+		});
 		wrapper.append(button);
 		return wrapper;
 	}
-	isHoverDevice() {
-		return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-	}
 	createTab(name, label) {
 		const tab = createElement("button", {
-			className: SoundControl_module_default.tab,
+			className: Settings_module_default.tab,
 			textContent: label,
 			attributes: {
 				type: "button",
@@ -915,20 +1069,30 @@ var SoundControl = class {
 		});
 		return tab;
 	}
-	createEffectsPanel() {
+	createAudioPanel() {
 		const panel = createElement("section", {
-			className: SoundControl_module_default.tabPanel,
+			className: Settings_module_default.tabPanel,
 			attributes: {
 				role: "tabpanel",
-				"aria-label": "Effects settings"
+				"aria-label": "Audio settings"
 			}
 		});
+		const effectsPanel = this.createEffectsPanel();
+		const musicPanel = this.createMusicPanel();
+		panel.append(effectsPanel, musicPanel);
+		return panel;
+	}
+	createEffectsPanel() {
+		const panel = createElement("section", {
+			className: Settings_module_default.audioSection,
+			attributes: { "aria-label": "Effects settings" }
+		});
 		const description = createElement("p", {
-			className: SoundControl_module_default.description,
+			className: Settings_module_default.description,
 			textContent: "Game sounds"
 		});
-		const value = createElement("span", { className: SoundControl_module_default.value });
-		const header = createElement("div", { className: SoundControl_module_default.row });
+		const value = createElement("span", { className: Settings_module_default.value });
+		const header = createElement("div", { className: Settings_module_default.row });
 		header.append(description, value);
 		const levels = this.createLevelControl("effects");
 		panel.append(header, levels);
@@ -937,18 +1101,15 @@ var SoundControl = class {
 	}
 	createMusicPanel() {
 		const panel = createElement("section", {
-			className: SoundControl_module_default.tabPanel,
-			attributes: {
-				role: "tabpanel",
-				"aria-label": "Music settings"
-			}
+			className: Settings_module_default.audioSection,
+			attributes: { "aria-label": "Music settings" }
 		});
 		const description = createElement("p", {
-			className: SoundControl_module_default.description,
+			className: Settings_module_default.description,
 			textContent: "Theme music"
 		});
-		const value = createElement("span", { className: SoundControl_module_default.value });
-		const header = createElement("div", { className: SoundControl_module_default.row });
+		const value = createElement("span", { className: Settings_module_default.value });
+		const header = createElement("div", { className: Settings_module_default.row });
 		header.append(description, value);
 		const levels = this.createLevelControl("music");
 		const player = this.createThemePlayer();
@@ -956,10 +1117,86 @@ var SoundControl = class {
 		this.musicValue = value;
 		return panel;
 	}
+	createCardsPanel() {
+		const panel = createElement("section", {
+			className: Settings_module_default.tabPanel,
+			attributes: {
+				role: "tabpanel",
+				"aria-label": "Cards settings"
+			}
+		});
+		const description = createElement("p", {
+			className: Settings_module_default.description,
+			textContent: "Card set"
+		});
+		const cardSets = createElement("div", { className: Settings_module_default.cardSets });
+		this.cardSetButtons = [];
+		Object.values(CARD_SETS).forEach((cardSet) => {
+			const button = this.createCardSetButton(cardSet);
+			cardSets.append(button);
+			this.cardSetButtons.push({
+				button,
+				id: cardSet.id
+			});
+		});
+		const note = createElement("p", {
+			className: Settings_module_default.cardSetNote,
+			textContent: "Changing the card set starts a new game."
+		});
+		panel.append(description, cardSets, note);
+		return panel;
+	}
+	createCardSetButton(cardSet) {
+		const button = createElement("button", {
+			className: Settings_module_default.cardSet,
+			attributes: {
+				type: "button",
+				"aria-label": `Select ${cardSet.name} card set`,
+				"aria-pressed": "false"
+			}
+		});
+		const image = createElement("img", {
+			className: Settings_module_default.cardSetImage,
+			attributes: {
+				src: `/memory-game/assets/cards/${cardSet.folder}/${cardSet.back}`,
+				alt: "",
+				draggable: "false"
+			}
+		});
+		const name = createElement("span", {
+			className: Settings_module_default.cardSetName,
+			textContent: cardSet.name
+		});
+		button.append(image, name);
+		button.addEventListener("click", () => {
+			if (cardSet.id === this.cardSetId) return;
+			this.cardSetId = cardSet.id;
+			localStorage.setItem("memory-game-card-set", this.cardSetId);
+			this.updateCardSetSelection();
+			this.onCardSetChange(this.cardSetId);
+		});
+		return button;
+	}
+	loadCardSetId() {
+		const savedCardSetId = localStorage.getItem("memory-game-card-set");
+		return CARD_SETS[savedCardSetId] ? savedCardSetId : DEFAULT_CARD_SET_ID;
+	}
+	getCardSetId() {
+		return this.cardSetId;
+	}
+	updateCardSetSelection() {
+		this.cardSetButtons.forEach(({ button, id }) => {
+			const isActive = id === this.cardSetId;
+			button.classList.toggle(Settings_module_default.active, isActive);
+			button.setAttribute("aria-pressed", String(isActive));
+			if (isActive) button.dataset.noSound = "true";
+			else delete button.dataset.noSound;
+		});
+	}
 	createThemePlayer() {
-		const player = createElement("div", { className: SoundControl_module_default.player });
+		const player = createElement("div", { className: Settings_module_default.player });
 		const progress = createElement("input", {
-			className: SoundControl_module_default.progress,
+			className: Settings_module_default.progress,
 			attributes: {
 				type: "range",
 				min: "0",
@@ -969,32 +1206,32 @@ var SoundControl = class {
 				"aria-label": "Theme music progress"
 			}
 		});
-		const playerControls = createElement("div", { className: SoundControl_module_default.playerControls });
+		const playerControls = createElement("div", { className: Settings_module_default.playerControls });
 		const restartButton = createElement("button", {
-			className: `${SoundControl_module_default.playerButton} ${SoundControl_module_default.restartButton}`,
+			className: Settings_module_default.playerButton,
 			attributes: {
 				type: "button",
 				"aria-label": "Restart theme"
 			}
 		});
 		const playButton = createElement("button", {
-			className: `${SoundControl_module_default.playerButton} ${SoundControl_module_default.playButton}`,
+			className: `${Settings_module_default.playerButton} ${Settings_module_default.playButton}`,
 			attributes: {
 				type: "button",
 				"aria-label": "Play theme"
 			}
 		});
-		const time = createElement("div", { className: SoundControl_module_default.time });
+		const time = createElement("div", { className: Settings_module_default.time });
 		const currentTime = createElement("span", {
-			className: SoundControl_module_default.currentTime,
+			className: Settings_module_default.currentTime,
 			textContent: "0:00"
 		});
 		const separator = createElement("span", {
-			className: SoundControl_module_default.timeSeparator,
+			className: Settings_module_default.timeSeparator,
 			textContent: "/"
 		});
 		const duration = createElement("span", {
-			className: SoundControl_module_default.duration,
+			className: Settings_module_default.duration,
 			textContent: "0:00"
 		});
 		restartButton.append(createRestartIcon());
@@ -1020,7 +1257,7 @@ var SoundControl = class {
 	}
 	createLevelControl(type) {
 		const levels = createElement("div", {
-			className: SoundControl_module_default.levels,
+			className: Settings_module_default.levels,
 			attributes: {
 				role: "group",
 				"aria-label": type === "effects" ? "Effects volume" : "Music volume"
@@ -1028,24 +1265,26 @@ var SoundControl = class {
 		});
 		this.levelButtons = this.levelButtons || {};
 		this.levelButtons[type] = [];
-		VOLUME_LEVELS.forEach((volume, index) => {
+		soundManager.getVolumeLevels().forEach((volume, index) => {
 			const levelButton = createElement("button", {
-				className: SoundControl_module_default.level,
+				className: Settings_module_default.level,
 				attributes: {
 					type: "button",
 					"aria-label": `${volume}%`,
 					"aria-pressed": "false"
 				}
 			});
-			const dot = createElement("span", { className: SoundControl_module_default.dot });
+			const dot = createElement("span", { className: Settings_module_default.dot });
 			const label = createElement("span", {
-				className: SoundControl_module_default.levelLabel,
+				className: Settings_module_default.levelLabel,
 				textContent: `${volume}%`
 			});
 			levelButton.append(dot, label);
 			levelButton.addEventListener("click", () => {
+				const previousLevel = type === "effects" ? soundManager.getEffectsLevel() : soundManager.getMusicLevel();
 				if (type === "effects") soundManager.setEffectsLevel(index);
 				else soundManager.setMusicLevel(index);
+				if (previousLevel === 0 && index > 0) soundManager.play("buttonClick");
 			});
 			levels.append(levelButton);
 			this.levelButtons[type].push(levelButton);
@@ -1053,76 +1292,33 @@ var SoundControl = class {
 		return levels;
 	}
 	setActiveTab(tabName) {
+		if (this.activeTab === tabName) return;
 		this.activeTab = tabName;
-		const isEffects = tabName === "effects";
-		this.effectsTab.classList.toggle(SoundControl_module_default.active, isEffects);
-		this.musicTab.classList.toggle(SoundControl_module_default.active, !isEffects);
-		this.effectsTab.setAttribute("aria-selected", String(isEffects));
-		this.musicTab.setAttribute("aria-selected", String(!isEffects));
-		this.effectsPanel.hidden = !isEffects;
-		this.musicPanel.hidden = isEffects;
+		const isAudio = tabName === "audio";
+		const isCards = tabName === "cards";
+		this.audioTab.classList.toggle(Settings_module_default.active, isAudio);
+		this.cardsTab.classList.toggle(Settings_module_default.active, isCards);
+		this.audioTab.setAttribute("aria-selected", String(isAudio));
+		this.cardsTab.setAttribute("aria-selected", String(isCards));
+		this.audioPanel.hidden = !isAudio;
+		this.cardsPanel.hidden = !isCards;
 	}
-	open() {
-		this.clearCloseTimer();
-		if (!this.panel.isConnected) document.body.append(this.panel);
-		this.isOpen = true;
-		this.panel.classList.add(SoundControl_module_default.open);
-		this.panel.setAttribute("aria-hidden", "false");
-		this.button.setAttribute("aria-expanded", "true");
-		this.positionPanel();
-	}
-	close() {
-		this.clearCloseTimer();
-		if (this.panel.contains(document.activeElement)) this.button.focus();
-		this.isOpen = false;
-		this.panel.classList.remove(SoundControl_module_default.open);
-		this.panel.setAttribute("aria-hidden", "true");
-		this.button.setAttribute("aria-expanded", "false");
-	}
-	scheduleClose() {
-		this.clearCloseTimer();
-		this.closeTimer = setTimeout(() => {
-			if (!this.isPointerInside()) this.close();
-		}, 200);
-	}
-	clearCloseTimer() {
-		if (this.closeTimer === null) return;
-		clearTimeout(this.closeTimer);
-		this.closeTimer = null;
-	}
-	isPointerInside() {
-		return this.pointerInsideButton || this.pointerInsidePanel;
-	}
-	handleResize() {
-		if (!this.isOpen) return;
-		this.positionPanel();
-	}
-	handleScroll() {
-		if (!this.isOpen) return;
-		this.positionPanel();
-	}
-	positionPanel() {
-		const rect = this.button.getBoundingClientRect();
-		const panelWidth = this.panel.offsetWidth;
-		const panelHeight = this.panel.offsetHeight;
-		const gap = 8;
-		const viewportPadding = 12;
-		let left = rect.right - panelWidth;
-		let top = rect.bottom + gap;
-		const maxLeft = window.innerWidth - panelWidth - viewportPadding;
-		const maxTop = window.innerHeight - panelHeight - viewportPadding;
-		left = Math.max(viewportPadding, Math.min(left, maxLeft));
-		if (top > maxTop) top = rect.top - panelHeight - gap;
-		top = Math.max(viewportPadding, top);
-		this.panel.style.left = `${left}px`;
-		this.panel.style.right = "auto";
-		this.panel.style.top = `${top}px`;
+	updateControlsState(isMuted, musicLevel) {
+		const musicDisabled = isMuted || musicLevel === 0;
+		this.levelButtons.effects.forEach((button) => {
+			button.disabled = isMuted;
+		});
+		this.levelButtons.music.forEach((button) => {
+			button.disabled = isMuted;
+		});
+		this.progress.disabled = musicDisabled;
+		this.restartButton.disabled = musicDisabled;
+		this.playButton.disabled = musicDisabled;
 	}
 	update() {
 		const effectsLevel = soundManager.getEffectsLevel();
 		const musicLevel = soundManager.getMusicLevel();
 		const masterMuted = soundManager.isMasterMuted();
-		const themePaused = soundManager.isThemePaused();
 		this.updateLevels("effects", effectsLevel);
 		this.updateLevels("music", musicLevel);
 		this.effectsValue.textContent = `${soundManager.getEffectsPercent()}%`;
@@ -1130,8 +1326,7 @@ var SoundControl = class {
 		this.masterButton.setAttribute("aria-pressed", String(masterMuted));
 		this.masterButton.setAttribute("aria-label", masterMuted ? "Enable all sounds" : "Mute all sounds");
 		this.masterLabel.textContent = masterMuted ? "Sound on" : "Mute all";
-		this.updateThemePlayer(themePaused);
-		this.setActiveTab(this.activeTab);
+		this.updateControlsState(masterMuted, musicLevel);
 	}
 	updateThemePlayer(themePaused) {
 		const currentTime = soundManager.getThemeCurrentTime();
@@ -1146,22 +1341,28 @@ var SoundControl = class {
 	updateLevels(type, activeLevel) {
 		this.levelButtons[type].forEach((button, index) => {
 			const isActive = index === activeLevel;
-			button.classList.toggle(SoundControl_module_default.active, isActive);
+			button.classList.toggle(Settings_module_default.active, isActive);
 			button.setAttribute("aria-pressed", String(isActive));
+			if (isActive) button.dataset.noSound = "true";
+			else delete button.dataset.noSound;
 		});
+	}
+	destroy() {
+		this.unsubscribe();
+		this.floatingPanel.destroy();
 	}
 };
 var Header_module_default = {
-	header: "_header_1tje8_1",
-	brand: "_brand_1tje8_13",
-	logoMark: "_logoMark_1tje8_21",
-	brandText: "_brandText_1tje8_48",
-	title: "_title_1tje8_62",
-	subtitle: "_subtitle_1tje8_79",
-	actions: "_actions_1tje8_96",
-	button: "_button_1tje8_103",
-	icon: "_icon_1tje8_151",
-	buttonLabel: "_buttonLabel_1tje8_162"
+	header: "_header_18ggh_1",
+	brand: "_brand_18ggh_13",
+	logoMark: "_logoMark_18ggh_21",
+	brandText: "_brandText_18ggh_48",
+	title: "_title_18ggh_62",
+	subtitle: "_subtitle_18ggh_79",
+	actions: "_actions_18ggh_96",
+	button: "_button_18ggh_103",
+	icon: "_icon_18ggh_151",
+	buttonLabel: "_buttonLabel_18ggh_162"
 };
 //#endregion
 //#region src/components/Header/Header.js
@@ -1204,11 +1405,11 @@ function createLogoMark() {
 	]);
 }
 var Header = class {
-	constructor(onNewGame, onLeaderboard) {
+	constructor(onNewGame, onLeaderboard, onCardSetChange) {
 		this.onNewGame = onNewGame;
 		this.onLeaderboard = onLeaderboard;
 		this.rulesControl = new RulesControl();
-		this.soundControl = new SoundControl();
+		this.settings = new Settings(onCardSetChange);
 		this.element = this.createElement();
 	}
 	createElement() {
@@ -1253,7 +1454,7 @@ var Header = class {
 		leadersButton.addEventListener("click", this.onLeaderboard);
 		brandText.append(title, subtitle);
 		brand.append(logoMark, brandText);
-		actions.append(newGameButton, leadersButton, this.rulesControl.element, this.soundControl.element);
+		actions.append(newGameButton, leadersButton, this.rulesControl.element, this.settings.element);
 		header.append(brand, actions);
 		return header;
 	}
@@ -1271,10 +1472,11 @@ var Card_module_default = {
 //#endregion
 //#region src/components/Card/Card.js
 var Card = class {
-	constructor(cardData, onSelect) {
+	constructor(cardData, backImage, onSelect) {
 		this.id = cardData.id;
 		this.pairId = cardData.pairId;
 		this.image = cardData.image;
+		this.backImage = backImage;
 		this.onSelect = onSelect;
 		this.isOpen = false;
 		this.isMatched = false;
@@ -1291,6 +1493,11 @@ var Card = class {
 		card.addEventListener("click", () => {
 			this.onSelect(this);
 		});
+		card.addEventListener("keydown", (event) => {
+			if (event.key !== "Enter" && event.key !== " ") return;
+			event.preventDefault();
+			this.onSelect(this);
+		});
 		this.inner = createElement("span", { className: Card_module_default.inner });
 		const front = createElement("span", { className: Card_module_default.front });
 		const back = createElement("span", { className: Card_module_default.back });
@@ -1305,7 +1512,7 @@ var Card = class {
 		const backImage = createElement("img", {
 			className: Card_module_default.image,
 			attributes: {
-				src: `${BASE_URL}assets/cards/back.avif`,
+				src: this.backImage,
 				alt: "",
 				draggable: "false"
 			}
@@ -1368,18 +1575,20 @@ var GameState = class {
 	}
 };
 var Game_module_default = {
-	game: "_game_43wi5_1",
-	board: "_board_43wi5_15"
+	game: "_game_1h2m1_1",
+	board: "_board_1h2m1_15"
 };
 //#endregion
 //#region src/components/Game/Game.js
 var Game = class {
-	constructor(score, onFinish, onProgress = () => {}) {
+	constructor(score, onFinish, onProgress = () => {}, cardSetId = DEFAULT_CARD_SET_ID) {
 		this.score = score;
 		this.onFinish = onFinish;
 		this.onProgress = onProgress;
+		this.cardSetId = cardSetId;
 		this.state = new GameState();
 		this.mismatchTimer = null;
+		this.generation = 0;
 		this.element = this.createElement();
 		this.start();
 	}
@@ -1394,11 +1603,17 @@ var Game = class {
 	}
 	start() {
 		this.clearMismatchTimer();
+		this.generation += 1;
 		this.state.reset();
 		this.score.reset();
 		this.onProgress(0);
-		const shuffledCards = shuffle(CARDS);
-		this.cards = shuffledCards.map((cardData) => new Card(cardData, this.handleCardSelect.bind(this)));
+		const cardSet = CARD_SETS[this.cardSetId] ?? CARD_SETS["ancientGreece"];
+		const shuffledCards = shuffle(cardSet.cards.map((cardData) => ({
+			...cardData,
+			image: `${BASE_URL}assets/cards/${cardSet.folder}/${cardData.image}`
+		})));
+		const backImage = `${BASE_URL}assets/cards/${cardSet.folder}/${cardSet.back}`;
+		this.cards = shuffledCards.map((cardData) => new Card(cardData, backImage, this.handleCardSelect.bind(this)));
 		this.renderCards();
 	}
 	renderCards() {
@@ -1421,7 +1636,9 @@ var Game = class {
 		const [firstCard, secondCard] = this.state.selectedCards;
 		this.state.isLocked = true;
 		if (firstCard.pairId === secondCard.pairId) {
+			const currentGeneration = this.generation;
 			secondCard.waitForFlip(() => {
+				if (this.generation !== currentGeneration) return;
 				soundManager.play("cardMatch");
 				firstCard.match();
 				secondCard.match();
@@ -1457,13 +1674,14 @@ var Game = class {
 		clearTimeout(this.mismatchTimer);
 		this.mismatchTimer = null;
 	}
-	restart() {
+	restart(cardSetId = this.cardSetId) {
+		this.cardSetId = cardSetId;
 		this.start();
 	}
 };
 var Score_module_default = {
-	score: "_score_hsh4y_1",
-	item: "_item_hsh4y_7"
+	score: "_score_1an5l_1",
+	item: "_item_1an5l_7"
 };
 //#endregion
 //#region src/components/Score/Score.js
@@ -1476,7 +1694,7 @@ var Score = class {
 		const movesLabel = createElement("span", { textContent: "Moves:" });
 		const pairsLabel = createElement("span", { textContent: "Pairs:" });
 		this.movesElement = createElement("span", { textContent: "0" });
-		this.pairsElement = createElement("span", { textContent: "0 / 8" });
+		this.pairsElement = createElement("span", { textContent: `0 / 8` });
 		const moves = createElement("div", { className: Score_module_default.item });
 		const pairs = createElement("div", { className: Score_module_default.item });
 		moves.append(movesLabel, this.movesElement);
@@ -1542,9 +1760,23 @@ var Modal = class {
 	}
 };
 //#endregion
-//#region src/components/LeaderboardModal/ornaments.js
+//#region src/components/ornaments/ornaments.js
 var uid = 0;
 var nextId = (prefix) => `${prefix}-${uid++}`;
+var WREATH_COLORS = {
+	gold: {
+		fill: "#c9a45c",
+		highlight: "#f3dc9a"
+	},
+	silver: {
+		fill: "#9da3ad",
+		highlight: "#e4e7eb"
+	},
+	bronze: {
+		fill: "#a85f32",
+		highlight: "#e6a06d"
+	}
+};
 function createDivider(className) {
 	const id = nextId("divider");
 	const svg = createSvg("svg", {
@@ -1599,6 +1831,30 @@ function createDivider(className) {
 		r: "2",
 		fill: "#f3dc9a"
 	}));
+	if (className) svg.classList.add(...className.split(/\s+/).filter(Boolean));
+	return svg;
+}
+function createLaurelWreath(className, variant = "gold") {
+	const colors = WREATH_COLORS[variant] ?? WREATH_COLORS.gold;
+	const svg = createSvg("svg", {
+		viewBox: "0 0 100 100",
+		fill: "none",
+		"aria-hidden": "true",
+		focusable: "false"
+	}, createSvg("g", {
+		fill: colors.fill,
+		stroke: colors.highlight,
+		"stroke-width": "1.2",
+		"stroke-linejoin": "round"
+	}, createSvg("path", {
+		d: "M35 82C22 75 15 63 15 48C15 32 23 18 36 10",
+		fill: "none",
+		"stroke-width": "2"
+	}), createSvg("path", {
+		d: "M65 82C78 75 85 63 85 48C85 32 77 18 64 10",
+		fill: "none",
+		"stroke-width": "2"
+	}), createSvg("path", { d: "M25 70Q15 68 10 60Q20 59 28 65Z" }), createSvg("path", { d: "M20 58Q10 55 7 46Q17 48 24 54Z" }), createSvg("path", { d: "M18 45Q9 40 9 31Q18 34 23 41Z" }), createSvg("path", { d: "M21 32Q14 25 17 17Q24 23 26 30Z" }), createSvg("path", { d: "M28 21Q23 13 28 7Q33 14 32 21Z" }), createSvg("path", { d: "M75 70Q85 68 90 60Q80 59 72 65Z" }), createSvg("path", { d: "M80 58Q90 55 93 46Q83 48 76 54Z" }), createSvg("path", { d: "M82 45Q91 40 91 31Q82 34 77 41Z" }), createSvg("path", { d: "M79 32Q86 25 83 17Q76 23 74 30Z" }), createSvg("path", { d: "M72 21Q77 13 72 7Q67 14 68 21Z" })));
 	if (className) svg.classList.add(...className.split(/\s+/).filter(Boolean));
 	return svg;
 }
@@ -1677,86 +1933,17 @@ function createHourglass(className) {
 	return svg;
 }
 var VictoryModal_module_default = {
-	victory: "_victory_1oejz_1",
-	iconWrap: "_iconWrap_1oejz_43",
-	icon: "_icon_1oejz_43",
-	title: "_title_1oejz_61",
-	divider: "_divider_1oejz_70",
-	moves: "_moves_1oejz_75",
-	actions: "_actions_1oejz_83",
-	button: "_button_1oejz_90"
+	victory: "_victory_6qxu2_1",
+	iconWrap: "_iconWrap_6qxu2_43",
+	icon: "_icon_6qxu2_43",
+	title: "_title_6qxu2_61",
+	divider: "_divider_6qxu2_70",
+	moves: "_moves_6qxu2_75",
+	actions: "_actions_6qxu2_82",
+	button: "_button_6qxu2_89"
 };
 //#endregion
 //#region src/components/VictoryModal/VictoryModal.js
-function createLaurelIcon(className) {
-	return createSvg("svg", {
-		class: className,
-		viewBox: "0 0 64 64",
-		"aria-hidden": "true",
-		focusable: "false"
-	}, [
-		createSvg("path", {
-			d: "M32 56 C28 48 18 42 14 32 C12 26 12 20 14 14",
-			fill: "none",
-			stroke: "#f3dc9a",
-			"stroke-width": "2",
-			"stroke-linecap": "round"
-		}),
-		createSvg("path", {
-			d: "M16 48 C12 46 8 42 8 38 C12 40 16 44 18 48 Z",
-			fill: "#e0c681"
-		}),
-		createSvg("path", {
-			d: "M14 40 C9 38 5 33 6 28 C11 31 15 36 17 40 Z",
-			fill: "#f3dc9a"
-		}),
-		createSvg("path", {
-			d: "M13 30 C8 27 5 21 7 16 C12 20 15 26 16 30 Z",
-			fill: "#e0c681"
-		}),
-		createSvg("path", {
-			d: "M14 20 C10 16 9 10 12 6 C15 11 16 16 17 20 Z",
-			fill: "#f3dc9a"
-		}),
-		createSvg("path", {
-			d: "M32 56 C36 48 46 42 50 32 C52 26 52 20 50 14",
-			fill: "none",
-			stroke: "#f3dc9a",
-			"stroke-width": "2",
-			"stroke-linecap": "round"
-		}),
-		createSvg("path", {
-			d: "M48 48 C52 46 56 42 56 38 C52 40 48 44 46 48 Z",
-			fill: "#e0c681"
-		}),
-		createSvg("path", {
-			d: "M50 40 C55 38 59 33 58 28 C53 31 49 36 47 40 Z",
-			fill: "#f3dc9a"
-		}),
-		createSvg("path", {
-			d: "M51 30 C56 27 59 21 57 16 C52 20 49 26 48 30 Z",
-			fill: "#e0c681"
-		}),
-		createSvg("path", {
-			d: "M50 20 C54 16 55 10 52 6 C49 11 48 16 47 20 Z",
-			fill: "#f3dc9a"
-		}),
-		createSvg("path", {
-			d: "M24 54 Q32 60 40 54",
-			fill: "none",
-			stroke: "#c9a45c",
-			"stroke-width": "2.5",
-			"stroke-linecap": "round"
-		}),
-		createSvg("path", {
-			d: "M26 56 Q32 52 38 56",
-			fill: "none",
-			stroke: "#f3dc9a",
-			"stroke-width": "1.2",
-			"stroke-linecap": "round"
-		})
-	]);
-}
 var VictoryModal = class {
 	constructor(onNewGame) {
 		this.onNewGame = onNewGame;
@@ -1766,8 +1953,8 @@ var VictoryModal = class {
 	createElement() {
 		const content = createElement("div", { className: VictoryModal_module_default.victory });
 		const iconWrap = createElement("div", { className: VictoryModal_module_default.iconWrap });
-		iconWrap.append(createLaurelIcon(VictoryModal_module_default.icon));
-		const title = createElement("h2", {
+		iconWrap.append(createLaurelWreath(VictoryModal_module_default.icon));
+		this.title = createElement("h2", {
 			className: VictoryModal_module_default.title,
 			textContent: "Victory!"
 		});
@@ -1792,10 +1979,11 @@ var VictoryModal = class {
 			this.close();
 		});
 		actions.append(newGameButton, closeButton);
-		content.append(iconWrap, title, divider, this.movesElement, actions);
+		content.append(iconWrap, this.title, divider, this.movesElement, actions);
 		return content;
 	}
-	open(moves) {
+	open(moves, isPerfect = false) {
+		this.title.textContent = isPerfect ? "Perfect Memory!" : "Victory!";
 		this.movesElement.textContent = `Moves: ${moves}`;
 		this.modal.open(this.element);
 	}
@@ -1818,6 +2006,7 @@ var Leaderboard = class {
 		}
 	}
 	saveResult(moves) {
+		if (!Number.isInteger(moves) || moves < 8) return this.getResults();
 		const results = this.getResults();
 		const date = this.getCurrentDate();
 		if (results.some((result) => result.moves === moves && result.date === date)) return results;
@@ -1843,38 +2032,35 @@ var Leaderboard = class {
 	}
 };
 var LeaderboardModal_module_default = {
-	frame: "_frame_9cs3o_1",
-	sprig: "_sprig_9cs3o_36",
-	sprigBottom: "_sprigBottom_9cs3o_45",
-	sprigTop: "_sprigTop_9cs3o_50",
-	leaderboard: "_leaderboard_9cs3o_56",
-	header: "_header_9cs3o_67",
-	title: "_title_9cs3o_74",
-	laurel: "_laurel_9cs3o_84",
-	laurelRight: "_laurelRight_9cs3o_91",
-	divider: "_divider_9cs3o_95",
-	body: "_body_9cs3o_101",
-	list: "_list_9cs3o_108",
-	item: "_item_9cs3o_116",
-	rank: "_rank_9cs3o_143",
-	wreath: "_wreath_9cs3o_151",
-	rankNumber: "_rankNumber_9cs3o_159",
-	moves: "_moves_9cs3o_171",
-	date: "_date_9cs3o_172",
-	empty: "_empty_9cs3o_180",
-	isEmpty: "_isEmpty_9cs3o_188",
-	emptyIcon: "_emptyIcon_9cs3o_194",
-	hourglass: "_hourglass_9cs3o_202",
-	emptyLaurel: "_emptyLaurel_9cs3o_208",
-	emptyTitle: "_emptyTitle_9cs3o_214",
-	emptyText: "_emptyText_9cs3o_220",
-	footer: "_footer_9cs3o_227",
-	buttonLaurel: "_buttonLaurel_9cs3o_235",
-	button: "_button_9cs3o_235"
+	frame: "_frame_1v9no_1",
+	leaderboard: "_leaderboard_1v9no_36",
+	header: "_header_1v9no_46",
+	title: "_title_1v9no_51",
+	divider: "_divider_1v9no_62",
+	body: "_body_1v9no_68",
+	list: "_list_1v9no_74",
+	item: "_item_1v9no_81",
+	rank: "_rank_1v9no_107",
+	wreath: "_wreath_1v9no_114",
+	rankNumber: "_rankNumber_1v9no_122",
+	moves: "_moves_1v9no_171",
+	date: "_date_1v9no_172",
+	empty: "_empty_1v9no_183",
+	emptyIcon: "_emptyIcon_1v9no_190",
+	hourglass: "_hourglass_1v9no_197",
+	emptyTitle: "_emptyTitle_1v9no_204",
+	emptyText: "_emptyText_1v9no_209",
+	isEmpty: "_isEmpty_1v9no_217",
+	footer: "_footer_1v9no_223",
+	button: "_button_1v9no_229"
 };
 //#endregion
 //#region src/components/LeaderboardModal/LeaderboardModal.js
-var TOTAL_PAIRS = 8;
+var RANK_VARIANTS = [
+	"gold",
+	"silver",
+	"bronze"
+];
 var LeaderboardModal = class {
 	constructor(leaderboard) {
 		this.leaderboard = leaderboard;
@@ -1920,14 +2106,16 @@ var LeaderboardModal = class {
 		this.element.classList.remove(LeaderboardModal_module_default.isEmpty);
 		const list = createElement("ol", { className: LeaderboardModal_module_default.list });
 		results.forEach((result, index) => {
+			const rank = index + 1;
 			const item = createElement("li", {
 				className: LeaderboardModal_module_default.item,
-				attributes: { "data-rank": String(index + 1) }
+				attributes: { "data-rank": String(rank) }
 			});
-			const rank = createElement("span", { className: LeaderboardModal_module_default.rank });
-			rank.append(createElement("span", {
+			const rankElement = createElement("span", { className: LeaderboardModal_module_default.rank });
+			if (rank <= RANK_VARIANTS.length) rankElement.append(createLaurelWreath(LeaderboardModal_module_default.wreath, RANK_VARIANTS[index]));
+			rankElement.append(createElement("span", {
 				className: LeaderboardModal_module_default.rankNumber,
-				textContent: String(index + 1)
+				textContent: String(rank)
 			}));
 			const moves = createElement("span", {
 				className: LeaderboardModal_module_default.moves,
@@ -1937,7 +2125,7 @@ var LeaderboardModal = class {
 				className: LeaderboardModal_module_default.date,
 				textContent: result.date
 			});
-			item.append(rank, moves, date);
+			item.append(rankElement, moves, date);
 			list.append(item);
 		});
 		this.body.append(list);
@@ -1952,7 +2140,7 @@ var LeaderboardModal = class {
 		});
 		const text = createElement("p", {
 			className: LeaderboardModal_module_default.emptyText,
-			textContent: `Find all ${TOTAL_PAIRS} pairs — and your result will be the first in this leaderboard.`
+			textContent: `Find all 8 pairs — and your result will be the first in this leaderboard.`
 		});
 		empty.append(icon, heading, text);
 		return empty;
@@ -1961,12 +2149,13 @@ var LeaderboardModal = class {
 		this.modal.close();
 	}
 };
-var Main_module_default = { main: "_main_7xgem_1" };
+var Main_module_default = { main: "_main_y0qxd_1" };
 //#endregion
 //#region src/components/Main/Main.js
 var Main = class {
-	constructor(onProgress) {
+	constructor(onProgress, cardSetId = DEFAULT_CARD_SET_ID) {
 		this.score = new Score();
+		this.cardSetId = cardSetId;
 		this.leaderboard = new Leaderboard();
 		this.leaderboardModal = new LeaderboardModal(this.leaderboard);
 		this.victoryModal = new VictoryModal(() => {
@@ -1974,7 +2163,7 @@ var Main = class {
 		});
 		this.game = new Game(this.score, (moves) => {
 			this.handleGameFinish(moves);
-		}, onProgress);
+		}, onProgress, this.cardSetId);
 		this.element = this.createElement();
 	}
 	createElement() {
@@ -1985,12 +2174,17 @@ var Main = class {
 	handleGameFinish(moves) {
 		soundManager.play("victory");
 		this.leaderboard.saveResult(moves);
-		this.victoryModal.open(moves);
+		const isPerfect = moves === 8;
+		this.victoryModal.open(moves, isPerfect);
+	}
+	handleCardSetChange(cardSetId) {
+		this.cardSetId = cardSetId;
+		this.handleNewGame();
 	}
 	handleNewGame() {
 		this.victoryModal.close();
 		this.leaderboardModal.close();
-		this.game.restart();
+		this.game.restart(this.cardSetId);
 	}
 	openLeaderboard() {
 		this.leaderboardModal.open();
@@ -2039,8 +2233,9 @@ var World = class {
 	}
 	setProgress(foundPairs) {
 		let nextState = WORLD_STATES.NIGHT;
-		if (foundPairs >= 7) nextState = WORLD_STATES.DAY;
-		else if (foundPairs >= 4) nextState = WORLD_STATES.DAWN;
+		const dawnThreshold = Math.floor(4);
+		if (foundPairs >= Math.floor(7)) nextState = WORLD_STATES.DAY;
+		else if (foundPairs >= dawnThreshold) nextState = WORLD_STATES.DAWN;
 		if (nextState === this.currentState || this.isTransitioning) return;
 		this.transitionTo(nextState);
 	}
@@ -2078,14 +2273,16 @@ var App = class {
 	constructor(container) {
 		this.container = container;
 		this.world = new World();
-		this.main = new Main((foundPairs) => {
-			this.world.setProgress(foundPairs);
-		});
 		this.header = new Header(() => {
 			this.main.handleNewGame();
 		}, () => {
 			this.main.openLeaderboard();
+		}, (cardSetId) => {
+			this.main.handleCardSetChange(cardSetId);
 		});
+		this.main = new Main((foundPairs) => {
+			this.world.setProgress(foundPairs);
+		}, this.header.settings.getCardSetId());
 	}
 	start() {
 		this.container.replaceChildren(this.world.element, this.header.element, this.main.element);
@@ -2099,4 +2296,4 @@ var root = document.body;
 new App(root).start();
 //#endregion
 
-//# sourceMappingURL=index-DhrSeL3m.js.map
+//# sourceMappingURL=index-b-t7Z9jt.js.map
