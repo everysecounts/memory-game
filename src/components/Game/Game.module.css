@@ -1,8 +1,7 @@
 .game {
-  width: min(100%, clamp(280px, calc(30vh + 100px), 480px));
+  width: min(100%, 480px);
   margin: 0 auto;
-  padding: clamp(10px, calc(4vh - 14px), 18px) clamp(8px, calc(1vh + 2px), 16px)
-    clamp(12px, calc(4vh - 12px), 20px);
+  padding: 18px 16px 20px;
   border: 1px solid rgb(224 198 129 / 48%);
   border-radius: var(--radius-lg);
   background:
@@ -16,6 +15,22 @@
   .board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(6px, calc(3vh - 12px), 12px);
+    gap: 12px;
+  }
+
+  @media (width > 600px) {
+    width: min(100%, 640px, calc(60vh - 88px));
+  }
+
+  @media (width > 600px) and (height <= 700px) {
+    width: min(100%, calc(60vh - 73px));
+  }
+
+  @media (width <= 600px) and (height < 700px) {
+    width: min(100%, 640px, calc(60vh - 78px));
+  }
+
+  @media (width <= 600px) and (height >= 700px) {
+    width: min(100%, 640px, calc(60vh - 68px));
   }
 }

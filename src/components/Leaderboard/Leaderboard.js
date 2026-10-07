@@ -1,3 +1,4 @@
+import { TOTAL_PAIRS } from '@/data';
 const STORAGE_KEY = 'memory-game-leaderboard';
 const MAX_RESULTS = 10;
 
@@ -15,6 +16,9 @@ class Leaderboard {
   }
 
   saveResult(moves) {
+    if (!Number.isInteger(moves) || moves < TOTAL_PAIRS) {
+      return this.getResults();
+    }
     const results = this.getResults();
     const date = this.getCurrentDate();
     const isDuplicate = results.some((result) => result.moves === moves && result.date === date);

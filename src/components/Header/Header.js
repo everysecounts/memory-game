@@ -1,6 +1,6 @@
 import { createElement, createSvg } from '@/utils';
 import { RulesControl } from '@/components/RulesControl';
-import { SoundControl } from '@/components/SoundControl';
+import { Settings } from '@/components/Settings';
 import styles from './Header.module.css';
 
 function createTempleIcon() {
@@ -59,11 +59,11 @@ function createLogoMark() {
 }
 
 class Header {
-  constructor(onNewGame, onLeaderboard) {
+  constructor(onNewGame, onLeaderboard, onCardSetChange) {
     this.onNewGame = onNewGame;
     this.onLeaderboard = onLeaderboard;
     this.rulesControl = new RulesControl();
-    this.soundControl = new SoundControl();
+    this.settings = new Settings(onCardSetChange);
     this.element = this.createElement();
   }
 
@@ -130,12 +130,7 @@ class Header {
 
     brandText.append(title, subtitle);
     brand.append(logoMark, brandText);
-    actions.append(
-      newGameButton,
-      leadersButton,
-      this.rulesControl.element,
-      this.soundControl.element,
-    );
+    actions.append(newGameButton, leadersButton, this.rulesControl.element, this.settings.element);
     header.append(brand, actions);
 
     return header;

@@ -176,6 +176,9 @@ class FloatingPanel {
     this.button.removeEventListener('click', this.handleButtonClick);
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('scroll', this.handleScroll, true);
+    if (this.panel.isConnected) {
+      this.panel.remove();
+    }
   }
 }
 

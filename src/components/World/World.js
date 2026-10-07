@@ -1,6 +1,6 @@
 import { createElement } from '@/utils';
 import styles from './World.module.css';
-import { BASE_URL } from '@/data';
+import { BASE_URL, TOTAL_PAIRS } from '@/data';
 
 const WORLD_STATES = {
   NIGHT: 'night',
@@ -54,10 +54,12 @@ class World {
 
   setProgress(foundPairs) {
     let nextState = WORLD_STATES.NIGHT;
+    const dawnThreshold = Math.floor(TOTAL_PAIRS / 2);
+    const dayThreshold = Math.floor((TOTAL_PAIRS * 7) / 8);
 
-    if (foundPairs >= 7) {
+    if (foundPairs >= dayThreshold) {
       nextState = WORLD_STATES.DAY;
-    } else if (foundPairs >= 4) {
+    } else if (foundPairs >= dawnThreshold) {
       nextState = WORLD_STATES.DAWN;
     }
 

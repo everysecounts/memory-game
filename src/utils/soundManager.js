@@ -43,7 +43,6 @@ class SoundManager {
     this.preload();
     this.enableButtonSounds();
     this.enableAudioUnlock();
-    this.syncThemePlayback();
   }
 
   loadSettings() {
@@ -168,11 +167,11 @@ class SoundManager {
   }
 
   handleThemeTimeUpdate() {
-    this.notify();
+    this.notify('theme');
   }
 
   handleThemeMetadata() {
-    this.notify();
+    this.notify('theme');
   }
 
   subscribe(listener) {
@@ -183,9 +182,9 @@ class SoundManager {
     };
   }
 
-  notify() {
+  notify(type = 'all') {
     this.listeners.forEach((listener) => {
-      listener();
+      listener(type);
     });
   }
 
@@ -369,7 +368,7 @@ class SoundManager {
 
     this.syncThemePlayback();
     this.saveSettings();
-    this.notify();
+    this.notify('theme');
   }
 
   toggleThemePlayback() {
@@ -386,7 +385,7 @@ class SoundManager {
 
     this.syncThemePlayback();
     this.saveSettings();
-    this.notify();
+    this.notify('theme');
   }
 
   setThemeCurrentTime(time) {
@@ -401,7 +400,7 @@ class SoundManager {
     }
 
     this.theme.currentTime = Math.min(Math.max(time, 0), duration);
-    this.notify();
+    this.notify('theme');
   }
 
   syncThemePlayback() {
@@ -430,7 +429,7 @@ class SoundManager {
         .then(() => {
           this.audioUnlocked = true;
           this.disableAudioUnlock();
-          this.notify();
+          this.notify('theme');
         })
         .catch(() => {});
     }

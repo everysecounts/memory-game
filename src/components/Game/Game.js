@@ -1,16 +1,18 @@
 import { createElement, shuffle, soundManager } from '@/utils';
-import { CARDS, TOTAL_PAIRS } from '@/data';
+import { BASE_URL, CARD_SETS, DEFAULT_CARD_SET_ID, TOTAL_PAIRS } from '@/data';
 import { Card } from '@/components/Card';
 import { GameState } from './GameState';
 import styles from './Game.module.css';
 
 class Game {
-  constructor(score, onFinish, onProgress = () => {}) {
+  constructor(score, onFinish, onProgress = () => {}, cardSetId = DEFAULT_CARD_SET_ID) {
     this.score = score;
     this.onFinish = onFinish;
     this.onProgress = onProgress;
+    this.cardSetId = cardSetId;
     this.state = new GameState();
     this.mismatchTimer = null;
+    this.generation = 0;
     this.element = this.createElement();
     this.start();
   }
@@ -33,12 +35,24 @@ class Game {
 
   start() {
     this.clearMismatchTimer();
+    this.generation += 1;
     this.state.reset();
     this.score.reset();
     this.onProgress(0);
-    const shuffledCards = shuffle(CARDS);
+
+    const cardSet = CARD_SETS[this.cardSetId] ?? CARD_SETS[DEFAULT_CARD_SET_ID];
+
+    const cards = cardSet.cards.map((cardData) => ({
+      ...cardData,
+      image: `${BASE_URL}assets/cards/${cardSet.folder}/${cardData.image}`,
+    }));
+
+    const shuffledCards = shuffle(cards);
+
+    const backImage = `${BASE_URL}assets/cards/${cardSet.folder}/${cardSet.back}`;
+
     this.cards = shuffledCards.map(
-      (cardData) => new Card(cardData, this.handleCardSelect.bind(this)),
+      (cardData) => new Card(cardData, backImage, this.handleCardSelect.bind(this)),
     );
     this.renderCards();
   }
@@ -69,7 +83,11 @@ class Game {
     const [firstCard, secondCard] = this.state.selectedCards;
     this.state.isLocked = true;
     if (firstCard.pairId === secondCard.pairId) {
+      const currentGeneration = this.generation;
       secondCard.waitForFlip(() => {
+        if (this.generation !== currentGeneration) {
+          return;
+        }
         soundManager.play('cardMatch');
         firstCard.match();
         secondCard.match();
@@ -113,7 +131,8 @@ class Game {
     this.mismatchTimer = null;
   }
 
-  restart() {
+  restart(cardSetId = this.cardSetId) {
+    this.cardSetId = cardSetId;
     this.start();
   }
 }

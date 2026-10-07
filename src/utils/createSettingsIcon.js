@@ -1,6 +1,6 @@
 import { createSvg } from './createSvg';
 
-function createSoundIcon() {
+function createSettingsIcon() {
   const gear = createSvg('path', {
     d: `
       M11.982 6.299
@@ -59,4 +59,4 @@ function createSoundIcon() {
   };
 }
 
-export { createSoundIcon };
+export { createSettingsIcon };

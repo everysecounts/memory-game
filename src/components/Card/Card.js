@@ -1,12 +1,12 @@
 import { createElement, soundManager } from '@/utils';
-import { BASE_URL } from '@/data';
 import styles from './Card.module.css';
 
 class Card {
-  constructor(cardData, onSelect) {
+  constructor(cardData, backImage, onSelect) {
     this.id = cardData.id;
     this.pairId = cardData.pairId;
     this.image = cardData.image;
+    this.backImage = backImage;
     this.onSelect = onSelect;
     this.isOpen = false;
     this.isMatched = false;
@@ -23,6 +23,14 @@ class Card {
     });
 
     card.addEventListener('click', () => {
+      this.onSelect(this);
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') {
+        return;
+      }
+      event.preventDefault();
       this.onSelect(this);
     });
 
@@ -50,7 +58,7 @@ class Card {
     const backImage = createElement('img', {
       className: styles.image,
       attributes: {
-        src: `${BASE_URL}assets/cards/back.avif`,
+        src: this.backImage,
         alt: '',
         draggable: 'false',
       },

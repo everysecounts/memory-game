@@ -1,6 +1,6 @@
 .score {
   display: flex;
-  flex: 1;
+  flex: none;
   justify-content: center;
   gap: clamp(8px, calc(12px - (1024px - 100vw) * (4 / 256)), 12px);
 

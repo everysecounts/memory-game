@@ -1,86 +1,82 @@
 const BASE_URL = import.meta.env.BASE_URL;
 
-const CARDS = [
-  {
-    id: 1,
-    pairId: 1,
-    image: `${BASE_URL}assets/cards/amphora.avif`,
+const CARD_SETS = {
+  ancientGreece: {
+    id: 'ancientGreece',
+    name: 'Ancient Greece',
+    folder: 'ancient-greece',
+    back: 'back.avif',
+    cards: [
+      { id: 1, pairId: 1, image: 'amphora.avif' },
+      { id: 2, pairId: 1, image: 'amphora.avif' },
+      { id: 3, pairId: 2, image: 'temple-ruins.avif' },
+      { id: 4, pairId: 2, image: 'temple-ruins.avif' },
+      { id: 5, pairId: 3, image: 'hoplite.avif' },
+      { id: 6, pairId: 3, image: 'hoplite.avif' },
+      { id: 7, pairId: 4, image: 'olives.avif' },
+      { id: 8, pairId: 4, image: 'olives.avif' },
+      { id: 9, pairId: 5, image: 'theater.avif' },
+      { id: 10, pairId: 5, image: 'theater.avif' },
+      { id: 11, pairId: 6, image: 'trireme.avif' },
+      { id: 12, pairId: 6, image: 'trireme.avif' },
+      { id: 13, pairId: 7, image: 'laurel-mosaic.avif' },
+      { id: 14, pairId: 7, image: 'laurel-mosaic.avif' },
+      { id: 15, pairId: 8, image: 'discobolus.avif' },
+      { id: 16, pairId: 8, image: 'discobolus.avif' },
+    ],
   },
-  {
-    id: 2,
-    pairId: 1,
-    image: `${BASE_URL}assets/cards/amphora.avif`,
-  },
-  {
-    id: 3,
-    pairId: 2,
-    image: `${BASE_URL}assets/cards/philosopher.avif`,
-  },
-  {
-    id: 4,
-    pairId: 2,
-    image: `${BASE_URL}assets/cards/philosopher.avif`,
-  },
-  {
-    id: 5,
-    pairId: 3,
-    image: `${BASE_URL}assets/cards/hoplite.avif`,
-  },
-  {
-    id: 6,
-    pairId: 3,
-    image: `${BASE_URL}assets/cards/hoplite.avif`,
-  },
-  {
-    id: 7,
-    pairId: 4,
-    image: `${BASE_URL}assets/cards/olives.avif`,
-  },
-  {
-    id: 8,
-    pairId: 4,
-    image: `${BASE_URL}assets/cards/olives.avif`,
-  },
-  {
-    id: 9,
-    pairId: 5,
-    image: `${BASE_URL}assets/cards/theater.avif`,
-  },
-  {
-    id: 10,
-    pairId: 5,
-    image: `${BASE_URL}assets/cards/theater.avif`,
-  },
-  {
-    id: 11,
-    pairId: 6,
-    image: `${BASE_URL}assets/cards/trireme.avif`,
-  },
-  {
-    id: 12,
-    pairId: 6,
-    image: `${BASE_URL}assets/cards/trireme.avif`,
-  },
-  {
-    id: 13,
-    pairId: 7,
-    image: `${BASE_URL}assets/cards/acropolis.avif`,
-  },
-  {
-    id: 14,
-    pairId: 7,
-    image: `${BASE_URL}assets/cards/acropolis.avif`,
-  },
-  {
-    id: 15,
-    pairId: 8,
-    image: `${BASE_URL}assets/cards/discobolus.avif`,
-  },
-  {
-    id: 16,
-    pairId: 8,
-    image: `${BASE_URL}assets/cards/discobolus.avif`,
-  },
-];
 
-export { BASE_URL, CARDS };
+  godsOfOlympus: {
+    id: 'godsOfOlympus',
+    name: 'Gods of Olympus',
+    folder: 'gods-of-olympus',
+    back: 'back.avif',
+    cards: [
+      { id: 1, pairId: 1, image: 'zeus.avif' },
+      { id: 2, pairId: 1, image: 'zeus.avif' },
+      { id: 3, pairId: 2, image: 'aphrodite.avif' },
+      { id: 4, pairId: 2, image: 'aphrodite.avif' },
+      { id: 5, pairId: 3, image: 'ares.avif' },
+      { id: 6, pairId: 3, image: 'ares.avif' },
+      { id: 7, pairId: 4, image: 'artemis.avif' },
+      { id: 8, pairId: 4, image: 'artemis.avif' },
+      { id: 9, pairId: 5, image: 'demeter.avif' },
+      { id: 10, pairId: 5, image: 'demeter.avif' },
+      { id: 11, pairId: 6, image: 'hephaestus.avif' },
+      { id: 12, pairId: 6, image: 'hephaestus.avif' },
+      { id: 13, pairId: 7, image: 'hera.avif' },
+      { id: 14, pairId: 7, image: 'hera.avif' },
+      { id: 15, pairId: 8, image: 'poseidon.avif' },
+      { id: 16, pairId: 8, image: 'poseidon.avif' },
+    ],
+  },
+
+  greekHeritage: {
+    id: 'greekHeritage',
+    name: 'Greek Heritage',
+    folder: 'greek-heritage',
+    back: 'back.avif',
+    cards: [
+      { id: 1, pairId: 1, image: 'eagle.avif' },
+      { id: 2, pairId: 1, image: 'eagle.avif' },
+      { id: 3, pairId: 2, image: 'athena.avif' },
+      { id: 4, pairId: 2, image: 'athena.avif' },
+      { id: 5, pairId: 3, image: 'ancient-bell.avif' },
+      { id: 6, pairId: 3, image: 'ancient-bell.avif' },
+      { id: 7, pairId: 4, image: 'helmet.avif' },
+      { id: 8, pairId: 4, image: 'helmet.avif' },
+      { id: 9, pairId: 5, image: 'armillary-sphere.avif' },
+      { id: 10, pairId: 5, image: 'armillary-sphere.avif' },
+      { id: 11, pairId: 6, image: 'acropolis.avif' },
+      { id: 12, pairId: 6, image: 'acropolis.avif' },
+      { id: 13, pairId: 7, image: 'athena-warrior.avif' },
+      { id: 14, pairId: 7, image: 'athena-warrior.avif' },
+      { id: 15, pairId: 8, image: 'hoplite.avif' },
+      { id: 16, pairId: 8, image: 'hoplite.avif' },
+    ],
+  },
+};
+
+const DEFAULT_CARD_SET_ID = 'ancientGreece';
+
+export { BASE_URL, CARD_SETS, DEFAULT_CARD_SET_ID };

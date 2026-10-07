@@ -94,7 +94,6 @@ class RulesControl {
       });
 
       const ruleText = createElement('span', {
-        className: styles.ruleText,
         textContent: text,
       });
 

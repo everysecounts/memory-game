@@ -1,6 +1,7 @@
-import { createElement, createSoundIcon, createSvg, soundManager } from '@/utils';
+import { createElement, createSettingsIcon, createSvg, soundManager } from '@/utils';
+import { CARD_SETS, DEFAULT_CARD_SET_ID } from '@/data';
 import { FloatingPanel } from '@/components/FloatingPanel';
-import styles from './SoundControl.module.css';
+import styles from './Settings.module.css';
 
 function createPlayIcon() {
   return createSvg(
@@ -65,16 +66,27 @@ function formatTime(time) {
   return `${minutes}:${String(seconds).padStart(2, '0')}`;
 }
 
-class SoundControl {
-  constructor() {
-    this.activeTab = 'effects';
+class Settings {
+  constructor(onCardSetChange = () => {}) {
+    this.onCardSetChange = onCardSetChange;
+    this.cardSetId = this.loadCardSetId();
+    this.activeTab = null;
     this.element = this.createElement();
 
-    this.unsubscribe = soundManager.subscribe(() => {
+    this.unsubscribe = soundManager.subscribe((type) => {
+      if (type === 'theme') {
+        this.updateThemePlayer(soundManager.isThemePaused());
+        return;
+      }
+
       this.update();
+      this.updateThemePlayer(soundManager.isThemePaused());
     });
 
     this.update();
+    this.updateThemePlayer(soundManager.isThemePaused());
+    this.updateCardSetSelection();
+    this.setActiveTab('audio');
   }
 
   createElement() {
@@ -86,14 +98,14 @@ class SoundControl {
       className: styles.button,
       attributes: {
         type: 'button',
-        'aria-label': 'Audio settings',
+        'aria-label': 'Settings',
         'aria-expanded': 'false',
         'aria-haspopup': 'dialog',
         'data-no-sound': 'true',
       },
     });
 
-    const icon = createSoundIcon();
+    const icon = createSettingsIcon();
 
     icon.svg.classList.add(styles.icon);
     button.append(icon.svg);
@@ -102,7 +114,7 @@ class SoundControl {
       className: styles.panel,
       attributes: {
         role: 'dialog',
-        'aria-label': 'Audio settings',
+        'aria-label': 'Settings',
         'aria-hidden': 'true',
       },
     });
@@ -113,7 +125,7 @@ class SoundControl {
 
     const title = createElement('h2', {
       className: styles.title,
-      textContent: 'Audio Settings',
+      textContent: 'Settings',
     });
 
     const masterButton = createElement('button', {
@@ -126,7 +138,6 @@ class SoundControl {
     });
 
     const masterLabel = createElement('span', {
-      className: styles.masterLabel,
       textContent: 'Mute all',
     });
 
@@ -137,19 +148,19 @@ class SoundControl {
       className: styles.tabs,
       attributes: {
         role: 'tablist',
-        'aria-label': 'Audio settings',
+        'aria-label': 'Settings',
       },
     });
 
-    const effectsTab = this.createTab('effects', 'Effects');
-    const musicTab = this.createTab('music', 'Music');
+    const audioTab = this.createTab('audio', 'Audio');
+    const cardsTab = this.createTab('cards', 'Cards');
 
-    tabs.append(effectsTab, musicTab);
+    tabs.append(audioTab, cardsTab);
 
-    const effectsPanel = this.createEffectsPanel();
-    const musicPanel = this.createMusicPanel();
+    const audioPanel = this.createAudioPanel();
+    const cardsPanel = this.createCardsPanel();
 
-    panel.append(panelHeader, tabs, effectsPanel, musicPanel);
+    panel.append(panelHeader, tabs, audioPanel, cardsPanel);
 
     masterButton.addEventListener('click', () => {
       soundManager.toggleMasterMute();
@@ -157,10 +168,11 @@ class SoundControl {
 
     this.masterButton = masterButton;
     this.masterLabel = masterLabel;
-    this.effectsTab = effectsTab;
-    this.musicTab = musicTab;
-    this.effectsPanel = effectsPanel;
-    this.musicPanel = musicPanel;
+    this.audioTab = audioTab;
+    this.cardsTab = cardsTab;
+    this.audioPanel = audioPanel;
+    this.cardsPanel = cardsPanel;
+
     this.floatingPanel = new FloatingPanel({
       button,
       panel,
@@ -168,6 +180,7 @@ class SoundControl {
     });
 
     wrapper.append(button);
+
     return wrapper;
   }
 
@@ -189,11 +202,27 @@ class SoundControl {
     return tab;
   }
 
-  createEffectsPanel() {
+  createAudioPanel() {
     const panel = createElement('section', {
       className: styles.tabPanel,
       attributes: {
         role: 'tabpanel',
+        'aria-label': 'Audio settings',
+      },
+    });
+
+    const effectsPanel = this.createEffectsPanel();
+    const musicPanel = this.createMusicPanel();
+
+    panel.append(effectsPanel, musicPanel);
+
+    return panel;
+  }
+
+  createEffectsPanel() {
+    const panel = createElement('section', {
+      className: styles.audioSection,
+      attributes: {
         'aria-label': 'Effects settings',
       },
     });
@@ -224,9 +253,8 @@ class SoundControl {
 
   createMusicPanel() {
     const panel = createElement('section', {
-      className: styles.tabPanel,
+      className: styles.audioSection,
       attributes: {
-        role: 'tabpanel',
         'aria-label': 'Music settings',
       },
     });
@@ -256,6 +284,112 @@ class SoundControl {
     return panel;
   }
 
+  createCardsPanel() {
+    const panel = createElement('section', {
+      className: styles.tabPanel,
+      attributes: {
+        role: 'tabpanel',
+        'aria-label': 'Cards settings',
+      },
+    });
+
+    const description = createElement('p', {
+      className: styles.description,
+      textContent: 'Card set',
+    });
+
+    const cardSets = createElement('div', {
+      className: styles.cardSets,
+    });
+
+    this.cardSetButtons = [];
+
+    Object.values(CARD_SETS).forEach((cardSet) => {
+      const button = this.createCardSetButton(cardSet);
+
+      cardSets.append(button);
+      this.cardSetButtons.push({
+        button,
+        id: cardSet.id,
+      });
+    });
+
+    const note = createElement('p', {
+      className: styles.cardSetNote,
+      textContent: 'Changing the card set starts a new game.',
+    });
+
+    panel.append(description, cardSets, note);
+
+    return panel;
+  }
+
+  createCardSetButton(cardSet) {
+    const button = createElement('button', {
+      className: styles.cardSet,
+      attributes: {
+        type: 'button',
+        'aria-label': `Select ${cardSet.name} card set`,
+        'aria-pressed': 'false',
+      },
+    });
+
+    const image = createElement('img', {
+      className: styles.cardSetImage,
+      attributes: {
+        src: `${import.meta.env.BASE_URL}assets/cards/${cardSet.folder}/${cardSet.back}`,
+        alt: '',
+        draggable: 'false',
+      },
+    });
+
+    const name = createElement('span', {
+      className: styles.cardSetName,
+      textContent: cardSet.name,
+    });
+
+    button.append(image, name);
+
+    button.addEventListener('click', () => {
+      if (cardSet.id === this.cardSetId) {
+        return;
+      }
+
+      this.cardSetId = cardSet.id;
+      localStorage.setItem('memory-game-card-set', this.cardSetId);
+
+      this.updateCardSetSelection();
+      this.onCardSetChange(this.cardSetId);
+    });
+
+    return button;
+  }
+
+  loadCardSetId() {
+    const savedCardSetId = localStorage.getItem('memory-game-card-set');
+
+    return CARD_SETS[savedCardSetId] ? savedCardSetId : DEFAULT_CARD_SET_ID;
+  }
+
+  getCardSetId() {
+    return this.cardSetId;
+  }
+
+  updateCardSetSelection() {
+    this.cardSetButtons.forEach(({ button, id }) => {
+      const isActive = id === this.cardSetId;
+
+      button.classList.toggle(styles.active, isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+
+      if (isActive) {
+        button.dataset.noSound = 'true';
+      } else {
+        delete button.dataset.noSound;
+      }
+    });
+  }
+
   createThemePlayer() {
     const player = createElement('div', {
       className: styles.player,
@@ -278,7 +412,7 @@ class SoundControl {
     });
 
     const restartButton = createElement('button', {
-      className: `${styles.playerButton} ${styles.restartButton}`,
+      className: styles.playerButton,
       attributes: {
         type: 'button',
         'aria-label': 'Restart theme',
@@ -374,10 +508,17 @@ class SoundControl {
       levelButton.append(dot, label);
 
       levelButton.addEventListener('click', () => {
+        const previousLevel =
+          type === 'effects' ? soundManager.getEffectsLevel() : soundManager.getMusicLevel();
+
         if (type === 'effects') {
           soundManager.setEffectsLevel(index);
         } else {
           soundManager.setMusicLevel(index);
+        }
+
+        if (previousLevel === 0 && index > 0) {
+          soundManager.play('buttonClick');
         }
       });
 
@@ -389,18 +530,23 @@ class SoundControl {
   }
 
   setActiveTab(tabName) {
+    if (this.activeTab === tabName) {
+      return;
+    }
+
     this.activeTab = tabName;
 
-    const isEffects = tabName === 'effects';
+    const isAudio = tabName === 'audio';
+    const isCards = tabName === 'cards';
 
-    this.effectsTab.classList.toggle(styles.active, isEffects);
-    this.musicTab.classList.toggle(styles.active, !isEffects);
+    this.audioTab.classList.toggle(styles.active, isAudio);
+    this.cardsTab.classList.toggle(styles.active, isCards);
 
-    this.effectsTab.setAttribute('aria-selected', String(isEffects));
-    this.musicTab.setAttribute('aria-selected', String(!isEffects));
+    this.audioTab.setAttribute('aria-selected', String(isAudio));
+    this.cardsTab.setAttribute('aria-selected', String(isCards));
 
-    this.effectsPanel.hidden = !isEffects;
-    this.musicPanel.hidden = isEffects;
+    this.audioPanel.hidden = !isAudio;
+    this.cardsPanel.hidden = !isCards;
   }
 
   updateControlsState(isMuted, musicLevel) {
@@ -423,7 +569,6 @@ class SoundControl {
     const effectsLevel = soundManager.getEffectsLevel();
     const musicLevel = soundManager.getMusicLevel();
     const masterMuted = soundManager.isMasterMuted();
-    const themePaused = soundManager.isThemePaused();
 
     this.updateLevels('effects', effectsLevel);
     this.updateLevels('music', musicLevel);
@@ -438,9 +583,7 @@ class SoundControl {
     );
     this.masterLabel.textContent = masterMuted ? 'Sound on' : 'Mute all';
 
-    this.updateThemePlayer(themePaused);
     this.updateControlsState(masterMuted, musicLevel);
-    this.setActiveTab(this.activeTab);
   }
 
   updateThemePlayer(themePaused) {
@@ -461,6 +604,12 @@ class SoundControl {
 
       button.classList.toggle(styles.active, isActive);
       button.setAttribute('aria-pressed', String(isActive));
+
+      if (isActive) {
+        button.dataset.noSound = 'true';
+      } else {
+        delete button.dataset.noSound;
+      }
     });
   }
 
@@ -470,4 +619,4 @@ class SoundControl {
   }
 }
 
-export { SoundControl };
+export { Settings };

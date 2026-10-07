@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/data';
+import { BASE_URL } from './cards';
 
 const CURSOR_URL = `${BASE_URL}assets/cursor/olympus-cursor.svg`;
 const POINTER_URL = `${BASE_URL}assets/cursor/olympus-pointer.svg`;

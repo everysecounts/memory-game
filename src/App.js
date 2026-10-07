@@ -8,10 +8,6 @@ class App {
 
     this.world = new World();
 
-    this.main = new Main((foundPairs) => {
-      this.world.setProgress(foundPairs);
-    });
-
     this.header = new Header(
       () => {
         this.main.handleNewGame();
@@ -19,7 +15,14 @@ class App {
       () => {
         this.main.openLeaderboard();
       },
+      (cardSetId) => {
+        this.main.handleCardSetChange(cardSetId);
+      },
     );
+
+    this.main = new Main((foundPairs) => {
+      this.world.setProgress(foundPairs);
+    }, this.header.settings.getCardSetId());
   }
 
   start() {

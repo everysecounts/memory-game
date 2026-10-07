@@ -168,7 +168,7 @@
   }
 
   @media (height <= 700px) {
-    padding: 10px 35px;
+    padding: clamp(10px, calc(10px + (100vh - 600px) * 5 / 100), 15px) 35px;
   }
 
   @media (width <= 768px) {
