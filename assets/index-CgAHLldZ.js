@@ -915,10 +915,9 @@ function createRulesIcon() {
 		viewBox: "0 0 32 32",
 		"aria-hidden": "true"
 	}, [
-		createSvg("path", { d: "M7 8h18v18H7z" }),
-		createSvg("path", { d: "M10 5h12v3H10z" }),
-		createSvg("path", { d: "M11 13h10M11 17h10M11 21h7" }),
-		createSvg("path", { d: "M7 8 5 10v16h18l4-4V8" })
+		createSvg("path", { d: "M9 5h11l5 5v15a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" }),
+		createSvg("path", { d: "M20 5v5h5" }),
+		createSvg("path", { d: "M12 14h10M12 18h10M12 22h7" })
 	]);
 }
 var RulesControl = class {
@@ -1449,30 +1448,27 @@ var Settings = class {
 	}
 };
 var Header_module_default = {
-	header: "_header_18d2k_1",
-	brand: "_brand_18d2k_12",
-	brandText: "_brandText_18d2k_22",
-	title: "_title_18d2k_34",
-	subtitle: "_subtitle_18d2k_53",
-	leftActions: "_leftActions_18d2k_89",
-	rightActions: "_rightActions_18d2k_90",
-	button: "_button_18d2k_110",
-	icon: "_icon_18d2k_158",
-	buttonLabel: "_buttonLabel_18d2k_169"
+	header: "_header_1qm28_1",
+	"new-game-spin": "_new-game-spin_1qm28_1",
+	brand: "_brand_1qm28_12",
+	brandText: "_brandText_1qm28_22",
+	title: "_title_1qm28_34",
+	subtitle: "_subtitle_1qm28_53",
+	leftActions: "_leftActions_1qm28_89",
+	rightActions: "_rightActions_1qm28_90",
+	button: "_button_1qm28_110",
+	icon: "_icon_1qm28_135",
+	buttonLabel: "_buttonLabel_1qm28_146",
+	newGameButton: "_newGameButton_1qm28_177"
 };
 //#endregion
 //#region src/components/Header/Header.js
-function createTempleIcon() {
+function createNewGameIcon() {
 	return createSvg("svg", {
 		class: Header_module_default.icon,
 		viewBox: "0 0 32 32",
 		"aria-hidden": "true"
-	}, [
-		createSvg("path", { d: "M4 10h24L16 4 4 10Z" }),
-		createSvg("path", { d: "M6 12h20" }),
-		createSvg("path", { d: "M8 12v12M13 12v12M19 12v12M24 12v12" }),
-		createSvg("path", { d: "M5 24h22M3 27h26" })
-	]);
+	}, [createSvg("path", { d: "M16 6a10 10 0 1 0 8.5 4.5" }), createSvg("path", { d: "M24.5 5.5V11h-5.5" })]);
 }
 function createLeaderboardIcon() {
 	return createSvg("svg", {
@@ -1517,7 +1513,7 @@ var Header = class {
 		const leftActions = createElement("div", { className: Header_module_default.leftActions });
 		const rightActions = createElement("div", { className: Header_module_default.rightActions });
 		const newGameButton = createElement("button", {
-			className: Header_module_default.button,
+			className: `${Header_module_default.button} ${Header_module_default.newGameButton}`,
 			attributes: {
 				type: "button",
 				"aria-label": "New Game"
@@ -1538,7 +1534,7 @@ var Header = class {
 			className: Header_module_default.buttonLabel,
 			textContent: "Leaderboard"
 		});
-		newGameButton.append(createTempleIcon(), newGameLabel);
+		newGameButton.append(createNewGameIcon(), newGameLabel);
 		leadersButton.append(createLeaderboardIcon(), leadersLabel);
 		newGameButton.addEventListener("click", this.onNewGame);
 		leadersButton.addEventListener("click", this.onLeaderboard);
@@ -2387,4 +2383,4 @@ var root = document.body;
 new App(root).start();
 //#endregion
 
-//# sourceMappingURL=index-YGOJOJIn.js.map
+//# sourceMappingURL=index-CgAHLldZ.js.map
