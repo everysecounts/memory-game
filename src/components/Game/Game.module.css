@@ -1,5 +1,5 @@
 .game {
-  width: min(100%, 500px);
+  width: min(100%, 515px);
   margin: 0 auto;
   padding: 12px;
   border: 1px solid rgb(224 198 129 / 48%);
@@ -29,8 +29,7 @@
 
 @media (height <= 600px) {
   .game {
-    width: min(100%, 285px);
-    padding: 10px 8px 12px;
+    width: min(100%, 300px);
 
     .board {
       gap: 6px;

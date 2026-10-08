@@ -1,5 +1,14 @@
 class FloatingPanel {
-  constructor({ button, panel, openClass, closeDelay = 200, gap = 8, viewportPadding = 12 }) {
+  constructor({
+    button,
+    panel,
+    openClass,
+    closeDelay = 300,
+    gap = 8,
+    viewportPadding = 12,
+    align = 'auto',
+  }) {
+    this.align = align;
     this.button = button;
     this.panel = panel;
     this.openClass = openClass;
@@ -148,13 +157,25 @@ class FloatingPanel {
     const panelWidth = this.panel.offsetWidth;
     const panelHeight = this.panel.offsetHeight;
 
-    let left = rect.right - panelWidth;
     let top = rect.bottom + this.gap;
 
+    const minLeft = this.viewportPadding;
     const maxLeft = window.innerWidth - panelWidth - this.viewportPadding;
     const maxTop = window.innerHeight - panelHeight - this.viewportPadding;
 
-    left = Math.max(this.viewportPadding, Math.min(left, maxLeft));
+    const alignedToEnd = rect.right - panelWidth;
+    const alignedToStart = rect.left;
+    let left;
+
+    if (this.align === 'start') {
+      left = alignedToStart;
+    } else if (this.align === 'end') {
+      left = alignedToEnd;
+    } else {
+      left = alignedToEnd >= minLeft ? alignedToEnd : alignedToStart;
+    }
+
+    left = Math.max(minLeft, Math.min(left, maxLeft));
 
     if (top > maxTop) {
       top = rect.top - panelHeight - this.gap;

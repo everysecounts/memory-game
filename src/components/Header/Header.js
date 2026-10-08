@@ -1,4 +1,5 @@
 import { createElement, createSvg } from '@/utils';
+import { CARD_SETS } from '@/data';
 import { RulesControl } from '@/components/RulesControl';
 import { Settings } from '@/components/Settings';
 import styles from './Header.module.css';
@@ -37,34 +38,24 @@ function createLeaderboardIcon() {
   );
 }
 
-function createLogoMark() {
-  return createSvg(
-    'svg',
-    {
-      class: styles.logoMark,
-      viewBox: '0 0 56 56',
-      'aria-hidden': 'true',
-    },
-    [
-      createSvg('path', { d: 'M28 8 14 15h28L28 8Z' }),
-      createSvg('path', { d: 'M17 18h22M18 18v20M25 18v20M31 18v20M38 18v20' }),
-      createSvg('path', { d: 'M14 38h28M11 42h34' }),
-      createSvg('path', { d: 'M10 13c-5 5-7 12-5 19 2 7 7 12 14 15' }),
-      createSvg('path', { d: 'M46 13c5 5 7 12 5 19-2 7-7 12-14 15' }),
-      createSvg('path', {
-        d: 'M7 20c3 0 5 1 7 3M5 27c3-1 6 0 8 2M8 34c3-1 6-1 8 1M49 20c-3 0-5 1-7 3M51 27c-3-1-6 0-8 2M48 34c-3-1-6-1-8 1',
-      }),
-    ],
-  );
-}
-
 class Header {
   constructor(onNewGame, onLeaderboard, onCardSetChange) {
     this.onNewGame = onNewGame;
     this.onLeaderboard = onLeaderboard;
     this.rulesControl = new RulesControl();
-    this.settings = new Settings(onCardSetChange);
+    this.settings = new Settings((cardSetId) => {
+      this.updateCardSetName(cardSetId);
+      onCardSetChange(cardSetId);
+    });
     this.element = this.createElement();
+    this.updateCardSetName(this.settings.getCardSetId());
+  }
+
+  updateCardSetName(cardSetId) {
+    const cardSet = CARD_SETS[cardSetId];
+    if (cardSet) {
+      this.subtitle.textContent = cardSet.name;
+    }
   }
 
   createElement() {
@@ -76,8 +67,6 @@ class Header {
       className: styles.brand,
     });
 
-    const logoMark = createLogoMark();
-
     const brandText = createElement('div', {
       className: styles.brandText,
     });
@@ -87,13 +76,17 @@ class Header {
       textContent: 'Memory of Olympus',
     });
 
-    const subtitle = createElement('span', {
+    this.subtitle = createElement('span', {
       className: styles.subtitle,
       textContent: 'Ancient Greece',
     });
 
-    const actions = createElement('div', {
-      className: styles.actions,
+    const leftActions = createElement('div', {
+      className: styles.leftActions,
+    });
+
+    const rightActions = createElement('div', {
+      className: styles.rightActions,
     });
 
     const newGameButton = createElement('button', {
@@ -128,10 +121,11 @@ class Header {
     newGameButton.addEventListener('click', this.onNewGame);
     leadersButton.addEventListener('click', this.onLeaderboard);
 
-    brandText.append(title, subtitle);
-    brand.append(logoMark, brandText);
-    actions.append(newGameButton, leadersButton, this.rulesControl.element, this.settings.element);
-    header.append(brand, actions);
+    brandText.append(title, this.subtitle);
+    brand.append(brandText);
+    leftActions.append(this.rulesControl.element, newGameButton);
+    rightActions.append(leadersButton, this.settings.element);
+    header.append(leftActions, brand, rightActions);
 
     return header;
   }

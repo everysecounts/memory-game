@@ -123,6 +123,7 @@ class RulesControl {
       button,
       panel,
       openClass: styles.open,
+      align: 'start',
     });
 
     wrapper.append(button);
