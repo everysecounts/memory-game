@@ -4,7 +4,7 @@ import { RulesControl } from '@/components/RulesControl';
 import { Settings } from '@/components/Settings';
 import styles from './Header.module.css';
 
-function createTempleIcon() {
+function createNewGameIcon() {
   return createSvg(
     'svg',
     {
@@ -13,10 +13,12 @@ function createTempleIcon() {
       'aria-hidden': 'true',
     },
     [
-      createSvg('path', { d: 'M4 10h24L16 4 4 10Z' }),
-      createSvg('path', { d: 'M6 12h20' }),
-      createSvg('path', { d: 'M8 12v12M13 12v12M19 12v12M24 12v12' }),
-      createSvg('path', { d: 'M5 24h22M3 27h26' }),
+      createSvg('path', {
+        d: 'M16 6a10 10 0 1 0 8.5 4.5',
+      }),
+      createSvg('path', {
+        d: 'M24.5 5.5V11h-5.5',
+      }),
     ],
   );
 }
@@ -90,7 +92,7 @@ class Header {
     });
 
     const newGameButton = createElement('button', {
-      className: styles.button,
+      className: `${styles.button} ${styles.newGameButton}`,
       attributes: {
         type: 'button',
         'aria-label': 'New Game',
@@ -115,7 +117,7 @@ class Header {
       textContent: 'Leaderboard',
     });
 
-    newGameButton.append(createTempleIcon(), newGameLabel);
+    newGameButton.append(createNewGameIcon(), newGameLabel);
     leadersButton.append(createLeaderboardIcon(), leadersLabel);
 
     newGameButton.addEventListener('click', this.onNewGame);

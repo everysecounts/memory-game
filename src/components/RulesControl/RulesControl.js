@@ -12,16 +12,13 @@ function createRulesIcon() {
     },
     [
       createSvg('path', {
-        d: 'M7 8h18v18H7z',
+        d: 'M9 5h11l5 5v15a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z',
       }),
       createSvg('path', {
-        d: 'M10 5h12v3H10z',
+        d: 'M20 5v5h5',
       }),
       createSvg('path', {
-        d: 'M11 13h10M11 17h10M11 21h7',
-      }),
-      createSvg('path', {
-        d: 'M7 8 5 10v16h18l4-4V8',
+        d: 'M12 14h10M12 18h10M12 22h7',
       }),
     ],
   );

@@ -132,6 +132,25 @@
       box-shadow var(--transition-fast),
       transform var(--transition-fast);
 
+    .icon {
+      flex: 0 0 clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
+      width: clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
+      height: clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
+      fill: none;
+      stroke: currentcolor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .buttonLabel {
+      white-space: nowrap;
+      font-size: clamp(11px, calc(12px - (1024px - 100vw) * (1 / 256)), 12px);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
     @media (hover: hover) {
       &:hover {
         border-color: var(--color-gold-light);
@@ -155,23 +174,14 @@
     }
   }
 
-  .icon {
-    flex: 0 0 clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
-    width: clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
-    height: clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
-    fill: none;
-    stroke: currentcolor;
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .buttonLabel {
-    white-space: nowrap;
-    font-size: clamp(11px, calc(12px - (1024px - 100vw) * (1 / 256)), 12px);
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+  .newGameButton {
+    @media (hover: hover) {
+      &:hover {
+        .icon {
+          animation: new-game-spin 4s linear infinite;
+        }
+      }
+    }
   }
 
   @media (height <= 700px) {
@@ -193,8 +203,7 @@
     }
 
     .brandText {
-      max-width: 0;
-      opacity: 0;
+      display: none;
     }
 
     .button {
@@ -211,5 +220,15 @@
       width: 24px;
       height: 24px;
     }
+  }
+}
+
+@keyframes new-game-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
