@@ -1441,16 +1441,16 @@ var Settings = class {
 	}
 };
 var Header_module_default = {
-	header: "_header_18ggh_1",
-	brand: "_brand_18ggh_13",
-	logoMark: "_logoMark_18ggh_21",
-	brandText: "_brandText_18ggh_48",
-	title: "_title_18ggh_62",
-	subtitle: "_subtitle_18ggh_79",
-	actions: "_actions_18ggh_96",
-	button: "_button_18ggh_103",
-	icon: "_icon_18ggh_151",
-	buttonLabel: "_buttonLabel_18ggh_162"
+	header: "_header_1pyw7_1",
+	brand: "_brand_1pyw7_13",
+	logoMark: "_logoMark_1pyw7_21",
+	brandText: "_brandText_1pyw7_48",
+	title: "_title_1pyw7_62",
+	subtitle: "_subtitle_1pyw7_79",
+	actions: "_actions_1pyw7_96",
+	button: "_button_1pyw7_103",
+	icon: "_icon_1pyw7_151",
+	buttonLabel: "_buttonLabel_1pyw7_162"
 };
 //#endregion
 //#region src/components/Header/Header.js
@@ -1663,8 +1663,8 @@ var GameState = class {
 	}
 };
 var Game_module_default = {
-	game: "_game_1h2m1_1",
-	board: "_board_1h2m1_15"
+	game: "_game_14lc5_1",
+	board: "_board_14lc5_15"
 };
 //#endregion
 //#region src/components/Game/Game.js
@@ -1768,8 +1768,8 @@ var Game = class {
 	}
 };
 var Score_module_default = {
-	score: "_score_1an5l_1",
-	item: "_item_1an5l_7"
+	score: "_score_yx0ne_1",
+	item: "_item_yx0ne_7"
 };
 //#endregion
 //#region src/components/Score/Score.js
@@ -2237,7 +2237,7 @@ var LeaderboardModal = class {
 		this.modal.close();
 	}
 };
-var Main_module_default = { main: "_main_y0qxd_1" };
+var Main_module_default = { main: "_main_n0jmh_1" };
 //#endregion
 //#region src/components/Main/Main.js
 var Main = class {
@@ -2384,4 +2384,4 @@ var root = document.body;
 new App(root).start();
 //#endregion
 
-//# sourceMappingURL=index-BLmTWA87.js.map
+//# sourceMappingURL=index-SSiV8i7g.js.map

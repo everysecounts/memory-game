@@ -902,7 +902,7 @@
     }
   }
 }
-._header_18ggh_1 {
+._header_1pyw7_1 {
   position: relative;
   z-index: 1;
   display: flex;
@@ -911,10 +911,10 @@
   gap: clamp(10px, calc(16px - (1024px - 100vw) * (6 / 256)), 16px);
   width: min(100% - 32px, 1200px);
   margin: 0 auto;
-  padding: 15px 35px;
+  padding: 10px 35px;
   border-bottom: 1px solid var(--color-border);
 
-  ._brand_18ggh_13 {
+  ._brand_1pyw7_13 {
     display: flex;
     flex: 0 0 auto;
     align-items: center;
@@ -922,7 +922,7 @@
     min-width: 0;
   }
 
-  ._logoMark_18ggh_21 {
+  ._logoMark_1pyw7_21 {
     flex: 0 0 0;
     width: 0;
     height: 0;
@@ -949,7 +949,7 @@
       box-shadow var(--transition-normal);
   }
 
-  ._brandText_18ggh_48 {
+  ._brandText_1pyw7_48 {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -963,7 +963,7 @@
     font-family: var(--font-family);
   }
 
-  ._title_18ggh_62 {
+  ._title_1pyw7_62 {
     padding: 3px 9px;
     border: 1px solid rgb(224 198 129 / 50%);
     border-radius: 4px;
@@ -980,7 +980,7 @@
     backdrop-filter: blur(6px);
   }
 
-  ._subtitle_18ggh_79 {
+  ._subtitle_1pyw7_79 {
     max-width: -moz-fit-content;
     max-width: fit-content;
     padding: 2px 8px;
@@ -998,14 +998,14 @@
     backdrop-filter: blur(6px);
   }
 
-  ._actions_18ggh_96 {
+  ._actions_1pyw7_96 {
     display: flex;
     flex-shrink: 0;
     gap: clamp(6px, calc(10px - (1024px - 100vw) * (4 / 256)), 10px);
     text-wrap: nowrap;
   }
 
-  ._button_18ggh_103 {
+  ._button_1pyw7_103 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1053,7 +1053,7 @@
     }
   }
 
-  ._icon_18ggh_151 {
+  ._icon_1pyw7_151 {
     flex: 0 0 clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
     width: clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
     height: clamp(22px, calc(24px - (1024px - 100vw) * (2 / 256)), 24px);
@@ -1064,7 +1064,7 @@
     stroke-linejoin: round;
   }
 
-  ._buttonLabel_18ggh_162 {
+  ._buttonLabel_1pyw7_162 {
     white-space: nowrap;
     font-size: clamp(11px, calc(12px - (1024px - 100vw) * (1 / 256)), 12px);
     font-weight: 600;
@@ -1073,23 +1073,23 @@
   }
 
   @media (height <= 700px) {
-    padding: clamp(10px, calc(10px + (100vh - 600px) * 5 / 100), 15px) 35px;
+    padding: clamp(5px, calc(5px + (100vh - 600px) * 5 / 100), 5px) 35px;
   }
 
   @media (width <= 768px) {
     padding-right: clamp(0px, calc(35px - (768px - 100vw) * (35 / 288)), 35px);
     padding-left: clamp(0px, calc(35px - (768px - 100vw) * (35 / 288)), 35px);
 
-    ._brand_18ggh_13 {
+    ._brand_1pyw7_13 {
       flex: 0 0 48px;
     }
 
-    ._brandText_18ggh_48 {
+    ._brandText_1pyw7_48 {
       max-width: 0;
       opacity: 0;
     }
 
-    ._logoMark_18ggh_21 {
+    ._logoMark_1pyw7_21 {
       flex-basis: 48px;
       width: 48px;
       height: 48px;
@@ -1103,17 +1103,17 @@
       backdrop-filter: blur(6px);
     }
 
-    ._button_18ggh_103 {
+    ._button_1pyw7_103 {
       width: 48px;
       height: 48px;
       padding: 8px;
     }
 
-    ._buttonLabel_18ggh_162 {
+    ._buttonLabel_1pyw7_162 {
       display: none;
     }
 
-    ._icon_18ggh_151 {
+    ._icon_1pyw7_151 {
       width: 24px;
       height: 24px;
     }
@@ -1234,58 +1234,60 @@
       inset 0 0 0 rgb(243 220 154 / 0%);
   }
 }
-._game_1h2m1_1 {
-  width: min(100%, 480px);
+._game_14lc5_1 {
+  width: min(100%, 500px);
   margin: 0 auto;
-  padding: 18px 16px 20px;
+  padding: 12px;
   border: 1px solid rgb(224 198 129 / 48%);
   border-radius: var(--radius-lg);
   background:
     radial-gradient(ellipse at 50% 0%, rgb(201 164 92 / 10%), transparent 60%),
     linear-gradient(180deg, rgb(48 40 28 / 58%), rgb(12 10 8 / 68%));
   box-shadow:
-    inset 0 1px 0 rgb(255 240 200 / 8%),
+    inset 0 1px 0 rgb(255 240 200 / 08%),
     0 12px 36px rgb(0 0 0 / 32%);
   backdrop-filter: blur(6px);
 
-  ._board_1h2m1_15 {
+  ._board_14lc5_15 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
   }
+}
 
-  @media (width > 600px) {
-    width: min(100%, 640px, calc(60vh - 88px));
-  }
-
-  @media (width > 600px) and (height <= 700px) {
-    width: min(100%, calc(60vh - 73px));
-  }
-
-  @media (width <= 600px) and (height < 700px) {
-    width: min(100%, 640px, calc(60vh - 78px));
-  }
-
-  @media (width <= 600px) and (height >= 700px) {
-    width: min(100%, 640px, calc(60vh - 68px));
+@media (height <= 768px) {
+  ._game_14lc5_1 {
+    ._board_14lc5_15 {
+      gap: 8px;
+    }
   }
 }
-._score_1an5l_1 {
+
+@media (height <= 600px) {
+  ._game_14lc5_1 {
+    width: min(100%, 285px);
+    padding: 10px 8px 12px;
+
+    ._board_14lc5_15 {
+      gap: 6px;
+    }
+  }
+}
+._score_yx0ne_1 {
   display: flex;
   flex: none;
   justify-content: center;
   gap: clamp(8px, calc(12px - (1024px - 100vw) * (4 / 256)), 12px);
 
-  ._item_1an5l_7 {
+  ._item_yx0ne_7 {
     display: flex;
     align-items: baseline;
     justify-content: center;
-    font-size: clamp(16px, calc(20px - (1024px - 100vw) * (4 / 256)), 20px);
+    font-size: 16px;
     font-family: var(--font-family);
     gap: clamp(6px, calc(10px - (1024px - 100vw) * (4 / 256)), 10px);
-    min-width: clamp(100px, calc(150px - (1024px - 100vw) * (50 / 256)), 150px);
-    padding: clamp(8px, calc(12px - (1024px - 100vw) * (4 / 256)), 12px)
-      clamp(12px, calc(18px - (1024px - 100vw) * (6 / 256)), 18px);
+    min-width: clamp(100px, calc(140px - (1024px - 100vw) * (50 / 256)), 140px);
+    padding: 10px 20px;
     border: 1px solid rgb(224 198 129 / 50%);
     border-radius: var(--radius-md);
     background: linear-gradient(180deg, rgb(48 40 28 / 70%), rgb(16 13 10 / 76%));
@@ -1296,7 +1298,7 @@
 
     span:first-child {
       color: #d4c4a8;
-      font-size: clamp(9px, calc(11px - (1024px - 100vw) * (2 / 256)), 11px);
+      font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1810,17 +1812,17 @@
     }
   }
 }
-._main_y0qxd_1 {
+._main_n0jmh_1 {
   position: relative;
   z-index: 1;
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
-  gap: clamp(10px, calc(5vh - 25px), 15px);
+  gap: 10px;
   width: min(100% - 32px, 1200px);
   min-height: 0;
   margin: 0 auto;
-  padding: clamp(10px, calc(10vh - 70px), 15px) 0;
+  padding: 10px;
 }
 ._world_1kwp3_1 {
   position: fixed;
@@ -1923,6 +1925,7 @@
 
 body {
   min-width: 360px;
+  min-height: 100vh;
   font-family: var(--font-family);
   color: var(--color-text);
   background: var(--color-background);
