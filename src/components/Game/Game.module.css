@@ -1,14 +1,14 @@
 .game {
-  width: min(100%, 480px);
+  width: min(100%, 500px);
   margin: 0 auto;
-  padding: 18px 16px 20px;
+  padding: 12px;
   border: 1px solid rgb(224 198 129 / 48%);
   border-radius: var(--radius-lg);
   background:
     radial-gradient(ellipse at 50% 0%, rgb(201 164 92 / 10%), transparent 60%),
     linear-gradient(180deg, rgb(48 40 28 / 58%), rgb(12 10 8 / 68%));
   box-shadow:
-    inset 0 1px 0 rgb(255 240 200 / 8%),
+    inset 0 1px 0 rgb(255 240 200 / 08%),
     0 12px 36px rgb(0 0 0 / 32%);
   backdrop-filter: blur(6px);
 
@@ -17,20 +17,23 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
   }
+}
 
-  @media (width > 600px) {
-    width: min(100%, 640px, calc(60vh - 88px));
+@media (height <= 768px) {
+  .game {
+    .board {
+      gap: 8px;
+    }
   }
+}
 
-  @media (width > 600px) and (height <= 700px) {
-    width: min(100%, calc(60vh - 73px));
-  }
+@media (height <= 600px) {
+  .game {
+    width: min(100%, 285px);
+    padding: 10px 8px 12px;
 
-  @media (width <= 600px) and (height < 700px) {
-    width: min(100%, 640px, calc(60vh - 78px));
-  }
-
-  @media (width <= 600px) and (height >= 700px) {
-    width: min(100%, 640px, calc(60vh - 68px));
+    .board {
+      gap: 6px;
+    }
   }
 }

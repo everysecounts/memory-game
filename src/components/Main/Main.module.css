@@ -4,9 +4,9 @@
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
-  gap: clamp(10px, calc(5vh - 25px), 15px);
+  gap: 10px;
   width: min(100% - 32px, 1200px);
   min-height: 0;
   margin: 0 auto;
-  padding: clamp(10px, calc(10vh - 70px), 15px) 0;
+  padding: 10px;
 }

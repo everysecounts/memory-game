@@ -8,12 +8,11 @@
     display: flex;
     align-items: baseline;
     justify-content: center;
-    font-size: clamp(16px, calc(20px - (1024px - 100vw) * (4 / 256)), 20px);
+    font-size: 16px;
     font-family: var(--font-family);
     gap: clamp(6px, calc(10px - (1024px - 100vw) * (4 / 256)), 10px);
-    min-width: clamp(100px, calc(150px - (1024px - 100vw) * (50 / 256)), 150px);
-    padding: clamp(8px, calc(12px - (1024px - 100vw) * (4 / 256)), 12px)
-      clamp(12px, calc(18px - (1024px - 100vw) * (6 / 256)), 18px);
+    min-width: clamp(100px, calc(140px - (1024px - 100vw) * (50 / 256)), 140px);
+    padding: 10px 20px;
     border: 1px solid rgb(224 198 129 / 50%);
     border-radius: var(--radius-md);
     background: linear-gradient(180deg, rgb(48 40 28 / 70%), rgb(16 13 10 / 76%));
@@ -24,7 +23,7 @@
 
     span:first-child {
       color: #d4c4a8;
-      font-size: clamp(9px, calc(11px - (1024px - 100vw) * (2 / 256)), 11px);
+      font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
