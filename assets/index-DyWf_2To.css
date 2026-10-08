@@ -1270,7 +1270,7 @@
     }
   }
 }
-._score_162d7_1 {
+._score_13275_1 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1278,14 +1278,14 @@
   width: fit-content;
   margin: 0 auto;
   border: 1px solid rgb(224 198 129 / 55%);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: linear-gradient(180deg, rgb(48 40 28 / 88%), rgb(16 13 10 / 92%));
   box-shadow:
     inset 0 1px 0 rgb(255 240 200 / 10%),
     0 4px 12px rgb(0 0 0 / 28%);
   backdrop-filter: blur(6px);
 
-  ._item_162d7_15 {
+  ._item_13275_15 {
     position: relative;
     display: flex;
     align-items: baseline;

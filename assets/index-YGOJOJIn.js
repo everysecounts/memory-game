@@ -1771,8 +1771,8 @@ var Game = class {
 	}
 };
 var Score_module_default = {
-	score: "_score_162d7_1",
-	item: "_item_162d7_15"
+	score: "_score_13275_1",
+	item: "_item_13275_15"
 };
 //#endregion
 //#region src/components/Score/Score.js
@@ -2387,4 +2387,4 @@ var root = document.body;
 new App(root).start();
 //#endregion
 
-//# sourceMappingURL=index-2NlBvTAc.js.map
+//# sourceMappingURL=index-YGOJOJIn.js.map
