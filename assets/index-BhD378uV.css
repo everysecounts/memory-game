@@ -1270,7 +1270,7 @@
     }
   }
 }
-._score_w9tjs_1 {
+._score_162d7_1 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1285,23 +1285,12 @@
     0 4px 12px rgb(0 0 0 / 28%);
   backdrop-filter: blur(6px);
 
-  ._item_w9tjs_15 {
+  ._item_162d7_15 {
     position: relative;
     display: flex;
     align-items: baseline;
     gap: 7px;
     padding: 8px 16px;
-
-    &:not(:first-child)::before {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 1px;
-      height: 18px;
-      background-color: rgb(224 198 129 / 50%);
-      content: '';
-      transform: translateY(-50%);
-    }
 
     span:first-child {
       color: #d4c4a8;
