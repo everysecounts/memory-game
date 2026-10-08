@@ -760,7 +760,8 @@ var soundManager = new SoundManager();
 //#endregion
 //#region src/components/FloatingPanel/FloatingPanel.js
 var FloatingPanel = class {
-	constructor({ button, panel, openClass, closeDelay = 200, gap = 8, viewportPadding = 12 }) {
+	constructor({ button, panel, openClass, closeDelay = 300, gap = 8, viewportPadding = 12, align = "auto" }) {
+		this.align = align;
 		this.button = button;
 		this.panel = panel;
 		this.openClass = openClass;
@@ -862,11 +863,17 @@ var FloatingPanel = class {
 		const rect = this.button.getBoundingClientRect();
 		const panelWidth = this.panel.offsetWidth;
 		const panelHeight = this.panel.offsetHeight;
-		let left = rect.right - panelWidth;
 		let top = rect.bottom + this.gap;
+		const minLeft = this.viewportPadding;
 		const maxLeft = window.innerWidth - panelWidth - this.viewportPadding;
 		const maxTop = window.innerHeight - panelHeight - this.viewportPadding;
-		left = Math.max(this.viewportPadding, Math.min(left, maxLeft));
+		const alignedToEnd = rect.right - panelWidth;
+		const alignedToStart = rect.left;
+		let left;
+		if (this.align === "start") left = alignedToStart;
+		else if (this.align === "end") left = alignedToEnd;
+		else left = alignedToEnd >= minLeft ? alignedToEnd : alignedToStart;
+		left = Math.max(minLeft, Math.min(left, maxLeft));
 		if (top > maxTop) top = rect.top - panelHeight - this.gap;
 		top = Math.max(this.viewportPadding, top);
 		this.panel.style.left = `${left}px`;
@@ -978,7 +985,8 @@ var RulesControl = class {
 		this.floatingPanel = new FloatingPanel({
 			button,
 			panel,
-			openClass: RulesControl_module_default.open
+			openClass: RulesControl_module_default.open,
+			align: "start"
 		});
 		wrapper.append(button);
 		return wrapper;
@@ -1441,16 +1449,16 @@ var Settings = class {
 	}
 };
 var Header_module_default = {
-	header: "_header_1pyw7_1",
-	brand: "_brand_1pyw7_13",
-	logoMark: "_logoMark_1pyw7_21",
-	brandText: "_brandText_1pyw7_48",
-	title: "_title_1pyw7_62",
-	subtitle: "_subtitle_1pyw7_79",
-	actions: "_actions_1pyw7_96",
-	button: "_button_1pyw7_103",
-	icon: "_icon_1pyw7_151",
-	buttonLabel: "_buttonLabel_1pyw7_162"
+	header: "_header_18d2k_1",
+	brand: "_brand_18d2k_12",
+	brandText: "_brandText_18d2k_22",
+	title: "_title_18d2k_34",
+	subtitle: "_subtitle_18d2k_53",
+	leftActions: "_leftActions_18d2k_89",
+	rightActions: "_rightActions_18d2k_90",
+	button: "_button_18d2k_110",
+	icon: "_icon_18d2k_158",
+	buttonLabel: "_buttonLabel_18d2k_169"
 };
 //#endregion
 //#region src/components/Header/Header.js
@@ -1478,42 +1486,36 @@ function createLeaderboardIcon() {
 		createSvg("path", { d: "M4 27h24" })
 	]);
 }
-function createLogoMark() {
-	return createSvg("svg", {
-		class: Header_module_default.logoMark,
-		viewBox: "0 0 56 56",
-		"aria-hidden": "true"
-	}, [
-		createSvg("path", { d: "M28 8 14 15h28L28 8Z" }),
-		createSvg("path", { d: "M17 18h22M18 18v20M25 18v20M31 18v20M38 18v20" }),
-		createSvg("path", { d: "M14 38h28M11 42h34" }),
-		createSvg("path", { d: "M10 13c-5 5-7 12-5 19 2 7 7 12 14 15" }),
-		createSvg("path", { d: "M46 13c5 5 7 12 5 19-2 7-7 12-14 15" }),
-		createSvg("path", { d: "M7 20c3 0 5 1 7 3M5 27c3-1 6 0 8 2M8 34c3-1 6-1 8 1M49 20c-3 0-5 1-7 3M51 27c-3-1-6 0-8 2M48 34c-3-1-6-1-8 1" })
-	]);
-}
 var Header = class {
 	constructor(onNewGame, onLeaderboard, onCardSetChange) {
 		this.onNewGame = onNewGame;
 		this.onLeaderboard = onLeaderboard;
 		this.rulesControl = new RulesControl();
-		this.settings = new Settings(onCardSetChange);
+		this.settings = new Settings((cardSetId) => {
+			this.updateCardSetName(cardSetId);
+			onCardSetChange(cardSetId);
+		});
 		this.element = this.createElement();
+		this.updateCardSetName(this.settings.getCardSetId());
+	}
+	updateCardSetName(cardSetId) {
+		const cardSet = CARD_SETS[cardSetId];
+		if (cardSet) this.subtitle.textContent = cardSet.name;
 	}
 	createElement() {
 		const header = createElement("header", { className: Header_module_default.header });
 		const brand = createElement("div", { className: Header_module_default.brand });
-		const logoMark = createLogoMark();
 		const brandText = createElement("div", { className: Header_module_default.brandText });
 		const title = createElement("span", {
 			className: Header_module_default.title,
 			textContent: "Memory of Olympus"
 		});
-		const subtitle = createElement("span", {
+		this.subtitle = createElement("span", {
 			className: Header_module_default.subtitle,
 			textContent: "Ancient Greece"
 		});
-		const actions = createElement("div", { className: Header_module_default.actions });
+		const leftActions = createElement("div", { className: Header_module_default.leftActions });
+		const rightActions = createElement("div", { className: Header_module_default.rightActions });
 		const newGameButton = createElement("button", {
 			className: Header_module_default.button,
 			attributes: {
@@ -1540,10 +1542,11 @@ var Header = class {
 		leadersButton.append(createLeaderboardIcon(), leadersLabel);
 		newGameButton.addEventListener("click", this.onNewGame);
 		leadersButton.addEventListener("click", this.onLeaderboard);
-		brandText.append(title, subtitle);
-		brand.append(logoMark, brandText);
-		actions.append(newGameButton, leadersButton, this.rulesControl.element, this.settings.element);
-		header.append(brand, actions);
+		brandText.append(title, this.subtitle);
+		brand.append(brandText);
+		leftActions.append(this.rulesControl.element, newGameButton);
+		rightActions.append(leadersButton, this.settings.element);
+		header.append(leftActions, brand, rightActions);
 		return header;
 	}
 };
@@ -1663,8 +1666,8 @@ var GameState = class {
 	}
 };
 var Game_module_default = {
-	game: "_game_14lc5_1",
-	board: "_board_14lc5_15"
+	game: "_game_1hmkj_1",
+	board: "_board_1hmkj_15"
 };
 //#endregion
 //#region src/components/Game/Game.js
@@ -1768,8 +1771,8 @@ var Game = class {
 	}
 };
 var Score_module_default = {
-	score: "_score_yx0ne_1",
-	item: "_item_yx0ne_7"
+	score: "_score_w9tjs_1",
+	item: "_item_w9tjs_15"
 };
 //#endregion
 //#region src/components/Score/Score.js
@@ -1802,9 +1805,9 @@ var Score = class {
 	}
 };
 var Modal_module_default = {
-	overlay: "_overlay_1sscz_1",
-	content: "_content_1sscz_11",
-	scene: "_scene_1sscz_22"
+	overlay: "_overlay_jglws_1",
+	content: "_content_jglws_21",
+	scene: "_scene_jglws_43"
 };
 //#endregion
 //#region src/components/Modal/Modal.js
@@ -2021,14 +2024,14 @@ function createHourglass(className) {
 	return svg;
 }
 var VictoryModal_module_default = {
-	victory: "_victory_6qxu2_1",
-	iconWrap: "_iconWrap_6qxu2_43",
-	icon: "_icon_6qxu2_43",
-	title: "_title_6qxu2_61",
-	divider: "_divider_6qxu2_70",
-	moves: "_moves_6qxu2_75",
-	actions: "_actions_6qxu2_82",
-	button: "_button_6qxu2_89"
+	victory: "_victory_1536t_1",
+	iconWrap: "_iconWrap_1536t_85",
+	icon: "_icon_1536t_85",
+	title: "_title_1536t_121",
+	divider: "_divider_1536t_139",
+	moves: "_moves_1536t_149",
+	actions: "_actions_1536t_163",
+	button: "_button_1536t_177"
 };
 //#endregion
 //#region src/components/VictoryModal/VictoryModal.js
@@ -2120,27 +2123,27 @@ var Leaderboard = class {
 	}
 };
 var LeaderboardModal_module_default = {
-	frame: "_frame_1v9no_1",
-	leaderboard: "_leaderboard_1v9no_36",
-	header: "_header_1v9no_46",
-	title: "_title_1v9no_51",
-	divider: "_divider_1v9no_62",
-	body: "_body_1v9no_68",
-	list: "_list_1v9no_74",
-	item: "_item_1v9no_81",
-	rank: "_rank_1v9no_107",
-	wreath: "_wreath_1v9no_114",
-	rankNumber: "_rankNumber_1v9no_122",
-	moves: "_moves_1v9no_171",
-	date: "_date_1v9no_172",
-	empty: "_empty_1v9no_183",
-	emptyIcon: "_emptyIcon_1v9no_190",
-	hourglass: "_hourglass_1v9no_197",
-	emptyTitle: "_emptyTitle_1v9no_204",
-	emptyText: "_emptyText_1v9no_209",
-	isEmpty: "_isEmpty_1v9no_217",
-	footer: "_footer_1v9no_223",
-	button: "_button_1v9no_229"
+	frame: "_frame_co7u5_1",
+	leaderboard: "_leaderboard_co7u5_71",
+	header: "_header_co7u5_91",
+	title: "_title_co7u5_101",
+	divider: "_divider_co7u5_123",
+	body: "_body_co7u5_135",
+	list: "_list_co7u5_147",
+	item: "_item_co7u5_161",
+	rank: "_rank_co7u5_213",
+	wreath: "_wreath_co7u5_227",
+	rankNumber: "_rankNumber_co7u5_243",
+	moves: "_moves_co7u5_341",
+	date: "_date_co7u5_343",
+	empty: "_empty_co7u5_365",
+	emptyIcon: "_emptyIcon_co7u5_379",
+	hourglass: "_hourglass_co7u5_393",
+	emptyTitle: "_emptyTitle_co7u5_407",
+	emptyText: "_emptyText_co7u5_417",
+	isEmpty: "_isEmpty_co7u5_433",
+	footer: "_footer_co7u5_445",
+	button: "_button_co7u5_457"
 };
 //#endregion
 //#region src/components/LeaderboardModal/LeaderboardModal.js
@@ -2237,7 +2240,7 @@ var LeaderboardModal = class {
 		this.modal.close();
 	}
 };
-var Main_module_default = { main: "_main_n0jmh_1" };
+var Main_module_default = { main: "_main_1f44g_1" };
 //#endregion
 //#region src/components/Main/Main.js
 var Main = class {
@@ -2279,12 +2282,12 @@ var Main = class {
 	}
 };
 var World_module_default = {
-	world: "_world_1kwp3_1",
-	background: "_background_1kwp3_9",
-	hidden: "_hidden_1kwp3_17",
-	reveal: "_reveal_1kwp3_21",
-	light: "_light_1kwp3_26",
-	active: "_active_1kwp3_51"
+	world: "_world_bwj78_1",
+	background: "_background_bwj78_17",
+	hidden: "_hidden_bwj78_33",
+	reveal: "_reveal_bwj78_41",
+	light: "_light_bwj78_51",
+	active: "_active_bwj78_101"
 };
 //#endregion
 //#region src/components/World/World.js
@@ -2384,4 +2387,4 @@ var root = document.body;
 new App(root).start();
 //#endregion
 
-//# sourceMappingURL=index-SSiV8i7g.js.map
+//# sourceMappingURL=index-B4QoGoDF.js.map
