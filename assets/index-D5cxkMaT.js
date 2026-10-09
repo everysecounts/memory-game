@@ -1801,9 +1801,9 @@ var Score = class {
 	}
 };
 var Modal_module_default = {
-	overlay: "_overlay_jglws_1",
-	content: "_content_jglws_21",
-	scene: "_scene_jglws_43"
+	overlay: "_overlay_1sscz_1",
+	content: "_content_1sscz_11",
+	scene: "_scene_1sscz_22"
 };
 //#endregion
 //#region src/components/Modal/Modal.js
@@ -2020,14 +2020,15 @@ function createHourglass(className) {
 	return svg;
 }
 var VictoryModal_module_default = {
-	victory: "_victory_1536t_1",
-	iconWrap: "_iconWrap_1536t_85",
-	icon: "_icon_1536t_85",
-	title: "_title_1536t_121",
-	divider: "_divider_1536t_139",
-	moves: "_moves_1536t_149",
-	actions: "_actions_1536t_163",
-	button: "_button_1536t_177"
+	victory: "_victory_v65ld_1",
+	iconWrap: "_iconWrap_v65ld_43",
+	icon: "_icon_v65ld_43",
+	rankNumber: "_rankNumber_v65ld_62",
+	title: "_title_v65ld_79",
+	divider: "_divider_v65ld_88",
+	moves: "_moves_v65ld_93",
+	actions: "_actions_v65ld_100",
+	button: "_button_v65ld_107"
 };
 //#endregion
 //#region src/components/VictoryModal/VictoryModal.js
@@ -2041,6 +2042,11 @@ var VictoryModal = class {
 		const content = createElement("div", { className: VictoryModal_module_default.victory });
 		const iconWrap = createElement("div", { className: VictoryModal_module_default.iconWrap });
 		iconWrap.append(createLaurelWreath(VictoryModal_module_default.icon));
+		this.rankElement = createElement("span", {
+			className: VictoryModal_module_default.rankNumber,
+			attributes: { "aria-label": "Leaderboard rank" }
+		});
+		iconWrap.append(this.rankElement);
 		this.title = createElement("h2", {
 			className: VictoryModal_module_default.title,
 			textContent: "Victory!"
@@ -2069,9 +2075,11 @@ var VictoryModal = class {
 		content.append(iconWrap, this.title, divider, this.movesElement, actions);
 		return content;
 	}
-	open(moves, isPerfect = false) {
+	open(moves, isPerfect = false, rank = null) {
 		this.title.textContent = isPerfect ? "Perfect Memory!" : "Victory!";
 		this.movesElement.textContent = `Moves: ${moves}`;
+		this.rankElement.textContent = rank ? String(rank) : "";
+		this.rankElement.setAttribute("aria-label", rank ? `Leaderboard rank ${rank}` : "Not currently in the top 10");
 		this.modal.open(this.element);
 	}
 	close() {
@@ -2119,27 +2127,27 @@ var Leaderboard = class {
 	}
 };
 var LeaderboardModal_module_default = {
-	frame: "_frame_co7u5_1",
-	leaderboard: "_leaderboard_co7u5_71",
-	header: "_header_co7u5_91",
-	title: "_title_co7u5_101",
-	divider: "_divider_co7u5_123",
-	body: "_body_co7u5_135",
-	list: "_list_co7u5_147",
-	item: "_item_co7u5_161",
-	rank: "_rank_co7u5_213",
-	wreath: "_wreath_co7u5_227",
-	rankNumber: "_rankNumber_co7u5_243",
-	moves: "_moves_co7u5_341",
-	date: "_date_co7u5_343",
-	empty: "_empty_co7u5_365",
-	emptyIcon: "_emptyIcon_co7u5_379",
-	hourglass: "_hourglass_co7u5_393",
-	emptyTitle: "_emptyTitle_co7u5_407",
-	emptyText: "_emptyText_co7u5_417",
-	isEmpty: "_isEmpty_co7u5_433",
-	footer: "_footer_co7u5_445",
-	button: "_button_co7u5_457"
+	frame: "_frame_1v9no_1",
+	leaderboard: "_leaderboard_1v9no_36",
+	header: "_header_1v9no_46",
+	title: "_title_1v9no_51",
+	divider: "_divider_1v9no_62",
+	body: "_body_1v9no_68",
+	list: "_list_1v9no_74",
+	item: "_item_1v9no_81",
+	rank: "_rank_1v9no_107",
+	wreath: "_wreath_1v9no_114",
+	rankNumber: "_rankNumber_1v9no_122",
+	moves: "_moves_1v9no_171",
+	date: "_date_1v9no_172",
+	empty: "_empty_1v9no_183",
+	emptyIcon: "_emptyIcon_1v9no_190",
+	hourglass: "_hourglass_1v9no_197",
+	emptyTitle: "_emptyTitle_1v9no_204",
+	emptyText: "_emptyText_1v9no_209",
+	isEmpty: "_isEmpty_1v9no_217",
+	footer: "_footer_1v9no_223",
+	button: "_button_1v9no_229"
 };
 //#endregion
 //#region src/components/LeaderboardModal/LeaderboardModal.js
@@ -2260,9 +2268,12 @@ var Main = class {
 	}
 	handleGameFinish(moves) {
 		soundManager.play("victory");
-		this.leaderboard.saveResult(moves);
+		const results = this.leaderboard.saveResult(moves);
+		const resultDate = this.leaderboard.getCurrentDate();
+		const rankIndex = results.findIndex((result) => result.moves === moves && result.date === resultDate);
+		const rank = rankIndex === -1 ? null : rankIndex + 1;
 		const isPerfect = moves === 8;
-		this.victoryModal.open(moves, isPerfect);
+		this.victoryModal.open(moves, isPerfect, rank);
 	}
 	handleCardSetChange(cardSetId) {
 		this.cardSetId = cardSetId;
@@ -2278,12 +2289,12 @@ var Main = class {
 	}
 };
 var World_module_default = {
-	world: "_world_bwj78_1",
-	background: "_background_bwj78_17",
-	hidden: "_hidden_bwj78_33",
-	reveal: "_reveal_bwj78_41",
-	light: "_light_bwj78_51",
-	active: "_active_bwj78_101"
+	world: "_world_1kwp3_1",
+	background: "_background_1kwp3_9",
+	hidden: "_hidden_1kwp3_17",
+	reveal: "_reveal_1kwp3_21",
+	light: "_light_1kwp3_26",
+	active: "_active_1kwp3_51"
 };
 //#endregion
 //#region src/components/World/World.js
@@ -2383,4 +2394,4 @@ var root = document.body;
 new App(root).start();
 //#endregion
 
-//# sourceMappingURL=index-CgAHLldZ.js.map
+//# sourceMappingURL=index-D5cxkMaT.js.map
