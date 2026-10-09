@@ -41,6 +41,7 @@
   }
 
   .iconWrap {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,6 +57,23 @@
     width: 56px;
     height: 56px;
     filter: drop-shadow(0 0 14px rgb(201 164 92 / 50%));
+  }
+
+  .rankNumber {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    color: var(--color-gold-bright);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow:
+      0 1px 3px rgb(0 0 0 / 90%),
+      0 0 10px rgb(201 164 92 / 55%);
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
   }
 
   .title {

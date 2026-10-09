@@ -42,9 +42,14 @@ class Main {
 
   handleGameFinish(moves) {
     soundManager.play('victory');
-    this.leaderboard.saveResult(moves);
+    const results = this.leaderboard.saveResult(moves);
+    const resultDate = this.leaderboard.getCurrentDate();
+    const rankIndex = results.findIndex(
+      (result) => result.moves === moves && result.date === resultDate,
+    );
+    const rank = rankIndex === -1 ? null : rankIndex + 1;
     const isPerfect = moves === TOTAL_PAIRS;
-    this.victoryModal.open(moves, isPerfect);
+    this.victoryModal.open(moves, isPerfect, rank);
   }
 
   handleCardSetChange(cardSetId) {

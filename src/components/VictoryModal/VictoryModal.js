@@ -21,6 +21,15 @@ class VictoryModal {
 
     iconWrap.append(createLaurelWreath(styles.icon));
 
+    this.rankElement = createElement('span', {
+      className: styles.rankNumber,
+      attributes: {
+        'aria-label': 'Leaderboard rank',
+      },
+    });
+
+    iconWrap.append(this.rankElement);
+
     this.title = createElement('h2', {
       className: styles.title,
       textContent: 'Victory!',
@@ -67,9 +76,14 @@ class VictoryModal {
     return content;
   }
 
-  open(moves, isPerfect = false) {
+  open(moves, isPerfect = false, rank = null) {
     this.title.textContent = isPerfect ? 'Perfect Memory!' : 'Victory!';
     this.movesElement.textContent = `Moves: ${moves}`;
+    this.rankElement.textContent = rank ? String(rank) : '';
+    this.rankElement.setAttribute(
+      'aria-label',
+      rank ? `Leaderboard rank ${rank}` : 'Not currently in the top 10',
+    );
     this.modal.open(this.element);
   }
 
