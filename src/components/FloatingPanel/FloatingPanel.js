@@ -26,6 +26,7 @@ class FloatingPanel {
     this.handlePanelMouseEnter = this.handlePanelMouseEnter.bind(this);
     this.handlePanelMouseLeave = this.handlePanelMouseLeave.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleOutsidePointerDown = this.handleOutsidePointerDown.bind(this);
     this.addEventListeners();
   }
 
@@ -37,6 +38,7 @@ class FloatingPanel {
     this.button.addEventListener('click', this.handleButtonClick);
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('scroll', this.handleScroll, true);
+    document.addEventListener('pointerdown', this.handleOutsidePointerDown);
   }
 
   handleButtonMouseEnter() {
@@ -54,6 +56,16 @@ class FloatingPanel {
     if (this.isHoverDevice()) {
       this.scheduleClose();
     }
+  }
+
+  handleOutsidePointerDown(event) {
+    if (this.isHoverDevice() || !this.isOpen) {
+      return;
+    }
+    if (this.panel.contains(event.target) || this.button.contains(event.target)) {
+      return;
+    }
+    this.close();
   }
 
   handlePanelMouseEnter() {
@@ -197,6 +209,7 @@ class FloatingPanel {
     this.button.removeEventListener('click', this.handleButtonClick);
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('scroll', this.handleScroll, true);
+    document.removeEventListener('pointerdown', this.handleOutsidePointerDown);
     if (this.panel.isConnected) {
       this.panel.remove();
     }
