@@ -1,0 +1,38 @@
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
+  border: 1px solid rgb(224 198 129 / 55%);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, rgb(48 40 28 / 88%), rgb(16 13 10 / 92%));
+  box-shadow:
+    inset 0 1px 0 rgb(255 240 200 / 10%),
+    0 4px 12px rgb(0 0 0 / 28%);
+  backdrop-filter: blur(6px);
+
+  .item {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    padding: 8px 16px;
+
+    span:first-child {
+      color: #d4c4a8;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    span:last-child {
+      color: var(--color-gold-light);
+      font-size: 18px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      line-height: 1;
+    }
+  }
+}

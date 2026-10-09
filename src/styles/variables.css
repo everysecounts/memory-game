@@ -1,0 +1,22 @@
+:root {
+  --font-family: 'Cinzel', serif;
+  --color-background: #101315;
+  --color-surface: #1a1f21;
+  --color-text: #f4efe5;
+  --color-text-muted: #b7ad9c;
+  --color-gold: #c9a45c;
+  --color-gold-light: #e0c681;
+  --color-gold-bright: #f3dc9a;
+  --color-text-bright: #fff4dc;
+  --color-border: rgb(201 164 92 / 35%);
+  --shadow-card: 0 12px 30px rgb(0 0 0 / 35%);
+  --shadow-card-hover: 0 18px 36px rgb(0 0 0 / 45%);
+  --shadow-modal: 0 24px 80px rgb(0 0 0 / 55%);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s ease;
+  --cursor-url: auto;
+  --pointer-url: auto;
+}
