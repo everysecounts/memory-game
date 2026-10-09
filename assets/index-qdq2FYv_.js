@@ -779,6 +779,7 @@ var FloatingPanel = class {
 		this.handlePanelMouseEnter = this.handlePanelMouseEnter.bind(this);
 		this.handlePanelMouseLeave = this.handlePanelMouseLeave.bind(this);
 		this.handleButtonClick = this.handleButtonClick.bind(this);
+		this.handleOutsidePointerDown = this.handleOutsidePointerDown.bind(this);
 		this.addEventListeners();
 	}
 	addEventListeners() {
@@ -789,6 +790,7 @@ var FloatingPanel = class {
 		this.button.addEventListener("click", this.handleButtonClick);
 		window.addEventListener("resize", this.handleResize);
 		window.addEventListener("scroll", this.handleScroll, true);
+		document.addEventListener("pointerdown", this.handleOutsidePointerDown);
 	}
 	handleButtonMouseEnter() {
 		this.pointerInsideButton = true;
@@ -800,6 +802,11 @@ var FloatingPanel = class {
 	handleButtonMouseLeave() {
 		this.pointerInsideButton = false;
 		if (this.isHoverDevice()) this.scheduleClose();
+	}
+	handleOutsidePointerDown(event) {
+		if (this.isHoverDevice() || !this.isOpen) return;
+		if (this.panel.contains(event.target) || this.button.contains(event.target)) return;
+		this.close();
 	}
 	handlePanelMouseEnter() {
 		this.pointerInsidePanel = true;
@@ -889,6 +896,7 @@ var FloatingPanel = class {
 		this.button.removeEventListener("click", this.handleButtonClick);
 		window.removeEventListener("resize", this.handleResize);
 		window.removeEventListener("scroll", this.handleScroll, true);
+		document.removeEventListener("pointerdown", this.handleOutsidePointerDown);
 		if (this.panel.isConnected) this.panel.remove();
 	}
 };
@@ -2394,4 +2402,4 @@ var root = document.body;
 new App(root).start();
 //#endregion
 
-//# sourceMappingURL=index-D5cxkMaT.js.map
+//# sourceMappingURL=index-qdq2FYv_.js.map
